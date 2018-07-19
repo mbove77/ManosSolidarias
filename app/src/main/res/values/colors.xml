@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8BC34A</color>
+    <color name="colorPrimaryDark">#689F38</color>
+    <color name="colorPrimaryLight">#DCEDC8</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorListText">#3D3D3D</color>
+    <color name="colorListBackground">#F2F2F2</color>
+    <color name="colorIcons">#212121</color>
+    <color name="colorListIcons">#707070</color>
+    <color name="colorDivider">#E5E5E5</color>
+    <color name="colorBorderFiled">#A2A2A2</color>
+    <color name="colorTooltipBack">#e6ee9c</color>
+
+    <color name="colorBackground">#F0F0F0</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorFacebook">#3B5998</color>
+    <color name="colorFacebookLight">#5175be</color>
+
+    <color name="colorGoogle">#DD4B39</color>
+    <color name="colorGoogleLight">#e76252</color>
+</resources>

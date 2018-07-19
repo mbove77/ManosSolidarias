@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="8dp"
+    android:paddingTop="11dp"
+    android:paddingBottom="11dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewOngLogo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:civ_circle_background_color="@color/colorWhite"
+        app:civ_border_width="0.5dp"
+        app:civ_border_color="@color/colorDivider"/>
+
+    <TextView
+        android:id="@+id/textViewOngName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/ubuntu_light"
+        android:singleLine="true"
+        android:text="Banco de alimentos"
+        android:textColor="@color/colorListText"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDistancia"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageViewOngLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewPlace"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/ic_place_black_24dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewOngName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOngName" />
+
+    <TextView
+        android:id="@+id/textViewOngDireccion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/ubuntu_light"
+        android:singleLine="true"
+        android:text="TextView"
+        android:textColor="@color/colorListText"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPlace"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOngName" />
+
+    <ImageView
+        android:id="@+id/imageViewDistancia"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_near_me_black_24dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewDistance"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="1.7 km"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="11sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

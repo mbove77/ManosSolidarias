@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Manos Solidarias</string>
+    <string name="app_mail">info@manossolidarias.com.ar</string>
+    <string name="app_mail_subject">Necesito ayuda.</string>
+    <string name="button_facebook">Entrar con Facebook</string>
+    <string name="button_google">Entrar con Google</string>
+    <string name="input_mail">Correo electrónico</string>
+    <string name="input_pass">Contraseña</string>
+    <string name="input_re_pass">Repetir contraseña</string>
+    <string name="create_account">Registrar Usuario</string>
+    <string name="button_login">Ingresar con correo</string>
+    <string name="lost_password">¿Olvidaste tu contraseña?</string>
+    <string name="new_account">Crea una cuenta con tu correo.</string>
+    <string name="account_help">¿Necesitas ayuda? ¿Tienes alguna pregunta?</string>
+    <string name="logo_desc">Logo</string>
+    <string name="loading">Cargando…</string>
+    <string name="Logout">Salir</string>
+    <string name="add">Agregar ONG</string>
+    <string name="showHelp">Mostrar Ayuda</string>
+    <string name="error_email">Ingrese un email valido.</string>
+    <string name="error_pass">Ingrese un password valido.</string>
+    <string name="error_pass_short">El password debe tener al menos 6 caracteres.</string>
+    <string name="error_pass_confirm">El password y la confirmación no coinciden.</string>
+    <string name="error_sigin">Error al iniciar sección, revise los datos.</string>
+    <string name="error_email_verfy">Debes verificar tu correo antes de iniciar sección. Revisa tu casilla de correo.</string>
+    <string name="resend_verfy">Reenviar email</string>
+    <string name="error_email_forgot">Ingrese su correo para restablecer su contraseña.</string>
+    <string name="email_forgot_send">Enviamos un mensaje para que recuperes tu contraseña, revisa tu correo!</string>
+    <string name="home_tittle">¿Que deseas donar?</string>
+    <string name="donation_help">Maten pulsado sobre cada item para saber más.</string>
+    <string name="donation_help_action">OK</string>
+    <string name="no_result">No encontramos resultados para la donación que deseas realizar. Vuelve atrás he intenta otra opción.</string>
+</resources>
