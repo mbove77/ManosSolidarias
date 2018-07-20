@@ -17,15 +17,16 @@
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.HomeActivity"
-            android:theme="@style/AppThemeAB" />
+
+        <activity android:name=".activities.HomeActivity" />
         <activity android:name=".activities.base.BaseActivity" />
         <activity android:name=".activities.account.CreateAccountActivity" />
+        <activity android:name=".activities.OngListActivity" />
+        <activity android:name=".activities.AddOngActivity" />
+
 
         <!-- Facebook Configuration -->
         <meta-data
@@ -44,11 +45,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.OngListActivity"
-            android:theme="@style/AppThemeAB"/>
-
-        <activity android:name=".activities.AddOngActivity"></activity>
     </application>
 
 </manifest>
