@@ -64,7 +64,7 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
         // Aca es donde se cargan las datos reales
         public void bind(final Donacion donacion, final OnItemClickListener listener, final OnLongClickListener longClickListener) {
             this.textViewName.setText(donacion.getNombre());
-            Picasso.get().load(donacion.getIcon_url()).fit().into(this.imageViewIcon);
+            Picasso.with(itemView.getContext()).load(donacion.getIcon_url()).fit().into(this.imageViewIcon);
 
             // Añadimos el onClick
             itemView.setOnClickListener(new View.OnClickListener() {

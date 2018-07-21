@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
+import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
 import com.bove.martin.manossolidarias.adapters.DonationAdapter;
 import com.bove.martin.manossolidarias.model.Donacion;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,6 +52,9 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        // Cargamos el NavDrawer
+        DrawerUtil.getDrawer(this, myToolbar, getUser());
 
         // Cargamos las shared para mostrar la ayuda una sola vez
         preferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
@@ -107,15 +111,16 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         switch (item.getItemId()) {
             case R.id.menulogout:
                 logout();
+                break;
             case R.id.menuAdd:
                 Intent i = new Intent(this, AddOngActivity.class);
                 startActivity(i);
+                break;
             case R.id.menuShowHelp:
                 preferences.edit().clear().apply();
-
-            default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showHelp() {

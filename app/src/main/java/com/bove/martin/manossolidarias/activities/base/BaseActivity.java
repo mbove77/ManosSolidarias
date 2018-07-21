@@ -20,7 +20,6 @@ public class BaseActivity extends AppCompatActivity {
     public final String DB_ONGS = "instituciones";
     public final String SHARED_PREF = "pref";
 
-
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
     private FirebaseAuth mAuth;
@@ -55,7 +54,7 @@ public class BaseActivity extends AppCompatActivity {
         hideProgressDialog();
     }
 
-    public void logout() {
+    public  void logout() {
         // Firebase sign out
         if(mAuth != null) {
             mAuth.signOut();

@@ -9,6 +9,7 @@ public class Donacion {
     private String nombre;
     private String icon_url;
     private String desc;
+    private int order;
 
     public Donacion() { }
 
@@ -49,5 +50,13 @@ public class Donacion {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 }

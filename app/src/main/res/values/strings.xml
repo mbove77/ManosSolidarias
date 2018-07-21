@@ -16,7 +16,9 @@
     <string name="loading">Cargando…</string>
     <string name="Logout">Salir</string>
     <string name="add">Agregar ONG</string>
-    <string name="showHelp">Mostrar Ayuda</string>
+    <string name="showHelp">¿Mostrar Ayuda?</string>
+    <string name="configs">Configuración</string>
+    <string name="home">Inicio</string>
     <string name="error_email">Ingrese un email valido.</string>
     <string name="error_pass">Ingrese un password valido.</string>
     <string name="error_pass_short">El password debe tener al menos 6 caracteres.</string>
