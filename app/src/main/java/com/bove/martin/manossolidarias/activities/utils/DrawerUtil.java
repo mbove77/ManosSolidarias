@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.HomeActivity;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.google.firebase.auth.FirebaseUser;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -22,11 +23,8 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
-import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-import com.mikepenz.materialdrawer.util.DrawerImageLoader;
-import com.squareup.picasso.Picasso;
+
 
 /**
  * Created by Martín Bove on 20/07/2018.
@@ -39,10 +37,11 @@ public class DrawerUtil {
 
     //TODO Obtener el email de la cuenta
 
-    public static void getDrawer(final BaseActivity activity, Toolbar toolbar, FirebaseUser user) {
-         String nombre = user.getDisplayName();
-         String email = user.getEmail();
-         Uri foto = user.getPhotoUrl();
+    public static void getDrawer(final BaseActivity activity, Toolbar toolbar) {
+        final String activityName = activity.getLocalClassName();
+        String nombre = activity.getUser().getDisplayName();
+         String email = activity.getUser().getEmail();
+         Uri foto = activity.getUser().getPhotoUrl();
          if(foto == null) foto = Uri.parse("http://placeholder");
 
         headerResult = new AccountHeaderBuilder()
@@ -54,7 +53,7 @@ public class DrawerUtil {
                 .addProfiles(new ProfileDrawerItem().withName(nombre).withEmail(email).withIcon(foto))
                 .build();
 
-        //Create the drawer
+        // Create the drawer
         result = new DrawerBuilder()
                 .withActivity(activity)
                 .withToolbar(toolbar)
@@ -69,7 +68,7 @@ public class DrawerUtil {
                             }
                         })
                 )
-                .addStickyDrawerItems(new SecondaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt).withIdentifier(3))
+                .addStickyDrawerItems(new PrimaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt).withIdentifier(3))
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -78,7 +77,10 @@ public class DrawerUtil {
                             Intent intent = null;
                             // Home item
                             if (drawerItem.getIdentifier() == 1) {
-                                Toast.makeText(activity, "Opcion 1", Toast.LENGTH_SHORT).show();
+                                if(!activityName.equals("activities.HomeActivity")) {
+                                    intent = new Intent(activity, HomeActivity.class);
+                                    activity.startActivity(intent);
+                                }
                             }
                             // Logout item
                             else if (drawerItem.getIdentifier() == 3) {
@@ -93,6 +95,14 @@ public class DrawerUtil {
                 })
                 .withShowDrawerOnFirstLaunch(true)
                 .build();
+
+            // Add ong list item
+            if(activityName.equals("activities.OngListActivity")) {
+                PrimaryDrawerItem donation =  new PrimaryDrawerItem().withName(R.string.list_ong).withIcon(FontAwesome.Icon.faw_list_alt).withIdentifier(2);
+                result.addItemAtPosition(donation, 2);
+                result.setSelection(2);
+            }
+
     }
 
     public static void updateDrawer(IDrawerItem item) {

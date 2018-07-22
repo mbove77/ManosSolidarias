@@ -19,6 +19,7 @@
     <string name="showHelp">¿Mostrar Ayuda?</string>
     <string name="configs">Configuración</string>
     <string name="home">Inicio</string>
+    <string name="list_ong">Instituciones</string>
     <string name="error_email">Ingrese un email valido.</string>
     <string name="error_pass">Ingrese un password valido.</string>
     <string name="error_pass_short">El password debe tener al menos 6 caracteres.</string>

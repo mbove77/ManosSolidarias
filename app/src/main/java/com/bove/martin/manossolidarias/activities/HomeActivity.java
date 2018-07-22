@@ -48,8 +48,7 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         setSupportActionBar(myToolbar);
 
         // Cargamos el NavDrawer
-        DrawerUtil.getDrawer(this, myToolbar, getUser());
-
+        DrawerUtil.getDrawer(this, myToolbar);
 
         // Mostramos el cargando hasta que lleguen los datos
         showProgressDialog();

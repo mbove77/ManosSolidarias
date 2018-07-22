@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
+import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
 import com.bove.martin.manossolidarias.adapters.InstitucionesAdapter;
 import com.bove.martin.manossolidarias.model.Institucion;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -63,6 +64,9 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        // Cargamos el NavDrawer
+        DrawerUtil.getDrawer(this, myToolbar);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
