@@ -59,6 +59,8 @@ public class MainActivity extends BaseActivity {
     private GoogleSignInOptions gso;
     private GoogleSignInClient mGoogleSignInClient;
 
+    // TODO Cuando se crea una cuenta con email, hacer un intent para abrir el correo, y luego si ingresa son registrar ofreecer reenviar el correo
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

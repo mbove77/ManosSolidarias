@@ -1,8 +1,6 @@
 package com.bove.martin.manossolidarias.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -32,17 +30,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends BaseActivity implements DonationAdapter.OnItemClickListener, DonationAdapter.OnLongClickListener {
+    private final String TAG = "Donation Activity";
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private final String TAG = "DB";
-    private final String SHOW_HELP_KEY = "showHelp";
-
     private List<Donacion> donaciones = new ArrayList<Donacion>();
-
-    private SharedPreferences preferences;
-    private Boolean showHelp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +50,6 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         // Cargamos el NavDrawer
         DrawerUtil.getDrawer(this, myToolbar, getUser());
 
-        // Cargamos las shared para mostrar la ayuda una sola vez
-        preferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
-        showHelp = preferences.getBoolean(SHOW_HELP_KEY, true);
 
         // Mostramos el cargando hasta que lleguen los datos
         showProgressDialog();
@@ -125,6 +116,9 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
 
     private void showHelp() {
         preferences.edit().putBoolean(SHOW_HELP_KEY, false).apply();
+        // Actualizamos el icono en el drawer
+        helpDrawerItem.withChecked(false);
+        DrawerUtil.updateDrawer(helpDrawerItem);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

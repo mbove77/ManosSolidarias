@@ -1,13 +1,11 @@
 package com.bove.martin.manossolidarias.activities.utils;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 
 import com.bove.martin.manossolidarias.R;
@@ -18,6 +16,7 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
@@ -38,14 +37,13 @@ public class DrawerUtil {
     private static AccountHeader headerResult;
     private static Drawer result;
 
-    //TODO Obtener el emil de la cuenta
+    //TODO Obtener el email de la cuenta
 
     public static void getDrawer(final BaseActivity activity, Toolbar toolbar, FirebaseUser user) {
          String nombre = user.getDisplayName();
          String email = user.getEmail();
          Uri foto = user.getPhotoUrl();
          if(foto == null) foto = Uri.parse("http://placeholder");
-
 
         headerResult = new AccountHeaderBuilder()
                 .withActivity(activity)
@@ -62,17 +60,42 @@ public class DrawerUtil {
                 .withToolbar(toolbar)
                 .withAccountHeader(headerResult)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.home).withIcon(FontAwesome.Icon.faw_home),
+                        new PrimaryDrawerItem().withName(R.string.home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
                         new SectionDrawerItem().withName(R.string.configs),
-                        new SecondarySwitchDrawerItem().withName(R.string.showHelp).withIcon(FontAwesome.Icon.faw_question_circle2)
+                        activity.helpDrawerItem = new SecondarySwitchDrawerItem().withName(R.string.showHelp).withChecked(activity.showHelp).withIcon(FontAwesome.Icon.faw_question_circle2).withOnCheckedChangeListener(new OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
+                                activity.resetAyuda(isChecked);
+                            }
+                        })
                 )
-                .addStickyDrawerItems(new SecondaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt)).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                .addStickyDrawerItems(new SecondaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt).withIdentifier(3))
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        activity.logout();
+
+                        if (drawerItem != null) {
+                            Intent intent = null;
+                            // Home item
+                            if (drawerItem.getIdentifier() == 1) {
+                                Toast.makeText(activity, "Opcion 1", Toast.LENGTH_SHORT).show();
+                            }
+                            // Logout item
+                            else if (drawerItem.getIdentifier() == 3) {
+                                activity.logout();
+                            }
+                            if (intent != null) {
+                                activity.startActivity(intent);
+                            }
+                        }
                         return false;
                     }
                 })
+                .withShowDrawerOnFirstLaunch(true)
                 .build();
+    }
+
+    public static void updateDrawer(IDrawerItem item) {
+        result.updateItem(item);
     }
 }
