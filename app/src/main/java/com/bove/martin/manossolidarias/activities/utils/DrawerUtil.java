@@ -40,13 +40,13 @@ public class DrawerUtil {
     public static void getDrawer(final BaseActivity activity, Toolbar toolbar) {
         final String activityName = activity.getLocalClassName();
         String nombre = activity.getUser().getDisplayName();
-         String email = activity.getUser().getEmail();
-         Uri foto = activity.getUser().getPhotoUrl();
-         if(foto == null) foto = Uri.parse("http://placeholder");
+        String email = activity.getUser().getEmail();
+        Uri foto = activity.getUser().getPhotoUrl();
+        if(foto == null) foto = Uri.parse("http://placeholder");
 
         headerResult = new AccountHeaderBuilder()
                 .withActivity(activity)
-                .withCompactStyle(true)
+                .withCompactStyle(false)
                 .withHeaderBackground(R.drawable.header)
                 .withSelectionListEnabledForSingleProfile(false)
                 .withAlternativeProfileHeaderSwitching(false)

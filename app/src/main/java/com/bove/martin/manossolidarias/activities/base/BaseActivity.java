@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.bove.martin.manossolidarias.activities.HomeActivity;
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.MainActivity;
+import com.bove.martin.manossolidarias.model.Institucion;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +29,9 @@ public class BaseActivity extends AppCompatActivity {
 
     // Shared Preferences
     public SharedPreferences preferences;
+
+    // Mantenemos la institucion selecionada
+    public static Institucion currentONG;
 
     // Variables para mostrar la ayuda y item para actualizar el drawer
     public Boolean showHelp = true;

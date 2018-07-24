@@ -1,5 +1,6 @@
 package com.bove.martin.manossolidarias.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
@@ -29,12 +31,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class HomeActivity extends BaseActivity implements DonationAdapter.OnItemClickListener, DonationAdapter.OnLongClickListener {
     private final String TAG = "Donation Activity";
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    private Boolean exitEnable = false;
 
     private List<Donacion> donaciones = new ArrayList<Donacion>();
 
@@ -138,5 +144,24 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
     @Override
     public void onLongClick(Donacion donacion, int posicion) {
         Snackbar.make(findViewById(R.id.homeLayout), donacion.getDesc(), Snackbar.LENGTH_LONG).show();
+    }
+
+    // Maneja la salida de al app
+    @Override
+    public void onBackPressed() {
+        if(exitEnable) {
+            this.moveTaskToBack(true);
+        }
+        exitEnable = true;
+        Toast.makeText(this,  R.string.back_to_exit, Toast.LENGTH_SHORT).show();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                exitEnable = false;
+            }
+        }, 1500);
+
     }
 }

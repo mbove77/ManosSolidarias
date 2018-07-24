@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.google.firebase.firestore.GeoPoint;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**

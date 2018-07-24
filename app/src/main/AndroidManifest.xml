@@ -18,10 +18,10 @@
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activities.HomeActivity" />
         <activity android:name=".activities.base.BaseActivity" />
         <activity android:name=".activities.account.CreateAccountActivity" />
@@ -39,12 +39,14 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.OngInfoActivity"></activity>
     </application>
 
 </manifest>

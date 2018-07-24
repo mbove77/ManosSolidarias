@@ -2,6 +2,7 @@ package com.bove.martin.manossolidarias.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -97,13 +98,13 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         gpsPermiso = true;
-                        Toast.makeText(OngListActivity.this, "Permiso Grantizado", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(OngListActivity.this, "Permiso Grantizado", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
                         gpsPermiso = false;
-                        Toast.makeText(OngListActivity.this, "Permiso Denegado", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(OngListActivity.this, "Permiso Denegado", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -124,6 +125,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                                 userLoc = location;
                                 // si ya se cargaron las instituciones entonces actualizamos las distancias.
                                 if(instituciones.size() > 0) {
+                                   // TODO Revisar que cuando se aceptan los permisos esta función se ejecute.
                                     updateDistancias();
                                 }
                             }
@@ -174,7 +176,9 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
 
     @Override
     public void onItemClick(Institucion institucion, int posicion) {
-
+        Intent intent = new Intent(this, OngInfoActivity.class);
+        BaseActivity.currentONG = institucion;
+        startActivity(intent);
     }
 
     // Update distancias después de cargadas
@@ -188,7 +192,4 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         adapter.notifyDataSetChanged();
     }
 
-    public void algo() {
-
-    }
 }
