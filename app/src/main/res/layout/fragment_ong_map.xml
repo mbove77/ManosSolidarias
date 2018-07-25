@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".activities.fragments.OngMapFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/navButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@color/colorWhite"
+        android:textColor="@color/colorSecondaryText"
+        android:drawableEnd="@drawable/ic_directions_black_24dp"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:padding="8dp"
+        android:text="@string/nav"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </FrameLayout>

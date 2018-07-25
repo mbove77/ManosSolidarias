@@ -1,5 +1,6 @@
 package com.bove.martin.manossolidarias.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -33,7 +34,13 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
         setContentView(R.layout.activity_ong_info);
 
         // Obtenemos la institución
-        ong = BaseActivity.currentONG;
+        // Si la referencia no existe volvemos al home
+        if(BaseActivity.currentONG  != null) {
+            ong = BaseActivity.currentONG;
+        } else {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }
 
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);

@@ -37,11 +37,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case INFO_FRAGMENT:
                 OngInfoFragment infoFragment = new OngInfoFragment();
-                mPageReferenceMap.put(position, infoFragment);
                 infoFragment.setOng(this.ong);
+                mPageReferenceMap.put(position, infoFragment);
                 return infoFragment;
             case MAP_FRAGMENT:
                 OngMapFragment mapFragment = new OngMapFragment();
+                mapFragment.setOng(this.ong);
                 mPageReferenceMap.put(position, mapFragment);
                 return mapFragment;
             case MENSAJE_FRAGMENT:
