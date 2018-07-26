@@ -24,7 +24,7 @@
         android:padding="8dp"
         android:text="@string/nav"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
 </FrameLayout>

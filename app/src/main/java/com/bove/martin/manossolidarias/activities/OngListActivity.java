@@ -3,6 +3,7 @@ package com.bove.martin.manossolidarias.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -176,8 +178,17 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
 
     @Override
     public void onItemClick(Institucion institucion, int posicion) {
+        // Mostramos el cargando por si demora mas de lo habitual
+        showProgressDialog();
         Intent intent = new Intent(this, OngInfoActivity.class);
-        BaseActivity.currentONG = institucion;
+
+        // Guardamos el objeto en las prefs
+        SharedPreferences.Editor prefsEditor = getPreferences().edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(institucion);
+        prefsEditor.putString("institucion", json);
+        prefsEditor.commit();
+
         startActivity(intent);
     }
 

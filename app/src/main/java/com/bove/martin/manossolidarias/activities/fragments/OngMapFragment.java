@@ -3,6 +3,7 @@ package com.bove.martin.manossolidarias.activities.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.interfaces.FragmentComunication;
 import com.bove.martin.manossolidarias.model.Institucion;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +26,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 
 public class OngMapFragment extends Fragment implements OnMapReadyCallback {
@@ -35,6 +38,8 @@ public class OngMapFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap gMap;
     private MapView mMapView;
+
+    public SharedPreferences preferences;
 
     public OngMapFragment() {
         // Required empty public constructor
@@ -62,20 +67,14 @@ public class OngMapFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        getCurrentONG();
+
         mMapView = rootView.findViewById(R.id.mapView);
         if(mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
             mMapView.getMapAsync(this);
         }
-    }
-
-    public Institucion getOng() {
-        return ong;
-    }
-
-    public void setOng(Institucion ong) {
-        this.ong = ong;
     }
 
     @Override
@@ -112,6 +111,7 @@ public class OngMapFragment extends Fragment implements OnMapReadyCallback {
     public void onResume() {
         super.onResume();
         mMapView.onResume();
+        getCurrentONG();
     }
 
     @Override
@@ -132,10 +132,24 @@ public class OngMapFragment extends Fragment implements OnMapReadyCallback {
         mMapView.onLowMemory();
     }
 
+    // Load current ONG
+    private void getCurrentONG() {
+        if (ong == null ) {
+            if (preferences == null) {
+                // Obtenemos el objeto guardado previamente en las pref
+                preferences = this.getActivity().getSharedPreferences(BaseActivity.SHARED_PREF, Context.MODE_PRIVATE);
+            }
+            Gson gson = new Gson();
+            String json = preferences.getString("institucion", "");
+            ong = gson.fromJson(json, Institucion.class);
+        }
+    }
+
     public static String truncate(String str, int len) {
         if (str.length() > len) {
             return str.substring(0, len) + "...";
         } else {
             return str;
-        }}
+        }
+    }
 }

@@ -3,6 +3,7 @@ package com.bove.martin.manossolidarias.activities.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.interfaces.FragmentComunication;
 import com.bove.martin.manossolidarias.activities.utils.CircleTransform;
 import com.bove.martin.manossolidarias.model.Institucion;
+import com.google.gson.Gson;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
@@ -54,6 +57,7 @@ public class OngInfoFragment extends Fragment {
     private IconicsImageView instagramIcon;
     private IconicsImageView youtubeIcon;
 
+    public SharedPreferences preferences;
 
     public OngInfoFragment() {
         // Required empty public constructor
@@ -74,6 +78,8 @@ public class OngInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_ong_info, container, false);
+
+        getCurrentONG();
 
        // Instaciamos los elementos
         header = view.findViewById(R.id.infoOngHeader);
@@ -207,6 +213,17 @@ public class OngInfoFragment extends Fragment {
         return view;
     }
 
+    private void getCurrentONG() {
+        if (ong == null ) {
+            if (preferences == null) {
+                // Obtenemos el objeto guardado previamente en las pref
+                preferences = this.getActivity().getSharedPreferences(BaseActivity.SHARED_PREF, Context.MODE_PRIVATE);
+            }
+            Gson gson = new Gson();
+            String json = preferences.getString("institucion", "");
+            ong = gson.fromJson(json, Institucion.class);
+        }
+    }
 
     private void makeCall(String telefono) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -226,13 +243,24 @@ public class OngInfoFragment extends Fragment {
         startActivity(i);
     }
 
-
-    public Institucion getOng() {
-        return ong;
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCurrentONG();
     }
 
-    public void setOng(Institucion ong) {
-        this.ong = ong;
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+    }
 }

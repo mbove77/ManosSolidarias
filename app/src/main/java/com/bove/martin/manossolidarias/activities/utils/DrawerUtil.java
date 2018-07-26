@@ -93,7 +93,7 @@ public class DrawerUtil {
                         return false;
                     }
                 })
-                .withShowDrawerOnFirstLaunch(true)
+                .withShowDrawerOnFirstLaunch(false)
                 .build();
 
             // Add ong list item

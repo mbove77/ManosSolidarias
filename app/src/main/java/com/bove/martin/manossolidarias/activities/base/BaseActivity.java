@@ -22,16 +22,13 @@ import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 
 public class BaseActivity extends AppCompatActivity {
     // Constantes
-    public final String DB_DONATIONS = "donaciones";
-    public final String DB_ONGS = "instituciones";
-    public final String SHARED_PREF = "pref";
-    public final String SHOW_HELP_KEY = "showHelp";
+    public static final String DB_DONATIONS = "donaciones";
+    public static final String DB_ONGS = "instituciones";
+    public static final String SHARED_PREF = "pref";
+    public static final String SHOW_HELP_KEY = "showHelp";
 
     // Shared Preferences
     public SharedPreferences preferences;
-
-    // Mantenemos la institucion selecionada
-    public static Institucion currentONG;
 
     // Variables para mostrar la ayuda y item para actualizar el drawer
     public Boolean showHelp = true;
@@ -80,6 +77,7 @@ public class BaseActivity extends AppCompatActivity {
         hideProgressDialog();
     }
 
+    // Logout
     public  void logout() {
         if(mAuth != null) {
             mAuth.signOut();
@@ -91,12 +89,9 @@ public class BaseActivity extends AppCompatActivity {
         goToMain();
     }
 
-    public FirebaseUser getUser() {
-       if(user != null) { return user; } else { return user = FirebaseAuth.getInstance().getCurrentUser(); }
-    }
-
-    public void setUser(FirebaseUser user) {
-        this.user = user;
+    // Resetea el valor de la ayuda en las sharedPref
+    public void resetAyuda(Boolean valor) {
+        preferences.edit().putBoolean(SHOW_HELP_KEY, valor).apply();
     }
 
     // Intent para ir a la Home (Donaciones)
@@ -112,8 +107,18 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    // Resetea el valor de la ayuda en las sharedPref
-    public void resetAyuda(Boolean valor) {
-        preferences.edit().putBoolean(SHOW_HELP_KEY, valor).apply();
+    // Get current Firebase User
+    public FirebaseUser getUser() {
+       if(user != null) { return user; } else { return user = FirebaseAuth.getInstance().getCurrentUser(); }
+    }
+
+    // Set Firebase User
+    public void setUser(FirebaseUser user) {
+        this.user = user;
+    }
+
+    // return sharedPef
+    public SharedPreferences getPreferences() {
+        return preferences;
     }
 }
