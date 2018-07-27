@@ -1,9 +1,10 @@
 package com.bove.martin.manossolidarias.activities.fragments;
 
-
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,9 +30,6 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class OngInfoFragment extends Fragment {
     private FragmentComunication callback;
     private Institucion ong;
@@ -109,7 +107,7 @@ public class OngInfoFragment extends Fragment {
 
         // Cargamos los elementos
         // TODO hacer un placeholder de manos solidarias para el header o implementar un spinner
-        Picasso.with(view.getContext()).load(ong.getHeader_img_url()).fit().centerCrop().into(header);
+        Picasso.with(view.getContext()).load(ong.getHeader_img_url()).placeholder(R.drawable.placeholder).fit().centerCrop().into(header);
         Picasso.with(view.getContext()).load(ong.getLogo_url()).transform(new CircleTransform()).fit().into(logo);
         mision.setText(ong.getDescripcion());
 
@@ -175,7 +173,7 @@ public class OngInfoFragment extends Fragment {
             facebookIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openWeb(ong.getFacebook());
+                    openLink(ong.getFacebook(), "facebook");
                 }
             });
         }
@@ -185,7 +183,7 @@ public class OngInfoFragment extends Fragment {
             instagramIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openWeb(ong.getInstagram());
+                    openLink(ong.getInstagram(), "instagram");
                 }
             });
         }
@@ -195,7 +193,7 @@ public class OngInfoFragment extends Fragment {
             twitterIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openWeb(ong.getTwitter());
+                    openLink(ong.getTwitter(), "twitter");
                 }
             });
         }
@@ -205,7 +203,7 @@ public class OngInfoFragment extends Fragment {
             youtubeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openWeb(ong.getYoutube());
+                    openLink(ong.getYoutube(), "youtube");
                 }
             });
         }
@@ -241,6 +239,51 @@ public class OngInfoFragment extends Fragment {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(web));
         startActivity(i);
+    }
+
+    // Open links in native apps
+    private void openLink(String link, String service) {
+        String base_url = "";
+        String service_url = "";
+        String paquete = "";
+
+        // TODO revisar que se habra bien en facebook
+        switch (service) {
+            case "facebook": {
+                base_url =  "https://facebook.com/";
+                paquete = "com.facebook.katana";
+                service_url = "fb://facewebmodal/f?href=" + base_url;
+                break;
+            }
+            case "twitter": {
+                base_url =  "https://twitter.com/";
+                paquete = "com.twitter.android";
+                service_url = "http://twitter.com/";
+                break;
+            }
+            case "instagram": {
+                base_url =  "http://instagram.com/";
+                paquete = "com.instagram.android";
+                service_url = "http://instagram.com/_u/";
+                break;
+            }
+            case "youtube": {
+                base_url =  "https://www.youtube.com/user/";
+                paquete = "com.google.android.youtube";
+                service_url = "https://www.youtube.com/user/";
+                break;
+            }
+        }
+
+        Uri uri = Uri.parse(service_url + link);
+        Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+        likeIng.setPackage(paquete);
+
+        try {
+            startActivity(likeIng);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(base_url + link)));
+        }
     }
 
     @Override

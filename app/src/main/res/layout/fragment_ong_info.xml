@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/infoOngLogo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:elevation="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/infoOngHeader"
             app:layout_constraintEnd_toEndOf="@+id/infoOngHeader"
@@ -130,6 +130,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:hapticFeedbackEnabled="true"
             app:layout_constraintStart_toEndOf="@+id/OngTeleiIcon"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -161,6 +162,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:hapticFeedbackEnabled="true"
             app:layout_constraintStart_toEndOf="@+id/OngMailiIcon"
             app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
@@ -193,6 +195,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:hapticFeedbackEnabled="true"
             app:layout_constraintStart_toEndOf="@+id/OngWebiIcon"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -227,6 +230,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:hapticFeedbackEnabled="true"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_facebook_square" />
 
@@ -236,6 +240,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:hapticFeedbackEnabled="true"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_instagram" />
 
@@ -245,6 +250,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:hapticFeedbackEnabled="true"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_twitter_square" />
 
@@ -254,6 +260,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:hapticFeedbackEnabled="true"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_youtube_square" />
 
