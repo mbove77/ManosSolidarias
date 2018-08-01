@@ -59,14 +59,7 @@ public class DrawerUtil {
                 .withToolbar(toolbar)
                 .withAccountHeader(headerResult)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
-                        new SectionDrawerItem().withName(R.string.configs),
-                        activity.helpDrawerItem = new SecondarySwitchDrawerItem().withName(R.string.showHelp).withChecked(activity.showHelp).withIcon(FontAwesome.Icon.faw_question_circle2).withOnCheckedChangeListener(new OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
-                                activity.resetAyuda(isChecked);
-                            }
-                        })
+                        new PrimaryDrawerItem().withName(R.string.home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1)
                 )
                 .addStickyDrawerItems(new PrimaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt).withIdentifier(3))
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {

@@ -53,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
+    <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
         android:id="@+id/editTextRegPass"
         android:layout_width="0dp"
         android:layout_height="42dp"
@@ -68,13 +68,15 @@
         android:hint="@string/input_pass"
         android:inputType="textPassword"
         android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:textColor="@color/colorSecondaryText"
         android:textSize="14sp"
+        app:tint_color="@color/colorSecondaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegEmail" />
 
-    <EditText
+    <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
         android:id="@+id/editTextRegRePass"
         android:layout_width="0dp"
         android:layout_height="42dp"
@@ -89,8 +91,10 @@
         android:hint="@string/input_re_pass"
         android:inputType="textPassword"
         android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:textColor="@color/colorSecondaryText"
         android:textSize="14sp"
+        app:tint_color="@color/colorSecondaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegPass" />

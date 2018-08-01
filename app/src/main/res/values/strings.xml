@@ -28,11 +28,18 @@
     <string name="error_pass_short">El password debe tener al menos 6 caracteres.</string>
     <string name="error_pass_confirm">El password y la confirmación no coinciden.</string>
     <string name="error_sigin">Error al iniciar sección, revise los datos.</string>
-    <string name="error_email_verfy">Debes verificar tu correo antes de iniciar sección. Revisa tu casilla de correo.</string>
-    <string name="resend_verfy">Reenviar email</string>
-    <string name="error_email_forgot">Ingrese su correo para restablecer su contraseña.</string>
 
+    <string name="email_clients">Clientes de correo</string>
+    <string name="error_create_account">Error al crear cuenta de usuario.</string>
+    <string name="email_verfy">Enviamos un correo para verificar tu cuenta de correo.</string>
+    <string name="open_mail">Abrir mail</string>
+    <string name="error_email_client">No tienes ningún cliente de correo para completar esta acción.</string>
+    <string name="error_email_verfy">Debes verificar tu correo antes de iniciar sección.</string>
+    <string name="resend_verfy">Reenviar</string>
+
+    <string name="error_email_forgot">Ingrese su correo para restablecer su contraseña.</string>
     <string name="email_forgot_send">Enviamos un mensaje para que recuperes tu contraseña, revisa tu correo!</string>
+
     <string name="home_tittle">¿Que deseas donar?</string>
     <string name="donation_help">Maten pulsado sobre cada item para saber más.</string>
     <string name="donation_help_action">OK</string>
@@ -42,6 +49,7 @@
     <string name="info">Info</string>
     <string name="map">Mapa</string>
     <string name="sms">Mensaje</string>
-
     <string name="nav">Navegar</string>
+
+    <string name="error_no_intent">No encontramos ninguna aplicación para completar la acción.</string>
 </resources>

@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
         android:id="@+id/editTextPass"
         android:layout_width="0dp"
         android:layout_height="42dp"
@@ -103,13 +103,15 @@
         android:background="@drawable/imput_text"
         android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_lock_black_24dp"
-        android:ems="10"
         android:fontFamily="@font/ubuntu_light"
+        android:ems="10"
         android:hint="@string/input_pass"
         android:inputType="textPassword"
         android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:textColor="@color/colorSecondaryText"
         android:textSize="14sp"
+        app:tint_color="@color/colorSecondaryText"
         app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

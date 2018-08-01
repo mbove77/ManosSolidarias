@@ -78,7 +78,7 @@ public class CreateAccountActivity extends BaseActivity {
         });
 
     }
-    // TODO implementar la opción ver password
+
     private boolean validateMailPass() {
         String email = editTextEmail.getText().toString();
         String pass  = editTextPass.getText().toString();
@@ -104,7 +104,7 @@ public class CreateAccountActivity extends BaseActivity {
     }
 
 
-    private void createAccount(String email, String password) {
+    private void createAccount(final String email, final String password) {
         Log.d(TAG, "createAccount:" + email);
         showProgressDialog();
 
@@ -118,19 +118,21 @@ public class CreateAccountActivity extends BaseActivity {
                             setUser(mAuth.getCurrentUser());
                             // Enviamos el email de verificación
                             mAuth.getCurrentUser().sendEmailVerification();
-                            gotoMain();
+                            gotoMain(email, password);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.main_layout), getText(R.string.error_sigin), Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(findViewById(R.id.main_layout), getText(R.string.error_create_account), Snackbar.LENGTH_LONG).show();
                         }
                         hideProgressDialog();
                     }
                 });
     }
 
-    private void gotoMain() {
+    private void gotoMain(String email, String pass) {
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("email", email);
+        i.putExtra("pass", pass);
         startActivity(i);
     }
 }

@@ -2,6 +2,7 @@ package com.bove.martin.manossolidarias.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -35,6 +36,7 @@ import static java.security.AccessController.getContext;
 
 public class HomeActivity extends BaseActivity implements DonationAdapter.OnItemClickListener, DonationAdapter.OnLongClickListener {
     private final String TAG = "Donation Activity";
+    private final String SHOW_HELP_KEY = "showHelp";
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -43,6 +45,9 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
     private Boolean exitEnable = false;
 
     private List<Donacion> donaciones = new ArrayList<Donacion>();
+
+    private SharedPreferences preferences;
+    private Boolean showHelp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,11 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
-        // Cargamos el NavDrawer
+        // load preference para mostrar la ayuda 1 sola vez
+        preferences = getPreferences();
+        showHelp = preferences.getBoolean(SHOW_HELP_KEY, true);
+
+        // load NavDrawer
         DrawerUtil.getDrawer(this, myToolbar);
 
         // Mostramos el cargando hasta que lleguen los datos
@@ -119,19 +128,16 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         return super.onOptionsItemSelected(item);
     }
 
+    // Muestra la ayuda
     private void showHelp() {
         preferences.edit().putBoolean(SHOW_HELP_KEY, false).apply();
-        // Actualizamos el icono en el drawer
-        helpDrawerItem.withChecked(false);
-        DrawerUtil.updateDrawer(helpDrawerItem);
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Snackbar.make(findViewById(R.id.homeLayout), getString(R.string.donation_help), Snackbar.LENGTH_LONG).show();
             }
-        }, 1500);
+        }, 2500);
     }
 
     @Override
@@ -151,9 +157,10 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
     public void onBackPressed() {
         if(exitEnable) {
             this.moveTaskToBack(true);
+        } else {
+            Toast.makeText(this,  R.string.back_to_exit, Toast.LENGTH_SHORT).show();
+            exitEnable = true;
         }
-        exitEnable = true;
-        Toast.makeText(this,  R.string.back_to_exit, Toast.LENGTH_SHORT).show();
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -162,6 +169,5 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
                 exitEnable = false;
             }
         }, 1500);
-
     }
 }

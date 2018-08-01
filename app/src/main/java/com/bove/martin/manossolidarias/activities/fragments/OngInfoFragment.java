@@ -1,5 +1,6 @@
 package com.bove.martin.manossolidarias.activities.fragments;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +9,16 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
@@ -52,7 +56,7 @@ public class OngInfoFragment extends Fragment {
     private View dividerWeb;
     private IconicsImageView facebookIcon;
     private IconicsImageView twitterIcon;
-    private IconicsImageView instagramIcon;
+    private ImageView instagramIcon;
     private IconicsImageView youtubeIcon;
 
     public SharedPreferences preferences;
@@ -79,7 +83,7 @@ public class OngInfoFragment extends Fragment {
 
         getCurrentONG();
 
-       // Instaciamos los elementos
+        // Instaciamos los elementos
         header = view.findViewById(R.id.infoOngHeader);
         logo = view.findViewById(R.id.infoOngLogo);
         mision = view.findViewById(R.id.infoMision);
@@ -238,7 +242,11 @@ public class OngInfoFragment extends Fragment {
     private void openWeb(String web) {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(web));
-        startActivity(i);
+        try {
+            startActivity(i);
+        }catch (ActivityNotFoundException e) {
+            Toast.makeText(getActivity(), getString(R.string.error_no_intent), Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Open links in native apps
@@ -250,9 +258,9 @@ public class OngInfoFragment extends Fragment {
         // TODO revisar que se habra bien en facebook
         switch (service) {
             case "facebook": {
-                base_url =  "https://facebook.com/";
-                paquete = "com.facebook.katana";
-                service_url = "fb://facewebmodal/f?href=" + base_url;
+                base_url =  "https://m.facebook.com/";
+                paquete = "";
+                service_url = "";
                 break;
             }
             case "twitter": {
@@ -282,7 +290,7 @@ public class OngInfoFragment extends Fragment {
         try {
             startActivity(likeIng);
         } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(base_url + link)));
+            openWeb(base_url + link);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.bove.martin.manossolidarias.activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.account.CreateAccountActivity;
@@ -36,6 +38,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends BaseActivity {
+    private static final String TAG_GOOGLE = "GoogleActivity";
+    private static final String TAG_FACEBOOK = "FacebookActivity";
+    private static final String TAG_EMAIL = "EmailActivity";
+    private static final int RC_SIGN_IN = 9001;
+
     private FirebaseAuth mAuth;
     private CallbackManager mCallbackManager;
     private FirebaseUser user;
@@ -51,15 +58,11 @@ public class MainActivity extends BaseActivity {
     private TextView textViewlostPass;
     private TextView textViewNewAccount;
 
-    private static final String TAG_GOOGLE = "GoogleActivity";
-    private static final String TAG_FACEBOOK = "FacebookActivity";
-    private static final String TAG_EMAIL = "EmailActivity";
-    private static final int RC_SIGN_IN = 9001;
-
     private GoogleSignInOptions gso;
     private GoogleSignInClient mGoogleSignInClient;
 
-    // TODO Cuando se crea una cuenta con email, hacer un intent para abrir el correo, y luego si ingresa son registrar ofreecer reenviar el correo
+    private boolean createAccountMensaje = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +77,20 @@ public class MainActivity extends BaseActivity {
         textViewlostPass = findViewById(R.id.textViewLostPass);
         textViewNewAccount = findViewById(R.id.textViewCreateAccount);
 
+        // Si se llega desde createAccount escribir los datos en el login
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            if(extras.getString("email") != null) {
+                editTextEmail.setText(extras.getString("email"));
+            }
+            if(extras.getString("pass") != null) {
+                editTextPass.setText(extras.getString("pass"));
+            }
+        }
+
         mAuth = FirebaseAuth.getInstance();
         user = getUser();
 
-        // TODO Hacer el key de release cuando se publique la app
         // Initialize Facebook Login button
         fbloginButton = new LoginButton(this);
         mCallbackManager = CallbackManager.Factory.create();
@@ -342,13 +355,38 @@ public class MainActivity extends BaseActivity {
     }
 
     private void emailVerifyerror() {
-        Snackbar.make(findViewById(R.id.main_layout), getText(R.string.error_email_verfy), Snackbar.LENGTH_INDEFINITE)
-            .setAction(R.string.resend_verfy, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user.sendEmailVerification();
-            }
-        }).setDuration(7000)
-          .show();
+        // Si ya mostramos el mensaje ofrecer re-enviar la verificación
+        if(createAccountMensaje) {
+            Snackbar.make(findViewById(R.id.main_layout), getText(R.string.error_email_verfy), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.resend_verfy, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            user.sendEmailVerification();
+                        }
+                    }).setDuration(8000)
+                    .show();
+        } else {
+            // Si no mostrar el mensaje inicial y ofrecer abrir el correo.
+            createAccountMensaje = true;
+            Snackbar.make(findViewById(R.id.main_layout), getText(R.string.email_verfy), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.open_mail, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            openEmailClient();
+                        }
+                    }).setDuration(8000)
+                    .show();
+        }
+    }
+
+    private void openEmailClient() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+        try{
+            startActivity(intent);
+            startActivity(Intent.createChooser(intent, getString(R.string.email_clients)));
+        }catch(ActivityNotFoundException e){
+            Toast.makeText(this, getString(R.string.error_email_client), Toast.LENGTH_LONG).show();
+        }
     }
 }

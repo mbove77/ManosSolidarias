@@ -226,40 +226,39 @@
 
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/iconicsImageFB"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
                 android:hapticFeedbackEnabled="true"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_facebook_square" />
 
-            <com.mikepenz.iconics.view.IconicsImageView
+            <ImageView
                 android:id="@+id/iconicsImageInstagram"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:hapticFeedbackEnabled="true"
-                app:iiv_color="@color/colorPrimary"
-                app:iiv_icon="faw_instagram" />
+                android:src="@drawable/ic_icons_instagram_filled"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:hapticFeedbackEnabled="true" />
 
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/iconicsImageTwitter"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
                 android:hapticFeedbackEnabled="true"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_twitter_square" />
 
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/iconicsImageYoutube"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
                 android:hapticFeedbackEnabled="true"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_youtube_square" />

@@ -55,14 +55,21 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     private LinearLayout errorLay;
     private Location userLoc;
 
-    private boolean gpsPermiso = false;
+    private boolean updateDistance = false;
     private FusedLocationProviderClient mFusedLocationClient;
 
-    @SuppressLint("MissingPermission")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ong_list);
+
+        // Instanciamos los elementos
+        errorLay = findViewById(R.id.errorMensajeLay);
+        recyclerView = findViewById(R.id.recyclerViewOngs);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
@@ -79,61 +86,18 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         // Mostramos el cargando hasta que lleguen los datos
         showProgressDialog();
 
-        // Instanciamos los elementos
-        errorLay = findViewById(R.id.errorMensajeLay);
-        recyclerView = findViewById(R.id.recyclerViewOngs);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        // Arrancamos el recyclerView
         adapter = new InstitucionesAdapter(instituciones, R.layout.ong_item, this, this);
-
         DividerItemDecoration divider = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.line_divider));
         recyclerView.addItemDecoration(divider);
-
         recyclerView.setAdapter(adapter);
 
-        // Chequeo del permiso de localización
-        Dexter.withActivity(this)
-                .withPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        gpsPermiso = true;
-                       // Toast.makeText(OngListActivity.this, "Permiso Grantizado", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        gpsPermiso = false;
-                        //Toast.makeText(OngListActivity.this, "Permiso Denegado", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).check();
+        // pedimos el permiso de GPS en tiempo de ejecución.
+        checkPermission();
 
         // Pedimos la localización del usuario
-        if(gpsPermiso) {
-            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-            mFusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            // Got last known location. In some rare situations this can be null.
-                            if (location != null) {
-                                userLoc = location;
-                                // si ya se cargaron las instituciones entonces actualizamos las distancias.
-                                if(instituciones.size() > 0) {
-                                   // TODO Revisar que cuando se aceptan los permisos esta función se ejecute.
-                                    updateDistancias();
-                                }
-                            }
-                        }
-                    });
-        }
+        getUserLocation();
 
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
@@ -149,7 +113,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                                 Institucion institucion = document.toObject(Institucion.class);
                                 institucion.setKey(document.getId());
 
-                                // si tenemos localización
+                                // Si tenemos localización
                                 if (userLoc != null) {
                                     float[] distance = new float[2];
                                     Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
@@ -192,15 +156,56 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         startActivity(intent);
     }
 
+    @SuppressLint("MissingPermission")
+    private void getUserLocation() {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            userLoc = location;
+                            updateDistancias();
+                        }
+                    }
+                });
+    }
+
+    private void checkPermission() {
+        // Chequeo del permiso de localización on runtime
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        getUserLocation();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    // TODO Tratar de evitar la segunda llamada y también al método getUserLocation
     // Update distancias después de cargadas
     private void updateDistancias() {
-        for (Institucion institucion : instituciones) {
-            float[] distance = new float[2];
-            Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
-            institucion.setDistancia(distance[0]);
+        if(instituciones.size() > 0 & userLoc != null) {
+            for (Institucion institucion : instituciones) {
+                float[] distance = new float[2];
+                Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
+                institucion.setDistancia(distance[0]);
+            }
+            Collections.sort(instituciones);
+            adapter.notifyDataSetChanged();
         }
-        Collections.sort(instituciones);
-        adapter.notifyDataSetChanged();
     }
 
 }

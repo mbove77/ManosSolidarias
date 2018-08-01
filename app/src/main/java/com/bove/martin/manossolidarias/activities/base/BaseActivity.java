@@ -21,18 +21,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 
 public class BaseActivity extends AppCompatActivity {
+   // TODO reamplazar todos los string con variables declaradas aqui
+
     // Constantes
     public static final String DB_DONATIONS = "donaciones";
     public static final String DB_ONGS = "instituciones";
     public static final String SHARED_PREF = "pref";
-    public static final String SHOW_HELP_KEY = "showHelp";
 
     // Shared Preferences
     public SharedPreferences preferences;
-
-    // Variables para mostrar la ayuda y item para actualizar el drawer
-    public Boolean showHelp = true;
-    public SecondarySwitchDrawerItem helpDrawerItem;
 
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
@@ -45,7 +42,6 @@ public class BaseActivity extends AppCompatActivity {
 
         // Cargamos las shared para mostrar la ayuda una sola vez.
         preferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
-        showHelp = preferences.getBoolean(SHOW_HELP_KEY, true);
     }
 
     public void showProgressDialog() {
@@ -87,11 +83,6 @@ public class BaseActivity extends AppCompatActivity {
         }
         LoginManager.getInstance().logOut();
         goToMain();
-    }
-
-    // Resetea el valor de la ayuda en las sharedPref
-    public void resetAyuda(Boolean valor) {
-        preferences.edit().putBoolean(SHOW_HELP_KEY, valor).apply();
     }
 
     // Intent para ir a la Home (Donaciones)
