@@ -13,19 +13,43 @@
     <LinearLayout
         android:id="@+id/errorMensajeLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="invisible"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_result"
-            android:textSize="18sp"
-            android:fontFamily="@font/ubuntu_light" />
+            android:fontFamily="@font/ubuntu_light"
+            android:textSize="24sp"
+            android:layout_marginBottom="16dp"
+            android:text="Opps, nos descubriste!"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/no_result"/>
+
+        <com.bove.martin.manossolidarias.activities.utils.PlayGifView
+            android:id="@+id/viewGif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
+        <com.mikepenz.iconics.view.IconicsButton
+            android:id="@+id/notFoundBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/ubuntu_light"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:text="{faw-arrow-left}  Vuelve a intentar"
+            android:textColor="@color/colorWhite"
+            android:textSize="17sp" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -14,12 +14,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
+import com.bove.martin.manossolidarias.activities.utils.PlayGifView;
 import com.bove.martin.manossolidarias.adapters.InstitucionesAdapter;
 import com.bove.martin.manossolidarias.model.Institucion;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -37,6 +39,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.mikepenz.iconics.view.IconicsButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,6 +56,8 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     private RecyclerView.LayoutManager layoutManager;
 
     private LinearLayout errorLay;
+    private PlayGifView pGif;
+    private IconicsButton backButton;
     private Location userLoc;
 
     private boolean updateDistance = false;
@@ -70,6 +75,19 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        pGif = findViewById(R.id.viewGif);
+        pGif.setImageResource(R.drawable.nofound_error);
+
+        // Not found back button
+        backButton = findViewById(R.id.notFoundBackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), HomeActivity.class);
+                startActivity(i);
+            }
+        });
 
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);

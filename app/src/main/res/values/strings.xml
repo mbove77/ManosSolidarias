@@ -43,7 +43,7 @@
     <string name="home_tittle">¿Que deseas donar?</string>
     <string name="donation_help">Maten pulsado sobre cada item para saber más.</string>
     <string name="donation_help_action">OK</string>
-    <string name="no_result">No encontramos resultados para la donación que deseas realizar. Vuelve atrás he intenta otra opción.</string>
+    <string name="no_result">No encontramos instituciones para la donación que deseas realizar.</string>
     <string name="back_to_exit">Si deseas salir oprime atrás otra vez.</string>
 
     <string name="info">Info</string>
