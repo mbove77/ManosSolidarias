@@ -52,4 +52,7 @@
     <string name="nav">Navegar</string>
 
     <string name="error_no_intent">No encontramos ninguna aplicación para completar la acción.</string>
+    <string name="msj_hint">Mensaje...</string>
+
+    <string name="welcome_chat">Bienvenido, en que podemos ayudarte?</string>
 </resources>

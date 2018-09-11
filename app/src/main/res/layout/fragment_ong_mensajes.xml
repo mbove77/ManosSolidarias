@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.fragments.OngMensajesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hellow Fragment" />
+    <com.github.bassaer.chatmessageview.view.MessageView
+        android:id="@+id/message_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorBackground"
+        app:layout_constraintBottom_toTopOf="@+id/editTextMsj"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:message_max_width="270dp" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/editTextMsj"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="45dp"
+        android:background="@drawable/imput_text_msj"
+        android:ems="10"
+        android:hint="@string/msj_hint"
+        android:paddingStart="6dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingEnd="40dp"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/sendMensaje"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_send_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextMsj"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

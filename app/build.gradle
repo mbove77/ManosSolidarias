@@ -65,6 +65,9 @@ dependencies {
     // FireStore implementation
     implementation 'com.google.firebase:firebase-firestore:15.0.0'
 
+    // Realtime database
+    implementation 'com.google.firebase:firebase-database:15.0.0'
+
     // Dexter Manejador de permisos
     implementation 'com.karumi:dexter:5.0.0'
 
@@ -80,6 +83,8 @@ dependencies {
     // Show-hide password implementation
     implementation 'com.github.scottyab:showhidepasswordedittext:0.8'
 
+    // Mensaje view
+    implementation 'com.github.bassaer:chatmessageview:1.11.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
