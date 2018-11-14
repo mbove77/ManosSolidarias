@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
@@ -49,10 +51,14 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
     private SharedPreferences preferences;
     private Boolean showHelp = true;
 
+    private TextView tituloTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        tituloTextView = findViewById(R.id.textViewTituloDon);
 
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
@@ -92,6 +98,7 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
                         donaciones.add(donacion);
                     }
                     hideProgressDialog();
+                    tituloTextView.setVisibility(View.VISIBLE);
                     if(showHelp) {
                         showHelp();
                     }
@@ -103,12 +110,14 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         });
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

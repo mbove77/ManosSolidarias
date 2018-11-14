@@ -225,7 +225,7 @@ public class OngMensajesFragment extends Fragment {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                // Todo para remover un mensaje hay que alamceran todos los message del chat view en un mapa para buscarlos por id
+                // Todo para remover un mensaje hay que almacenar todos los message del chat view en un mapa para buscarlos por id
                 // GenericTypeIndicator<Mensaje> t = new GenericTypeIndicator<Mensaje>() {};
                 // Mensaje mensaje =  dataSnapshot.getValue(t);
                 //removeMensaje(mensaje);

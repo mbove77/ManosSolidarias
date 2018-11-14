@@ -25,6 +25,7 @@
         android:fontFamily="@font/ubuntu_light"
         android:gravity="center"
         android:text="@string/home_tittle"
+        android:visibility="invisible"
         android:textSize="20sp"/>
 
     <android.support.v7.widget.RecyclerView
