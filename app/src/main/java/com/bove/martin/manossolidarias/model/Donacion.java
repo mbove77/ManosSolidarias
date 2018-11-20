@@ -10,14 +10,16 @@ public class Donacion {
     private String icon_url;
     private String desc;
     private int order;
+    private Boolean especial = false;
 
     public Donacion() { }
 
-    public Donacion(String key, String nombre, String icon_url, String desc) {
+    public Donacion(String key, String nombre, String icon_url, String desc, Boolean especial) {
         this.key = key;
         this.nombre = nombre;
         this.icon_url = icon_url;
         this.desc = desc;
+        this.especial = especial;
     }
 
     public String getKey() {
@@ -58,5 +60,13 @@ public class Donacion {
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    public Boolean getEspecial() {
+        return especial;
+    }
+
+    public void setEspecial(Boolean especial) {
+        this.especial = especial;
     }
 }

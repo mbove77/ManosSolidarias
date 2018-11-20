@@ -21,7 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 
 public class BaseActivity extends AppCompatActivity {
-   // TODO reamplazar todos los string con variables declaradas aqui
+    // TODO reemplazar todos los string con variables declaradas aquí.
+    // TODO implementar detección de conexión a internet.
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";

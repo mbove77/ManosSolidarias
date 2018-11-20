@@ -117,7 +117,7 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
-    */
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -136,6 +136,7 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
         }
         return super.onOptionsItemSelected(item);
     }
+    */
 
     // Muestra la ayuda
     private void showHelp() {

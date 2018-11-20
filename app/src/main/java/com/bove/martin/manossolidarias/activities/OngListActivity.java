@@ -213,7 +213,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     }
 
     // TODO Tratar de evitar la segunda llamada y también al método getUserLocation
-    // Update distancias después de cargadas
+    // Update distancias después de cargadas las ongs
     private void updateDistancias() {
         if(instituciones.size() > 0 & userLoc != null) {
             for (Institucion institucion : instituciones) {

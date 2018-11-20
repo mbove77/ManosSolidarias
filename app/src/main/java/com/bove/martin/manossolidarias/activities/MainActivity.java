@@ -261,7 +261,7 @@ public class MainActivity extends BaseActivity {
                             user = mAuth.getCurrentUser();
                             setUser(user);
 
-                            // Vericamos si el email esta verificado
+                            // Revisamos si el email esta verificado
                             if(!user.isEmailVerified()) {
                                emailVerifyerror();
                             } else {

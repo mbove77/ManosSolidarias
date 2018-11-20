@@ -110,7 +110,6 @@ public class OngInfoFragment extends Fragment {
         youtubeIcon = view.findViewById(R.id.iconicsImageYoutube);
 
         // Cargamos los elementos
-        // TODO hacer un placeholder de manos solidarias para el header o implementar un spinner
         Picasso.with(view.getContext()).load(ong.getHeader_img_url()).placeholder(R.drawable.placeholder).fit().centerCrop().into(header);
         Picasso.with(view.getContext()).load(ong.getLogo_url()).transform(new CircleTransform()).fit().into(logo);
         mision.setText(ong.getDescripcion());
@@ -255,7 +254,7 @@ public class OngInfoFragment extends Fragment {
         String service_url = "";
         String paquete = "";
 
-        // TODO revisar que se habra bien en facebook
+        // TODO revisar que se habrá bien en facebook
         switch (service) {
             case "facebook": {
                 base_url =  "https://m.facebook.com/";
@@ -294,6 +293,7 @@ public class OngInfoFragment extends Fragment {
         }
     }
 
+    // Si se resume debe traer nuevamente el la ong del sharedPref.
     @Override
     public void onResume() {
         super.onResume();

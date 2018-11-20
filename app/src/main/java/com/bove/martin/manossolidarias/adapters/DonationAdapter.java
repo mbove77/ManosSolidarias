@@ -1,6 +1,7 @@
 package com.bove.martin.manossolidarias.adapters;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,12 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
         public void bind(final Donacion donacion, final OnItemClickListener listener, final OnLongClickListener longClickListener) {
             this.textViewName.setText(donacion.getNombre());
             Picasso.with(itemView.getContext()).load(donacion.getIcon_url()).fit().into(this.imageViewIcon);
+
+            // Destacamos el item de agregar donación
+            if(donacion.getEspecial()) {
+                int backgroundColor = ContextCompat.getColor(itemView.getContext(), R.color.colorAccentLight);
+                itemView.findViewById(R.id.viewBackground).setDrawingCacheBackgroundColor(backgroundColor);
+            }
 
             // Añadimos el onClick
             itemView.setOnClickListener(new View.OnClickListener() {

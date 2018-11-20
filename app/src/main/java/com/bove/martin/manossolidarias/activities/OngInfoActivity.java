@@ -78,6 +78,7 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
             public void onTabReselected(TabLayout.Tab tab) { }
         });
 
+        // TODO podemos sacar el ong de este adapter por que se recupera en el los fragments de la sharedPref.
         viewPager = findViewById(R.id.viewPager);
         adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), ong);
         viewPager.setAdapter(adapter);

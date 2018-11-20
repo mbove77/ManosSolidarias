@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class CreateAccountActivity extends BaseActivity {
     private ImageView imageViewBack;
     private EditText editTextEmail;
@@ -117,7 +119,7 @@ public class CreateAccountActivity extends BaseActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             setUser(mAuth.getCurrentUser());
                             // Enviamos el email de verificación
-                            mAuth.getCurrentUser().sendEmailVerification();
+                            Objects.requireNonNull(mAuth.getCurrentUser()).sendEmailVerification();
                             gotoMain(email, password);
                         } else {
                             // If sign in fails, display a message to the user.

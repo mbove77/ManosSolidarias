@@ -35,8 +35,6 @@ public class DrawerUtil {
     private static AccountHeader headerResult;
     private static Drawer result;
 
-    //TODO Obtener el email de la cuenta
-
     public static void getDrawer(final BaseActivity activity, Toolbar toolbar) {
         final String activityName = activity.getLocalClassName();
         String nombre = activity.getUser().getDisplayName();
