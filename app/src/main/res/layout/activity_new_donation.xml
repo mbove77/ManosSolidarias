@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newDonLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".activities.NewDonationActivity">
+
+    <include android:id="@+id/toolbar" layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:gravity="center"
+            android:text="@string/new_donation_tittle"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@string/donation_desc_text"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/editTextDonName"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/imput_text"
+            android:ems="10"
+            android:fontFamily="@font/ubuntu_light"
+            android:hint="@string/donation_name"
+            android:inputType="textAutoCorrect"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editTextDonDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:lines="8"
+            android:minLines="6"
+            android:gravity="top"
+            android:background="@drawable/imput_text"
+            android:ems="10"
+            android:fontFamily="@font/ubuntu_light"
+            android:hint="@string/donation_desc"
+            android:inputType="textMultiLine"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonSaveDon"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@string/enviar_mensaje"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

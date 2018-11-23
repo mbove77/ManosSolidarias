@@ -152,7 +152,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
-
+                            hideProgressDialog();
                         }
                     }
                 });

@@ -2,4 +2,5 @@
 <resources>
     <dimen name="normalPadding">8dp</dimen>
     <dimen name="cornerRadius">4dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -2,14 +2,19 @@ package com.bove.martin.manossolidarias.activities.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.activities.HomeActivity;
 import com.bove.martin.manossolidarias.R;
@@ -26,9 +31,15 @@ public class BaseActivity extends AppCompatActivity {
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";
+    public static final String DB_SUGGEST_DONATIONS = "sugerencias_donaciones";
     public static final String DB_ONGS = "instituciones";
     public static final String DB_MENSAJES = "mensajes";
     public static final String SHARED_PREF = "pref";
+
+    public static final String INFO_ALERT = "info";
+    public static final String WARN_ALERT = "warning";
+    public static final String ERROR_ALERT = "error";
+    public static final String SUCCESS_ALERT = "exito";
 
     // Shared Preferences
     public SharedPreferences preferences;
@@ -113,5 +124,71 @@ public class BaseActivity extends AppCompatActivity {
     // return sharedPef
     public SharedPreferences getPreferences() {
         return preferences;
+    }
+
+    // Muestra mensaje de dialogo uniforme en todos los activities
+    public void showAlertDialog(String tipo, String mensaje, String positiveButton, final Intent positiveIntent, String negativeButton, final Intent negativeIntent) {
+        String titulo;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View inflateView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null);
+        builder.setView(inflateView);
+
+        final TextView tituloTextView = inflateView.findViewById(R.id.alertTitle);
+        final TextView mensajeTextView = inflateView.findViewById(R.id.alertMensaje);
+
+        final ImageView exitoImage = inflateView.findViewById(R.id.imageViewOK);
+        final ImageView infoImage = inflateView.findViewById(R.id.imageViewINFO);
+        final ImageView warnImage = inflateView.findViewById(R.id.imageViewWARN);
+        final ImageView errorImage = inflateView.findViewById(R.id.imageViewERROR);
+
+        switch (tipo) {
+            case SUCCESS_ALERT:
+                exitoImage.setVisibility(View.VISIBLE);
+                titulo = "Exito!";
+                tituloTextView.setText(titulo);
+                break;
+            case WARN_ALERT:
+                warnImage.setVisibility(View.VISIBLE);
+                titulo = "Aviso!";
+                tituloTextView.setText(titulo);
+                break;
+            case ERROR_ALERT:
+                errorImage.setVisibility(View.VISIBLE);
+                titulo = "Error!";
+                tituloTextView.setText(titulo);
+                break;
+            case INFO_ALERT:
+                infoImage.setVisibility(View.VISIBLE);
+                titulo = "Información";
+                tituloTextView.setText(titulo);
+                break;
+        }
+
+        mensajeTextView.setText(mensaje);
+
+        if(positiveButton != null) {
+            builder.setPositiveButton(positiveButton, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(positiveIntent != null)
+                        startActivity(positiveIntent);
+                }
+            });
+        }
+
+        if(negativeButton != null) {
+            builder.setNegativeButton(negativeButton, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(negativeIntent != null)
+                        startActivity(negativeIntent);
+                }
+            });
+        }
+
+        // Creamos y mostramos
+        builder.setCancelable(false);
+        builder.create().show();
     }
 }

@@ -59,7 +59,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.OngInfoActivity" />
-
+        <activity
+            android:name=".activities.NewDonationActivity"
+            android:label="@string/title_activity_new_donation"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

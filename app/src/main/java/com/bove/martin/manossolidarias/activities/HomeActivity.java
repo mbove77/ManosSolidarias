@@ -104,6 +104,7 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
                     }
                     adapter.notifyDataSetChanged();
                 } else {
+                    hideProgressDialog();
                     Log.w(TAG, "Error getting documents.", task.getException());
                 }
             }
@@ -152,9 +153,14 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
 
     @Override
     public void onItemClick(Donacion donacion, int posicion) {
-        Intent intent = new Intent(this, OngListActivity.class);
-        intent.putExtra("donacion", donacion.getKey());
-        startActivity(intent);
+        if(donacion.getEspecial()) {
+            Intent intentNewDon = new Intent(this, NewDonationActivity.class);
+            startActivity(intentNewDon);
+        } else {
+            Intent intent = new Intent(this, OngListActivity.class);
+            intent.putExtra("donacion", donacion.getKey());
+            startActivity(intent);
+        }
     }
 
     @Override

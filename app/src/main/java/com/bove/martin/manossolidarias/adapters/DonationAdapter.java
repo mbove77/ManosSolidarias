@@ -1,6 +1,10 @@
 package com.bove.martin.manossolidarias.adapters;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -69,8 +73,8 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
 
             // Destacamos el item de agregar donación
             if(donacion.getEspecial()) {
-                int backgroundColor = ContextCompat.getColor(itemView.getContext(), R.color.colorAccentLight);
-                itemView.findViewById(R.id.viewBackground).setDrawingCacheBackgroundColor(backgroundColor);
+                ImageView imageViewBack = itemView.findViewById(R.id.viewBackground);
+                imageViewBack.setImageDrawable(itemView.getResources().getDrawable(R.drawable.button_donation_new));
             }
 
             // Añadimos el onClick
