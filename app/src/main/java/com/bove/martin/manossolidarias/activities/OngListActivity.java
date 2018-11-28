@@ -150,6 +150,9 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                                 hideProgressDialog();
                                 errorLay.setVisibility(LinearLayout.VISIBLE);
                             }
+                            // Agregamos la opción de sugerir una nueva ong
+                            Institucion addOng = new Institucion("Nueva ONG",true);
+                            instituciones.add(addOng);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                             hideProgressDialog();
@@ -160,18 +163,24 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
 
     @Override
     public void onItemClick(Institucion institucion, int posicion) {
-        // Mostramos el cargando por si demora mas de lo habitual
-        showProgressDialog();
-        Intent intent = new Intent(this, OngInfoActivity.class);
+        if(!institucion.isEspecial()) {
+            // Mostramos el cargando por si demora mas de lo habitual
+            showProgressDialog();
+            Intent intent = new Intent(this, OngInfoActivity.class);
 
-        // Guardamos el objeto en las prefs
-        SharedPreferences.Editor prefsEditor = getPreferences().edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(institucion);
-        prefsEditor.putString("institucion", json);
-        prefsEditor.commit();
+            // Guardamos el objeto en las prefs
+            SharedPreferences.Editor prefsEditor = getPreferences().edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(institucion);
+            prefsEditor.putString("institucion", json);
+            prefsEditor.commit();
 
-        startActivity(intent);
+            startActivity(intent);
+        } else  {
+            // Si es la opción de sugerir ong
+            Intent suggestInent = new Intent(this,  SuggestOngActivity.class);
+            startActivity(suggestInent);
+        }
     }
 
     @SuppressLint("MissingPermission")

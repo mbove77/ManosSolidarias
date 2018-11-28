@@ -54,19 +54,24 @@
 
     <string name="error_no_intent">No encontramos ninguna aplicación para completar la acción.</string>
     <string name="msj_hint">Mensaje...</string>
-
     <string name="welcome_chat">Bienvenido, en que podemos ayudarte?</string>
 
-    <string name="title_activity_new_donation">NewDonationActivity</string>
-    <string name="new_donation_tittle">Sugiere una donación</string>
     <string name="donation_desc">Descripción de la donación (opcional)</string>
     <string name="donation_name">Nombre de la donación</string>
-    <string name="donation_tittle">Nueva donación</string>
+    <string name="donation_tittle">Sugiere donación</string>
     <string name="enviar_mensaje">Enviar Mensaje</string>
     <string name="donation_desc_text">Si nos indicas una donación la tendremos en cuenta para agregarla lo antes posible.</string>
+
+    <string name="new_ong_tittle">Sugiere una ONG</string>
+    <string name="ong_name">Nombre de la ONG</string>
+    <string name="ong_desc">¿ Como la encontramos ? facebook, instagram, web, etc...</string>
+    <string name="ong_desc_text">Si conoces una ONG que no esta en la lista, puedes darnos detalles para agregarla a nuestra base de datos.</string>
+    <string name="ong_suggest_misc">Cualquier otra información que creas relevante (opcional)</string>
+    <string name="ong_already_suggest">Alguien ya nos sugirió esa ONG. Muchas gracias igualmente!</string>
 
     <string name="donation_already_suggest">Alguien ya nos sugirió esa donación. Muchas gracias igualmente!</string>
     <string name="donation_suggest_spam">No puedes enviar tantas sugerencias seguidas!</string>
     <string name="donation_suggest_success">Muchas gracias por tu sugerencia, la tendremos en cuenta para agregarla pronto!</string>
     <string name="donation_suggest_error">Ups, algo salió mal, intenta nuevamente mas tarde.</string>
+    <string name="suggest_ong">Sugiérenos una institución</string>
 </resources>

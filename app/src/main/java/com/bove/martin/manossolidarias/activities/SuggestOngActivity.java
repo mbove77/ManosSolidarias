@@ -2,8 +2,8 @@ package com.bove.martin.manossolidarias.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -14,40 +14,39 @@ import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
 import com.bove.martin.manossolidarias.model.SugerenciaDonacion;
-
+import com.bove.martin.manossolidarias.model.SugerenciaOng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class NewDonationActivity extends BaseActivity {
-    private final String TAG = "NEW_DONATION";
-    private final String POST_NUMBER = "postnumber";
-    private final String LAST_POST_DATE = "lastpostdate";
+public class SuggestOngActivity extends BaseActivity {
+    private final String TAG = "SUGGEST_ONG";
+    private final String POST_NUMBER = "postnumberONG";
+    private final String LAST_POST_DATE = "lastpostdateONG";
 
-    private EditText editTextDonName;
-    private EditText editTextDonDesc;
+    private EditText editTextSuguetsOngName;
+    private EditText editTextSuguetsOngDesc;
+    private EditText editTextSuguetsMisc;
 
     private FirebaseFirestore db;
-
     private SharedPreferences preferences;
-
     private Intent homeInten;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_donation);
+        setContentView(R.layout.activity_suggest_ong);
 
-        editTextDonName = findViewById(R.id.editTextDonName);
-        editTextDonDesc = findViewById(R.id.editTextDonDesc);
-        Button buttonDonSend = findViewById(R.id.buttonSaveDon);
+        editTextSuguetsOngName = findViewById(R.id.editTextSuguetsOngName);
+        editTextSuguetsOngDesc = findViewById(R.id.editTextSuguetsOngDesc);
+        editTextSuguetsMisc = findViewById(R.id.editTextSuguetsMisc);
+        Button buttonOngSend = findViewById(R.id.buttonSaveOng);
 
         homeInten = new Intent(getBaseContext(), HomeActivity.class);
 
@@ -56,7 +55,7 @@ public class NewDonationActivity extends BaseActivity {
 
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
-        myToolbar.setTitle(R.string.donation_tittle);
+        myToolbar.setTitle(R.string.new_ong_tittle);
         setSupportActionBar(myToolbar);
 
         // load NavDrawer
@@ -65,26 +64,28 @@ public class NewDonationActivity extends BaseActivity {
         // load preference
         preferences = getPreferences();
 
-        buttonDonSend.setOnClickListener(new View.OnClickListener() {
+        buttonOngSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendDonationSuggest();
+                sendOngSuggest();
             }
         });
-
     }
 
-    private void sendDonationSuggest() {
-        String donName = editTextDonName.getText().toString().toLowerCase().trim();
+    private void sendOngSuggest() {
+        String ongName = editTextSuguetsOngName.getText().toString().toLowerCase().trim();
+        String ongDesc = editTextSuguetsOngDesc.getText().toString().toLowerCase().trim();
 
-        if(donName.isEmpty()) {
-            editTextDonName.setError(getText(R.string.error_req));
+        if(ongName.isEmpty()) {
+            editTextSuguetsOngName.setError(getText(R.string.error_req));
+        } else if(ongDesc.isEmpty()) {
+            editTextSuguetsOngDesc.setError(getText(R.string.error_req));
         } else {
 
             if(spamProtec()) {
                 showProgressDialog();
-                db.collection(DB_SUGGEST_DONATIONS)
-                        .whereEqualTo("nombre", donName)
+                db.collection(DB_SUGGEST_ONG)
+                        .whereEqualTo("nombre", ongName)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -97,7 +98,7 @@ public class NewDonationActivity extends BaseActivity {
                                     // hay registros
                                     if (regCount > 0) {
                                         hideProgressDialog();
-                                        showAlertDialog(INFO_ALERT, getString(R.string.donation_already_suggest), "ok", null, null, null);
+                                        showAlertDialog(INFO_ALERT, getString(R.string.ong_already_suggest), "ok", null, null, null);
                                     } else {
                                         saveDonation();
                                     }
@@ -126,13 +127,15 @@ public class NewDonationActivity extends BaseActivity {
     }
 
     private void saveDonation() {
-        String nombre = editTextDonName.getText().toString().toLowerCase().trim();
-        String desc = editTextDonDesc.getText().toString().trim();
+        String nombre = editTextSuguetsOngName.getText().toString().toLowerCase().trim();
+        String desc = editTextSuguetsOngDesc.getText().toString().toLowerCase().trim();
+        String misc = editTextSuguetsMisc.getText().toString().toLowerCase().trim();
 
-        SugerenciaDonacion sugerenciaDonacion = new SugerenciaDonacion();
-        sugerenciaDonacion.setNombre(nombre);
-        sugerenciaDonacion.setDesc(desc);
-        sugerenciaDonacion.setUserKey(getUser().getUid());
+        SugerenciaOng sugerenciaOng = new SugerenciaOng();
+        sugerenciaOng.setNombre(nombre);
+        sugerenciaOng.setDesc(desc);
+        sugerenciaOng.setMisc(misc);
+        sugerenciaOng.setUserKey(getUser().getUid());
 
         // Agregamos 1 al numero de publicaciones del mismo usarlo, para controlar que no haga spam.
         // Y agregamos la fecha del ultimo posteo.
@@ -140,8 +143,8 @@ public class NewDonationActivity extends BaseActivity {
         preferences.edit().putInt(POST_NUMBER, ++postNumber).apply();
         preferences.edit().putLong(LAST_POST_DATE, Timestamp.now().getSeconds()).apply();
 
-        db.collection(DB_SUGGEST_DONATIONS)
-                .add(sugerenciaDonacion)
+        db.collection(DB_SUGGEST_ONG)
+                .add(sugerenciaOng)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -160,5 +163,4 @@ public class NewDonationActivity extends BaseActivity {
                 });
 
     }
-
 }

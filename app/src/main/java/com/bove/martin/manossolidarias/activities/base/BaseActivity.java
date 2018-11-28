@@ -32,8 +32,9 @@ public class BaseActivity extends AppCompatActivity {
     // Constantes
     public static final String DB_DONATIONS = "donaciones";
     public static final String DB_SUGGEST_DONATIONS = "sugerencias_donaciones";
+    public static final String DB_SUGGEST_ONG = "sugerencias_ong";
     public static final String DB_ONGS = "instituciones";
-    public static final String DB_MENSAJES = "mensajes";
+
     public static final String SHARED_PREF = "pref";
 
     public static final String INFO_ALERT = "info";

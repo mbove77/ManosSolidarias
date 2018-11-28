@@ -27,6 +27,9 @@
         <activity android:name=".activities.account.CreateAccountActivity" />
         <activity android:name=".activities.OngListActivity" />
         <activity android:name=".activities.AddOngActivity" />
+        <activity android:name=".activities.OngInfoActivity" />
+        <activity android:name=".activities.SuggestDonationActivity" />
+        <activity android:name=".activities.SuggestOngActivity"/>
 
         <!--
            The API key for Google Maps-based APIs is defined as a string resource.
@@ -58,11 +61,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.OngInfoActivity" />
-        <activity
-            android:name=".activities.NewDonationActivity"
-            android:label="@string/title_activity_new_donation"
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

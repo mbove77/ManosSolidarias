@@ -1,6 +1,7 @@
 package com.bove.martin.manossolidarias.adapters;
 
 import android.app.Activity;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +60,9 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
         private TextView textViewDistancia;
         private ImageView imageViewDistancia;
 
+        private ConstraintLayout container;
+        private ImageView imageViewPlace;
+
         // Consturctor
         public ViewHolder(View itemView) {
             super(itemView);
@@ -67,32 +71,43 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
             this.textViewDire = itemView.findViewById(R.id.textViewOngDireccion);
             this.textViewDistancia = itemView.findViewById(R.id.textViewDistance);
             this.imageViewDistancia = itemView.findViewById(R.id.imageViewDistancia);
+
+            this.container = itemView.findViewById(R.id.ongContainer);
+            this.imageViewPlace = itemView.findViewById(R.id.imageViewPlace);
         }
 
         // Aca es donde se cargan las datos reales
         public void bind(final Institucion institucion, final OnItemClickListener listener) {
             this.textViewName.setText(institucion.getNombre());
             Picasso.with(itemView.getContext()).load(institucion.getLogo_url()).transform(new CircleTransform()).fit().into(this.imageViewLogo);
-            textViewDire.setText(institucion.getDireccion());
 
-            if(institucion.getDistancia() > 0) {
-                imageViewDistancia.setVisibility(View.VISIBLE);
-                textViewDistancia.setVisibility(View.VISIBLE);
+            if(!institucion.isEspecial()) {
+                textViewDire.setText(institucion.getDireccion());
 
-                DecimalFormat df = new DecimalFormat("#.##");
-                df.setRoundingMode(RoundingMode.CEILING);
+                if (institucion.getDistancia() > 0) {
+                    imageViewDistancia.setVisibility(View.VISIBLE);
+                    textViewDistancia.setVisibility(View.VISIBLE);
 
-                // Metros o kilometros
-                if(institucion.getDistancia() < 1000) {
-                    textViewDistancia.setText(Math.round(institucion.getDistancia()) + " m");
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    df.setRoundingMode(RoundingMode.CEILING);
+
+                    // Metros o kilometros
+                    if (institucion.getDistancia() < 1000) {
+                        textViewDistancia.setText(Math.round(institucion.getDistancia()) + " m");
+                    } else {
+                        textViewDistancia.setText(df.format(institucion.getDistancia() / 1000) + " km");
+                    }
                 } else {
-                    textViewDistancia.setText(df.format(institucion.getDistancia() / 1000) + " km");
+                    imageViewDistancia.setVisibility(View.INVISIBLE);
+                    textViewDistancia.setVisibility(View.INVISIBLE);
                 }
             } else {
-                imageViewDistancia.setVisibility(View.INVISIBLE);
-                textViewDistancia.setVisibility(View.INVISIBLE);
+                // Resaltamos la opción de sugerir una nueva ONG
+                imageViewPlace.setVisibility(View.GONE);
+                imageViewDistancia.setVisibility(View.GONE);
+                textViewDire.setText(R.string.suggest_ong);
+                container.setBackgroundColor(itemView.getResources().getColor(R.color.colorSelection));
             }
-
             // Añadimos el onClick
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

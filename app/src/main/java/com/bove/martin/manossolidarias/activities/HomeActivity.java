@@ -1,6 +1,5 @@
 package com.bove.martin.manossolidarias.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,9 +11,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +29,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 public class HomeActivity extends BaseActivity implements DonationAdapter.OnItemClickListener, DonationAdapter.OnLongClickListener {
     private final String TAG = "Donation Activity";
@@ -154,7 +148,7 @@ public class HomeActivity extends BaseActivity implements DonationAdapter.OnItem
     @Override
     public void onItemClick(Donacion donacion, int posicion) {
         if(donacion.getEspecial()) {
-            Intent intentNewDon = new Intent(this, NewDonationActivity.class);
+            Intent intentNewDon = new Intent(this, SuggestDonationActivity.class);
             startActivity(intentNewDon);
         } else {
             Intent intent = new Intent(this, OngListActivity.class);

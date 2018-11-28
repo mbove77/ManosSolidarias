@@ -31,10 +31,11 @@ public class Institucion implements Comparable<Institucion> {
     private String youtube;
     private String direccion;
     private float distancia;
+    private boolean especial;
 
     public Institucion() {}
 
-    public Institucion(String key, String nombre, String descripcion, Map<String, Long> donaciones, String email, String facebook, String header_img_url, String horario, String instagram, GeoPoint localizacion, String logo_url, String misc, String telefono, String twitter, String web, String whatsapp, String youtube, String direccion) {
+    public Institucion(String key, String nombre, String descripcion, Map<String, Long> donaciones, String email, String facebook, String header_img_url, String horario, String instagram, GeoPoint localizacion, String logo_url, String misc, String telefono, String twitter, String web, String whatsapp, String youtube, String direccion, boolean especial) {
         this.key = key;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -53,6 +54,14 @@ public class Institucion implements Comparable<Institucion> {
         this.whatsapp = whatsapp;
         this.youtube = youtube;
         this.direccion = direccion;
+        this.especial = especial;
+    }
+
+    // Constructor para el agregar nueva ong
+    public Institucion(String nombre, boolean especial) {
+        this.nombre = nombre;
+        this.especial = especial;
+        this.logo_url = "https://manos-solidarias.firebaseapp.com/icons/icon-new-ong.png";
     }
 
     public String getKey() {
@@ -205,6 +214,14 @@ public class Institucion implements Comparable<Institucion> {
 
     public void setDistancia(float distancia) {
         this.distancia = distancia;
+    }
+
+    public boolean isEspecial() {
+        return especial;
+    }
+
+    public void setEspecial(boolean especial) {
+        this.especial = especial;
     }
 
     @Override
