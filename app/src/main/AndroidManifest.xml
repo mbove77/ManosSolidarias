@@ -22,14 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.DonationActivity" />
         <activity android:name=".activities.base.BaseActivity" />
         <activity android:name=".activities.account.CreateAccountActivity" />
         <activity android:name=".activities.OngListActivity" />
         <activity android:name=".activities.AddOngActivity" />
         <activity android:name=".activities.OngInfoActivity" />
         <activity android:name=".activities.SuggestDonationActivity" />
-        <activity android:name=".activities.SuggestOngActivity"/>
+        <activity android:name=".activities.SuggestOngActivity" />
 
         <!--
            The API key for Google Maps-based APIs is defined as a string resource.
@@ -61,6 +61,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.HomeActivity"></activity>
     </application>
 
 </manifest>

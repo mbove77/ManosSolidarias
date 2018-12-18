@@ -49,7 +49,7 @@ public class SuggestDonationActivity extends BaseActivity {
         editTextDonDesc = findViewById(R.id.editTextDonDesc);
         Button buttonDonSend = findViewById(R.id.buttonSaveDon);
 
-        homeInten = new Intent(getBaseContext(), HomeActivity.class);
+        homeInten = new Intent(getBaseContext(), DonationActivity.class);
 
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();

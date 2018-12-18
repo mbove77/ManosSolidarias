@@ -86,6 +86,13 @@ dependencies {
 
     // Mensaje view
     implementation 'com.github.bassaer:chatmessageview:1.11.0'
+
+    // Skeleton
+    implementation 'com.ethanhua:skeleton:1.1.2'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+
+    // RecyclerView Indicators
+    implementation 'com.kingfisherphuoc:easy-recyclerview-indicator:1.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

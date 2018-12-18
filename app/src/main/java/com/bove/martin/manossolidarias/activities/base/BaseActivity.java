@@ -16,14 +16,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bove.martin.manossolidarias.activities.HomeActivity;
+import com.bove.martin.manossolidarias.activities.DonationActivity;
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.HomeActivity;
 import com.bove.martin.manossolidarias.activities.MainActivity;
-import com.bove.martin.manossolidarias.model.Institucion;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 
 public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
@@ -34,6 +33,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final String DB_SUGGEST_DONATIONS = "sugerencias_donaciones";
     public static final String DB_SUGGEST_ONG = "sugerencias_ong";
     public static final String DB_ONGS = "instituciones";
+    public static final String DB_NEWS = "noticias";
 
     public static final String SHARED_PREF = "pref";
 

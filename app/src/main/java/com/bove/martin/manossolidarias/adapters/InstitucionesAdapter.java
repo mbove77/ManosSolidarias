@@ -106,7 +106,7 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
                 imageViewPlace.setVisibility(View.GONE);
                 imageViewDistancia.setVisibility(View.GONE);
                 textViewDire.setText(R.string.suggest_ong);
-                container.setBackgroundColor(itemView.getResources().getColor(R.color.colorSelection));
+                container.setBackgroundColor(itemView.getResources().getColor(R.color.colorAcentlight));
             }
             // Añadimos el onClick
             itemView.setOnClickListener(new View.OnClickListener() {

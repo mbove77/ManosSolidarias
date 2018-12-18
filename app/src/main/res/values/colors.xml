@@ -6,6 +6,7 @@
 
     <color name="colorSelection">#DBFFB2</color>
     <color name="colorAccent">#FF9800</color>
+    <color name="colorAcentlight">#fbf9d4</color>
 
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
@@ -14,6 +15,7 @@
     <color name="colorIcons">#212121</color>
     <color name="colorListIcons">#707070</color>
     <color name="colorDivider">#E5E5E5</color>
+    <color name="colorSkeleton">#d0d0d0</color>
     <color name="colorBorderFiled">#A2A2A2</color>
     <color name="colorTooltipBack">#e6ee9c</color>
 

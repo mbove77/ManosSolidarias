@@ -41,7 +41,7 @@
     <string name="error_email_forgot">Ingrese su correo para restablecer su contraseña.</string>
     <string name="email_forgot_send">Enviamos un mensaje para que recuperes tu contraseña, revisa tu correo!</string>
 
-    <string name="home_tittle">¿Que deseas donar?</string>
+    <string name="home_tittle">¿Que deseas hacer?</string>
     <string name="donation_help">Maten pulsado sobre cada item para saber más.</string>
     <string name="donation_help_action">OK</string>
     <string name="no_result">No encontramos instituciones para la donación que deseas realizar.</string>
@@ -74,4 +74,8 @@
     <string name="donation_suggest_success">Muchas gracias por tu sugerencia, la tendremos en cuenta para agregarla pronto!</string>
     <string name="donation_suggest_error">Ups, algo salió mal, intenta nuevamente mas tarde.</string>
     <string name="suggest_ong">Sugiérenos una institución</string>
+
+    <string name="lista_ong">Lista Ong´s</string>
+    <string name="donaciones">Donaciones</string>
+    <string name="nueva_ong">Nueva ONG</string>
 </resources>

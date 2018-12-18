@@ -15,7 +15,7 @@
         android:visibility="gone"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_check_circle_black_50dp" />
+        android:src="@drawable/ic_check_circle" />
 
     <ImageView
         android:id="@+id/imageViewERROR"
@@ -26,7 +26,7 @@
         android:visibility="gone"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_error_black_50dp" />
+        android:src="@drawable/ic_error" />
 
     <ImageView
         android:id="@+id/imageViewWARN"
@@ -37,7 +37,7 @@
         android:visibility="gone"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_warning_black_50dp" />
+        android:src="@drawable/ic_warning" />
 
     <ImageView
         android:id="@+id/imageViewINFO"
@@ -48,7 +48,7 @@
         android:visibility="gone"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_info_black_24dp" />
+        android:src="@drawable/ic_info" />
 
     <TextView
         android:id="@+id/alertTitle"

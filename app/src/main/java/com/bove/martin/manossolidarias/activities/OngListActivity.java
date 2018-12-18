@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
@@ -44,6 +43,7 @@ import com.mikepenz.iconics.view.IconicsButton;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class OngListActivity extends BaseActivity implements InstitucionesAdapter.OnItemClickListener {
     private final String TAG = "ONG_LIST";
@@ -63,7 +63,6 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     private boolean updateDistance = false;
     private FusedLocationProviderClient mFusedLocationClient;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,16 +78,6 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         pGif = findViewById(R.id.viewGif);
         pGif.setImageResource(R.drawable.nofound_error);
 
-        // Not found back button
-        backButton = findViewById(R.id.notFoundBackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), HomeActivity.class);
-                startActivity(i);
-            }
-        });
-
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -99,7 +88,24 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             donacion = extras.getString("donacion");
+        } else {
+            // Si no viene una donación mostramos la lista de todas las ong.
+            donacion = null;
         }
+
+        // Not found back button
+        backButton = findViewById(R.id.notFoundBackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(donacion != null) {
+                    Intent intentDonations = new Intent(getBaseContext(), DonationActivity.class);
+                    startActivity(intentDonations);
+                } else {
+                    goToHome();
+                }
+            }
+        });
 
         // Mostramos el cargando hasta que lleguen los datos
         showProgressDialog();
@@ -107,7 +113,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         // Arrancamos el recyclerView
         adapter = new InstitucionesAdapter(instituciones, R.layout.ong_item, this, this);
         DividerItemDecoration divider = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
-        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.line_divider));
+        divider.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getBaseContext(), R.drawable.line_divider)));
         recyclerView.addItemDecoration(divider);
         recyclerView.setAdapter(adapter);
 
@@ -120,45 +126,89 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
 
-        db.collection(DB_ONGS)
-                .whereGreaterThan("donaciones" + "." + donacion, 0)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Institucion institucion = document.toObject(Institucion.class);
-                                institucion.setKey(document.getId());
+        if(donacion != null) {
+            // Lista filtrada por donación
+            db.collection(DB_ONGS)
+                    .whereGreaterThan("donaciones" + "." + donacion, 0)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Institucion institucion = document.toObject(Institucion.class);
+                                    institucion.setKey(document.getId());
 
-                                // Si tenemos localización
-                                if (userLoc != null) {
-                                    float[] distance = new float[2];
-                                    Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
-                                    institucion.setDistancia(distance[0]);
+                                    // Si tenemos localización
+                                    geoLocateResults(institucion);
                                 }
-                                instituciones.add(institucion);
-                            }
-                            if(instituciones.size() > 0) {
-                                errorLay.setVisibility(LinearLayout.GONE);
-                                hideProgressDialog();
-                                if (userLoc != null) {
-                                    Collections.sort(instituciones);
+                                if (instituciones.size() > 0) {
+                                    errorLay.setVisibility(LinearLayout.GONE);
+                                    hideProgressDialog();
+                                    if (userLoc != null) {
+                                        Collections.sort(instituciones);
+                                    }
+                                    adapter.notifyDataSetChanged();
+                                } else {
+                                    hideProgressDialog();
+                                    errorLay.setVisibility(LinearLayout.VISIBLE);
                                 }
-                                adapter.notifyDataSetChanged();
+                                // Agregamos la opción de sugerir una nueva ong
+                                Institucion addOng = new Institucion(getString(R.string.nueva_ong), true);
+                                instituciones.add(addOng);
                             } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
                                 hideProgressDialog();
-                                errorLay.setVisibility(LinearLayout.VISIBLE);
                             }
-                            // Agregamos la opción de sugerir una nueva ong
-                            Institucion addOng = new Institucion("Nueva ONG",true);
-                            instituciones.add(addOng);
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                            hideProgressDialog();
                         }
-                    }
-                });
+                    });
+        }else {
+            // Lista completa
+            db.collection(DB_ONGS)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Institucion institucion = document.toObject(Institucion.class);
+                                    institucion.setKey(document.getId());
+
+                                    // Si tenemos localización
+                                    geoLocateResults(institucion);
+                                }
+                                if (instituciones.size() > 0) {
+                                    errorLay.setVisibility(LinearLayout.GONE);
+                                    hideProgressDialog();
+                                    if (userLoc != null) {
+                                        Collections.sort(instituciones);
+                                    }
+                                    adapter.notifyDataSetChanged();
+                                } else {
+                                    hideProgressDialog();
+                                    errorLay.setVisibility(LinearLayout.VISIBLE);
+                                }
+                                // Agregamos la opción de sugerir una nueva ong
+                                Institucion addOng = new Institucion(getString(R.string.nueva_ong), true);
+                                instituciones.add(addOng);
+                            } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
+                                hideProgressDialog();
+                            }
+                        }
+                    });
+
+        }
+    }
+
+    private void geoLocateResults(Institucion institucion) {
+        // Si tenemos localización
+        if (userLoc != null) {
+            float[] distance = new float[2];
+            Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
+            institucion.setDistancia(distance[0]);
+        }
+        instituciones.add(institucion);
     }
 
     @Override
@@ -222,13 +272,16 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     }
 
     // TODO Tratar de evitar la segunda llamada y también al método getUserLocation
+    // TODO Bug de ordenamiento de lista después de actualizar las distancias, sugerir queda en primer lugar y no ultimo como deberia.
     // Update distancias después de cargadas las ongs
     private void updateDistancias() {
         if(instituciones.size() > 0 & userLoc != null) {
             for (Institucion institucion : instituciones) {
-                float[] distance = new float[2];
-                Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
-                institucion.setDistancia(distance[0]);
+                if(!institucion.isEspecial()) {
+                    float[] distance = new float[2];
+                    Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
+                    institucion.setDistancia(distance[0]);
+                }
             }
             Collections.sort(instituciones);
             adapter.notifyDataSetChanged();

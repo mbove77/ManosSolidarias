@@ -1,41 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/homeLayout"
+    android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".activities.HomeActivity">
 
     <include android:id="@+id/toolbar" layout="@layout/toolbar" />
 
-    <LinearLayout
-        android:layout_marginTop="?android:attr/actionBarSize"
+    <TextView
+        android:id="@+id/textViewTituloNews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="Noticias"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewNews"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="250dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTituloNews" />
 
-        <TextView
-            android:id="@+id/textViewTituloDon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/ubuntu_light"
-            android:gravity="center"
-            android:text="@string/home_tittle"
-            android:visibility="invisible"
-            android:textSize="20sp"/>
+    <com.kingfisher.easyviewindicator.RecyclerViewIndicator
+        android:id="@+id/circleIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="8dp"
+        app:avi_animation_enable="true"
+        app:avi_drawable="@drawable/green_radius"
+        app:avi_drawable_unselected="@drawable/gray_radius"
+        app:avi_height="5dp"
+        app:avi_margin="5dp"
+        app:avi_width="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewNews">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewDonation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="0dp" />
+    </com.kingfisher.easyviewindicator.RecyclerViewIndicator>
 
-    </LinearLayout>
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textViewTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/home_tittle"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonOngs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleIndicator" />
+
+    <ImageButton
+        android:id="@+id/imageButtonOngs"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_donation"
+        android:src="@drawable/ic_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleIndicator"
+        app:layout_constraintVertical_bias="0.6"
+        android:contentDescription="@string/lista_ong" />
+
+    <TextView
+        android:id="@+id/textViewOng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/lista_ong"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonOngs"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonOngs"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonOngs" />
+
+    <ImageButton
+        android:id="@+id/imageButtonDonations"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_donation"
+        android:src="@drawable/ic_hands"
+        android:contentDescription="@string/donaciones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewNews"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <TextView
+        android:id="@+id/textViewDonations"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/donaciones"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonDonations"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonDonations"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonDonations" />
+
+</android.support.constraint.ConstraintLayout>

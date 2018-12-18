@@ -18,6 +18,8 @@ import com.squareup.picasso.Picasso;
  * Created by Martín Bove on 20/07/2018.
  * E-mail: mbove77@gmail.com
  */
+
+// TODO implementar un observador de conexión
 public class MyApplication extends Application {
 
     @Override

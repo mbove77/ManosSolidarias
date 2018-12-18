@@ -13,7 +13,6 @@ import android.widget.EditText;
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
-import com.bove.martin.manossolidarias.model.SugerenciaDonacion;
 import com.bove.martin.manossolidarias.model.SugerenciaOng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,7 +47,7 @@ public class SuggestOngActivity extends BaseActivity {
         editTextSuguetsMisc = findViewById(R.id.editTextSuguetsMisc);
         Button buttonOngSend = findViewById(R.id.buttonSaveOng);
 
-        homeInten = new Intent(getBaseContext(), HomeActivity.class);
+        homeInten = new Intent(getBaseContext(), DonationActivity.class);
 
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
