@@ -2,12 +2,15 @@ package com.bove.martin.manossolidarias.activities.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.support.multidex.MultiDex;
 import android.widget.ImageView;
 
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceiver;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.icons.MaterialDrawerFont;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
@@ -26,6 +29,11 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Para android 7 o superior, registramos el reciber del estado de la conexión.
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkChangeReceiver(), intentFilter);
 
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
 

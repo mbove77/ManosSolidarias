@@ -97,6 +97,9 @@ dependencies {
 
     // RecyclerView Indicators
     implementation 'com.kingfisherphuoc:easy-recyclerview-indicator:1.2'
+
+    //Snakbar
+    //implementation 'com.chootdev:csnackbar:1.4.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

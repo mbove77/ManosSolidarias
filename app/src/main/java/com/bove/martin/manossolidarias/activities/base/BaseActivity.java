@@ -26,7 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
-    // TODO implementar detección de conexión a internet.
+    // TODO mejorar comunicación visual de falta de conexión y ver de bloquear la ui.
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";
