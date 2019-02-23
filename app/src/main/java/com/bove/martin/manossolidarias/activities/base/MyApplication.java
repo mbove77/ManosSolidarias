@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.multidex.MultiDex;
 import android.widget.ImageView;
 
 import com.bove.martin.manossolidarias.R;
@@ -44,5 +45,11 @@ public class MyApplication extends Application {
             }
         });
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

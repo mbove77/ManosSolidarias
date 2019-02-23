@@ -16,20 +16,18 @@
         android:layout_height="109dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/logo_desc"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonFacebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"
         app:srcCompat="@drawable/logo" />
 
     <Button
         android:id="@+id/buttonFacebook"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/button_facebook"
         android:fontFamily="@font/ubuntu_light"
         android:text="@string/button_facebook"
@@ -37,17 +35,19 @@
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGoogle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/buttonGoogle"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/button_google"
         android:fontFamily="@font/ubuntu_light"
         android:text="@string/button_google"
@@ -55,33 +55,33 @@
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFacebook" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:alpha="0.5"
         android:background="@color/colorDivider"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGoogle" />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/imput_text"
-        android:drawablePadding="@dimen/normalPadding"
         android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="@dimen/normalPadding"
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
         android:hint="@string/input_mail"
@@ -89,40 +89,40 @@
         android:paddingStart="16dp"
         android:textColor="@color/colorSecondaryText"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
         android:id="@+id/editTextPass"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/imput_text"
-        android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_lock"
-        android:fontFamily="@font/ubuntu_light"
+        android:drawablePadding="8dp"
         android:ems="10"
+        android:fontFamily="@font/ubuntu_light"
         android:hint="@string/input_pass"
         android:inputType="textPassword"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textColor="@color/colorSecondaryText"
         android:textSize="14sp"
-        app:tint_color="@color/colorSecondaryText"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:tint_color="@color/colorSecondaryText" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/button"
         android:fontFamily="@font/ubuntu_light"
         android:text="@string/button_login"
@@ -130,19 +130,17 @@
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPass" />
 
     <TextView
         android:id="@+id/textViewLostPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/lost_password"
+        android:layout_marginTop="8dp"
         android:hapticFeedbackEnabled="true"
+        android:text="@string/lost_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
@@ -151,11 +149,11 @@
         android:id="@+id/textViewCreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:hapticFeedbackEnabled="true"
         android:text="@string/new_account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLostPass" />
 
 </android.support.constraint.ConstraintLayout>

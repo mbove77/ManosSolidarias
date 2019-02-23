@@ -11,21 +11,16 @@
     <include android:id="@+id/toolbar" layout="@layout/toolbar" />
 
     <LinearLayout
-        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
         android:orientation="vertical">
-
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewDonation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_margin="0dp" />
 
     </LinearLayout>
 </RelativeLayout>
