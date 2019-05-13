@@ -42,6 +42,8 @@ public class BaseActivity extends AppCompatActivity {
     public static final String ERROR_ALERT = "error";
     public static final String SUCCESS_ALERT = "exito";
 
+    public static int NO_DISTANCIA = 100000000;
+
     // Shared Preferences
     public SharedPreferences preferences;
 

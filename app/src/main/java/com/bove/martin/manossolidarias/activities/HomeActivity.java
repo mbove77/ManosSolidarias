@@ -101,6 +101,7 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
         skeletonScreen = Skeleton.bind(recyclerView)
                 .adapter(adapter)
                 .load(R.layout.news_item_skeleton)
+                .color(R.color.skeletonShinColor)
                 .show();
 
         // Access a Cloud Firestore instance from your Activity

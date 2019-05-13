@@ -2,6 +2,7 @@ package com.bove.martin.manossolidarias.model;
 
 import android.support.annotation.NonNull;
 
+import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.google.firebase.firestore.GeoPoint;
 
 import java.io.Serializable;
@@ -62,6 +63,7 @@ public class Institucion implements Comparable<Institucion> {
         this.nombre = nombre;
         this.especial = especial;
         this.logo_url = "https://manos-solidarias.firebaseapp.com/icons/icon-new-ong.png";
+        this.distancia = BaseActivity.NO_DISTANCIA;
     }
 
     public String getKey() {

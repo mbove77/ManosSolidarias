@@ -16,28 +16,33 @@
         android:id="@+id/textViewTituloNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/ubuntu_light"
         android:text="@string/news_tittle"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewNews"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="20dp"
         app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"
-        app:layout_constraintHeight_min="250dp"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTituloNews"
+        app:layout_constraintTop_toBottomOf="@+id/divider4"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layoutManager="GridLayoutManager"
         tools:listitem="@layout/recycler_view_item_1"
-        tools:spanCount="5"
-        tools:layoutManager="GridLayoutManager" />
+        tools:spanCount="5" />
 
     <com.kingfisher.easyviewindicator.RecyclerViewIndicator
         android:id="@+id/circleIndicator"
@@ -57,13 +62,13 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/ubuntu_light"
         android:text="@string/home_tittle"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barrier_recicler" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageButton
         android:id="@+id/imageButtonOngs"
@@ -71,13 +76,14 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_donation"
-        android:contentDescription="@string/lista_ong"
 
+        android:contentDescription="@string/lista_ong"
         android:src="@drawable/ic_home"
         app:layout_constraintEnd_toStartOf="@+id/guide_center_vert"
-        app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/barrier_titulo_don"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitulo"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -102,9 +108,10 @@
         android:contentDescription="@string/donaciones"
         android:src="@drawable/ic_hands"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guide_center_vert"
 
-        app:layout_constraintTop_toBottomOf="@+id/barrier_titulo_don"
+        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintStart_toStartOf="@+id/guide_center_vert"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitulo"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -126,29 +133,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guide_fondo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".95" />
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier_recicler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="circleIndicator" />
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier_titulo_don"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="textViewTitulo"
-        tools:layout_editor_absoluteY="650dp" />
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOng" />
 
 
 </android.support.constraint.ConstraintLayout>

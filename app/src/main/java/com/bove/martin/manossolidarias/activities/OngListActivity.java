@@ -203,10 +203,13 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
 
     private void geoLocateResults(Institucion institucion) {
         // Si tenemos localización
-        if (userLoc != null) {
+        if (userLoc != null && institucion.getLocalizacion().getLatitude() != 0.0) {
             float[] distance = new float[2];
             Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
             institucion.setDistancia(distance[0]);
+        }
+        if(institucion.getLocalizacion().getLatitude() == 0.0) {
+            institucion.setDistancia(BaseActivity.NO_DISTANCIA);
         }
         instituciones.add(institucion);
     }
@@ -272,12 +275,11 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     }
 
     // TODO Tratar de evitar la segunda llamada y también al método getUserLocation
-    // TODO Bug de ordenamiento de lista después de actualizar las distancias, sugerir queda en primer lugar y no ultimo como deberia.
     // Update distancias después de cargadas las ongs
     private void updateDistancias() {
         if(instituciones.size() > 0 & userLoc != null) {
             for (Institucion institucion : instituciones) {
-                if(!institucion.isEspecial()) {
+                if(!institucion.isEspecial() && institucion.getLocalizacion().getLatitude() != 0.0) {
                     float[] distance = new float[2];
                     Location.distanceBetween(userLoc.getLatitude(), userLoc.getLongitude(), institucion.getLocalizacion().getLatitude(), institucion.getLocalizacion().getLongitude(), distance);
                     institucion.setDistancia(distance[0]);

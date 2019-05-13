@@ -1,17 +1,15 @@
 package com.bove.martin.manossolidarias.activities;
 
-import android.content.Intent;
+
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
+
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
@@ -22,6 +20,7 @@ import com.bove.martin.manossolidarias.model.Institucion;
 import com.google.gson.Gson;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.readystatesoftware.viewbadger.BadgeView;
 
 public class OngInfoActivity extends BaseActivity implements FragmentComunication {
 
@@ -30,6 +29,9 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PagerAdapter adapter;
+
+    private BadgeView badge;
+
 
     public static final int INFO_FRAGMENT = 0;
     public static final int MAP_FRAGMENT = 1;
@@ -62,9 +64,14 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
         Drawable iconMap = new IconicsDrawable(this, FontAwesome.Icon.faw_map2).color(Color.WHITE).sizeDp(iconsize);
         Drawable iconSms = new IconicsDrawable(this, FontAwesome.Icon.faw_comments2).color(Color.WHITE).sizeDp(iconsize);
 
+        TabLayout.Tab mesajeTab = createTab(getString(R.string.sms), iconSms);
         tabLayout.addTab(createTab(getString(R.string.info), iconInfo));
         tabLayout.addTab(createTab(getString(R.string.map), iconMap));
-        tabLayout.addTab(createTab(getString(R.string.sms), iconSms));
+        tabLayout.addTab(mesajeTab);
+
+        badge = new BadgeView(this, mesajeTab.getCustomView());
+        badge.setText("5");
+        badge.show();
 
         tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

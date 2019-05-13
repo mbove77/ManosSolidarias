@@ -1,6 +1,7 @@
 package com.bove.martin.manossolidarias.adapters;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.CircleTransform;
 import com.bove.martin.manossolidarias.model.Donacion;
 import com.bove.martin.manossolidarias.model.Institucion;
@@ -83,8 +85,10 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
 
             if(!institucion.isEspecial()) {
                 textViewDire.setText(institucion.getDireccion());
+                // Reset item color for fix bug onUdpate distances
+                container.setBackground(itemView.getResources().getDrawable(R.drawable.background_list_item));
 
-                if (institucion.getDistancia() > 0) {
+                if (institucion.getDistancia() > 0 && institucion.getDistancia() != BaseActivity.NO_DISTANCIA) {
                     imageViewDistancia.setVisibility(View.VISIBLE);
                     textViewDistancia.setVisibility(View.VISIBLE);
 

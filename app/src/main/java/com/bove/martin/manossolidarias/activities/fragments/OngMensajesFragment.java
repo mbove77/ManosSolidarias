@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,7 +83,13 @@ public class OngMensajesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_ong_mensajes, container, false);
+
         messageView =  rootView.findViewById(R.id.message_view);
+        messageView.setRightBubbleColor(ContextCompat.getColor(getContext(), R.color.chatColorAdmin));
+        messageView.setRightMessageTextColor(ContextCompat.getColor(getContext(), R.color.colorListText));
+        messageView.setLeftBubbleColor(ContextCompat.getColor(getContext(), R.color.chatColorUser));
+        messageView.setLeftMessageTextColor(ContextCompat.getColor(getContext(), R.color.colorListText));
+
         sendButton = rootView.findViewById(R.id.sendMensaje);
         mensajeField = rootView.findViewById(R.id.editTextMsj);
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +120,7 @@ public class OngMensajesFragment extends Fragment {
     // Load users
     private  void loadUsers() {
         ongChat = new ChatUser(0, ong.getNombre());
-        userChat = new ChatUser(1, user.getDisplayName());
+        userChat = new ChatUser(1, (user.getDisplayName().isEmpty()) ? user.getEmail() : user.getDisplayName());
     }
 
     // Load mensajes from db
@@ -139,8 +146,9 @@ public class OngMensajesFragment extends Fragment {
                 } else {
                     // Si no hay resultados creamos el primer mensaje
                     Mensaje nuevoMensaje = new Mensaje(ong.getNombre(), getString(R.string.welcome_chat), true);
-                    mensajeMap.put(String.valueOf(nuevoMensaje.getTimeSpam()),nuevoMensaje);
-                    myRef.child(ongid).child(userid).child("mensajes").updateChildren(mensajeMap);
+                    printMensaje(nuevoMensaje);
+                    //mensajeMap.put(String.valueOf(nuevoMensaje.getTimeSpam()),nuevoMensaje);
+                    //myRef.child(ongid).child(userid).child("mensajes").updateChildren(mensajeMap);
                 }
                 myRef.removeEventListener(this);
                 regChildListener();

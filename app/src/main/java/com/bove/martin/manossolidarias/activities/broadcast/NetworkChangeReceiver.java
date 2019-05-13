@@ -20,6 +20,5 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         if(status == NetworkUtil.TYPE_NOT_CONNECTED) {
             Toast.makeText(context, "Sin conexión a internet", Toast.LENGTH_LONG).show();
         }
-
     }
 }

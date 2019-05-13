@@ -22,9 +22,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     implementation 'com.android.support:multidex:1.0.1'
-
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     testImplementation 'junit:junit:4.12'
@@ -32,14 +30,14 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // Navigation Drawer
-    implementation("com.mikepenz:materialdrawer:6.0.8@aar") {
+    implementation('com.mikepenz:materialdrawer:6.0.8@aar') {
         transitive = true
     }
-    implementation "com.android.support:support-annotations:27.1.1"
+    implementation 'com.android.support:support-annotations:27.1.1'
 
     // Font Awesome icons
     implementation 'com.mikepenz:fontawesome-typeface:5.0.13.0@aar'
-    implementation "com.mikepenz:iconics-views:3.0.4@aar"
+    implementation 'com.mikepenz:iconics-views:3.0.4@aar'
 
     // Main Libs
     implementation 'com.android.support:design:27.1.1'
@@ -63,6 +61,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:15.0.0'
 
     // Facebook Android SDK (only required for Facebook Login)
+
     // Used in FacebookLoginActivity.
     implementation 'com.facebook.android:facebook-login:4.32.0'
     implementation 'com.android.support:customtabs:27.1.1'
@@ -99,7 +98,9 @@ dependencies {
     implementation 'com.kingfisherphuoc:easy-recyclerview-indicator:1.2'
 
     //Snakbar
+
     //implementation 'com.chootdev:csnackbar:1.4.2'
+    implementation files('libs/android-viewbadger.jar')
 }
 
 apply plugin: 'com.google.gms.google-services'
