@@ -1,13 +1,17 @@
 package com.bove.martin.manossolidarias.activities.base;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -20,13 +24,18 @@ import com.bove.martin.manossolidarias.activities.DonationActivity;
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.HomeActivity;
 import com.bove.martin.manossolidarias.activities.MainActivity;
+import com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceiver;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceiver.IS_NETWORK_AVAILABLE;
+
 public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
     // TODO mejorar comunicación visual de falta de conexión y ver de bloquear la ui.
+    // TODO mejorar los iconos y el nombre de las donaciones.
+    // TODO poner en desarrollo la sección de noticias.
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";
@@ -58,6 +67,20 @@ public class BaseActivity extends AppCompatActivity {
 
         // Cargamos las shared para mostrar la ayuda una sola vez.
         preferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+
+        // Mostramos mensaje si no hay conexión
+        IntentFilter intentFilter = new IntentFilter(NetworkChangeReceiver.NETWORK_AVAILABLE_ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                boolean isNetworkAvailable = intent.getBooleanExtra(IS_NETWORK_AVAILABLE, false);
+                String networkStatus = isNetworkAvailable ? "connected" : "disconnected";
+
+                // TODO Ver como encontrar una vista para mostrar el sncakbar
+                //Snackbar.make(findViewById(R.id.main_layout), "Network Status: " + networkStatus, Snackbar.LENGTH_LONG).show();
+            }
+        }, intentFilter);
+
     }
 
     public void showProgressDialog() {

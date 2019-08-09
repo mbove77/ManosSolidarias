@@ -7,18 +7,57 @@ package com.bove.martin.manossolidarias.activities.broadcast;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
-import com.bove.martin.manossolidarias.activities.utils.NetworkUtil;
+import static android.content.Context.CONNECTIVITY_SERVICE;
+
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
+    public static final String NETWORK_AVAILABLE_ACTION = "com.bove.martin.manossolidarias.NetworkAvailable";
+    public static final String IS_NETWORK_AVAILABLE = "isNetworkAvailable";
 
     @Override
-    public void onReceive(final Context context, final Intent intent) {
-        int status = NetworkUtil.getConnectivityStatus(context);
+    public void onReceive(Context context, Intent intent) {
 
-        if(status == NetworkUtil.TYPE_NOT_CONNECTED) {
-            Toast.makeText(context, "Sin conexión a internet", Toast.LENGTH_LONG).show();
+        Intent networkStateIntent = new Intent(NETWORK_AVAILABLE_ACTION);
+        networkStateIntent.putExtra(IS_NETWORK_AVAILABLE,  isConnectedToInternet(context));
+        LocalBroadcastManager.getInstance(context).sendBroadcast(networkStateIntent);
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+
+       /*
+        boolean isConnected = connectivityManager.getActiveNetworkInfo()!=null;
+
+        if (isConnected) {
+            if(conectionLost) {
+                Log.e("NET", "Connectado: " + isConnected);
+                Toast.makeText(context, "De nuevo en linea", Toast.LENGTH_SHORT).show();
+                //Snackbar.make(context. findViewById(R.id.createAccountActivity), getText(R.string.error_create_account), Snackbar.LENGTH_LONG).show();
+                conectionLost = false;
+            }
+        } else {
+            Log.e("NET", "Connectado: " + isConnected);
+            Toast.makeText(context, "No connectado", Toast.LENGTH_SHORT).show();
+            conectionLost = true;
+        }
+        */
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        try {
+            if (context != null) {
+                ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                return networkInfo != null && networkInfo.isConnected();
+            }
+            return false;
+        } catch (Exception e) {
+            Log.e(NetworkChangeReceiver.class.getName(), e.getMessage());
+            return false;
         }
     }
 }
+

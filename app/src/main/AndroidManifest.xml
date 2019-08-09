@@ -16,12 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.SplashActivity" android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.DonationActivity" />
         <activity android:name=".activities.base.BaseActivity" />
         <activity android:name=".activities.account.CreateAccountActivity" />
@@ -29,22 +30,18 @@
         <activity android:name=".activities.AddOngActivity" />
         <activity android:name=".activities.OngInfoActivity" />
         <activity android:name=".activities.SuggestDonationActivity" />
-        <activity android:name=".activities.SuggestOngActivity" />
-
-        <!-- Network Verificator -->
+        <activity android:name=".activities.SuggestOngActivity" /> <!-- Network Verificator -->
         <receiver
             android:name=".activities.broadcast.NetworkChangeReceiver"
-            android:label="NetworkChangeReceiver" >
+            android:label="NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <!--
            The API key for Google Maps-based APIs is defined as a string resource.
            (See the file "res/values/google_maps_api.xml").
@@ -55,9 +52,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <!-- Facebook Configuration -->
+            android:value="@string/google_maps_key" /> <!-- Facebook Configuration -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_application_id"
@@ -75,7 +70,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.HomeActivity"></activity>
+        <activity android:name=".activities.HomeActivity" />
     </application>
 
 </manifest>

@@ -130,6 +130,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
             // Lista filtrada por donación
             db.collection(DB_ONGS)
                     .whereGreaterThan("donaciones" + "." + donacion, 0)
+                    .whereEqualTo("aprobado", true)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -165,6 +166,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         }else {
             // Lista completa
             db.collection(DB_ONGS)
+                    .whereEqualTo("aprobado", true)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
