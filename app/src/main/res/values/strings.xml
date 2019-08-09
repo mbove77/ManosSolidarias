@@ -79,4 +79,8 @@
     <string name="donaciones">Donaciones</string>
     <string name="nueva_ong">Nueva ONG</string>
     <string name="news_tittle">Noticias</string>
+    <string name="online_msj">De nuevo en Línea!</string>
+    <string name="offline_msj">Sin conexión a internet.</string>
+
+
 </resources>

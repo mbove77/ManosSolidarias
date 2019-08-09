@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,11 +30,12 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static android.support.design.widget.Snackbar.make;
 import static com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceiver.IS_NETWORK_AVAILABLE;
 
 public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
-    // TODO mejorar comunicación visual de falta de conexión y ver de bloquear la ui.
+    // TODO Es necesario bloquear la ui cuando no hay conexión?
     // TODO mejorar los iconos y el nombre de las donaciones.
     // TODO poner en desarrollo la sección de noticias.
 
@@ -74,10 +76,17 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 boolean isNetworkAvailable = intent.getBooleanExtra(IS_NETWORK_AVAILABLE, false);
-                String networkStatus = isNetworkAvailable ? "connected" : "disconnected";
+                String networkStatus = isNetworkAvailable ? getString(R.string.online_msj) : getString(R.string.offline_msj);
 
-                // TODO Ver como encontrar una vista para mostrar el sncakbar
-                //Snackbar.make(findViewById(R.id.main_layout), "Network Status: " + networkStatus, Snackbar.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(),  networkStatus, Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+
+                if(isNetworkAvailable)
+                    sbView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
+                else
+                    sbView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorGoogleLight));
+
+                snackbar.show();
             }
         }, intentFilter);
 
