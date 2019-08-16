@@ -58,7 +58,7 @@ public class SuggestOngActivity extends BaseActivity {
         setSupportActionBar(myToolbar);
 
         // load NavDrawer
-        DrawerUtil.getDrawer(this, myToolbar);
+        DrawerUtil.getDrawer(this, myToolbar,0);
 
         // load preference
         preferences = getPreferences();

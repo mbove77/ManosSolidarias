@@ -35,9 +35,10 @@ import static com.bove.martin.manossolidarias.activities.broadcast.NetworkChange
 
 public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
-    // TODO Es necesario bloquear la ui cuando no hay conexión?
+    // TODO Crear popUp con icono de desconexión
     // TODO mejorar los iconos y el nombre de las donaciones.
     // TODO poner en desarrollo la sección de noticias.
+    // TODO Implementar Navigatio Graph
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";

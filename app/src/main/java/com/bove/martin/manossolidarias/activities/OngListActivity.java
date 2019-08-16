@@ -83,7 +83,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         setSupportActionBar(myToolbar);
 
         // Cargamos el NavDrawer
-        DrawerUtil.getDrawer(this, myToolbar);
+        DrawerUtil.getDrawer(this, myToolbar,2);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -130,7 +130,6 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
             // Lista filtrada por donación
             db.collection(DB_ONGS)
                     .whereGreaterThan("donaciones" + "." + donacion, 0)
-                    .whereEqualTo("aprobado", true)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -140,8 +139,11 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                                     Institucion institucion = document.toObject(Institucion.class);
                                     institucion.setKey(document.getId());
 
-                                    // Si tenemos localización
-                                    geoLocateResults(institucion);
+                                    // Si la ong esta aprobada
+                                    if(institucion.isAprobado()) {
+                                        // Si tenemos localización
+                                        geoLocateResults(institucion);
+                                    }
                                 }
                                 if (instituciones.size() > 0) {
                                     errorLay.setVisibility(LinearLayout.GONE);
@@ -166,7 +168,6 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         }else {
             // Lista completa
             db.collection(DB_ONGS)
-                    .whereEqualTo("aprobado", true)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -176,8 +177,11 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                                     Institucion institucion = document.toObject(Institucion.class);
                                     institucion.setKey(document.getId());
 
-                                    // Si tenemos localización
-                                    geoLocateResults(institucion);
+                                    // Si la ong esta aprobada
+                                    if(institucion.isAprobado()) {
+                                        // Si tenemos localización
+                                        geoLocateResults(institucion);
+                                    }
                                 }
                                 if (instituciones.size() > 0) {
                                     errorLay.setVisibility(LinearLayout.GONE);

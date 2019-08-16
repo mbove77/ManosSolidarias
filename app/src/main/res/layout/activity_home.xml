@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="@color/colorBackground"
     tools:context=".activities.HomeActivity">
 
@@ -12,138 +13,136 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <TextView
-        android:id="@+id/textViewTituloNews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="@string/news_tittle"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider4" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewNews"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="wrap"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider4"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layoutManager="GridLayoutManager"
-        tools:listitem="@layout/recycler_view_item_1"
-        tools:spanCount="5" />
-
-    <com.kingfisher.easyviewindicator.RecyclerViewIndicator
-        android:id="@+id/circleIndicator"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="14dp"
-        app:avi_animation_enable="true"
-        app:avi_drawable="@drawable/green_radius"
-        app:avi_drawable_unselected="@drawable/gray_radius"
-        app:avi_height="5dp"
-        app:avi_margin="5dp"
-        app:avi_width="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewNews"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/materialize_toolbar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/ubuntu_light"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp"
+                android:text="@string/home_tittle"
+                android:textSize="24sp" />
 
 
-    <TextView
-        android:id="@+id/textViewTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="@string/home_tittle"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/imageButtonOngs"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_donation"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        android:contentDescription="@string/lista_ong"
-        android:src="@drawable/ic_home"
-        app:layout_constraintEnd_toStartOf="@+id/guide_center_vert"
+                    <ImageButton
+                        android:id="@+id/imageButtonOngs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button_donation"
+                        android:contentDescription="@string/lista_ong"
+                        app:srcCompat="@drawable/ic_home" />
 
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitulo"
-        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/textViewOng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:paddingTop="6dp"
+                        android:text="@string/lista_ong"
+                        android:textSize="16sp" />
+                </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewOng"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="@string/lista_ong"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonOngs"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonOngs"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonOngs" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-    <ImageButton
-        android:id="@+id/imageButtonDonations"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+                    <ImageButton
+                        android:id="@+id/imageButtonDonations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_donation"
+                        android:contentDescription="@string/donaciones"
+                        app:srcCompat="@drawable/ic_hands" />
 
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_donation"
-        android:contentDescription="@string/donaciones"
-        android:src="@drawable/ic_hands"
-        app:layout_constraintEnd_toEndOf="parent"
+                    <TextView
+                        android:id="@+id/textViewDonations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:paddingTop="6dp"
+                        android:text="@string/donaciones"
+                        android:textSize="16sp" />
 
-        app:layout_constraintHorizontal_bias="0.415"
-        app:layout_constraintStart_toStartOf="@+id/guide_center_vert"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitulo"
-        tools:srcCompat="@tools:sample/avatars" />
+                </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewDonations"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="@string/donaciones"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonDonations"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonDonations"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonDonations" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guide_center_vert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <View
-        android:id="@+id/divider4"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewOng" />
+            </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="12dp"
+                    android:background="@color/colorDivider" />
+
+                <TextView
+                    android:id="@+id/textViewTituloNews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="6dp"
+                    android:text="@string/news_tittle"
+                    android:textSize="24sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewNews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    tools:layoutManager="GridLayoutManager"
+                    tools:listitem="@layout/recycler_view_item_1"
+                    tools:spanCount="5" />
+
+                <com.kingfisher.easyviewindicator.RecyclerViewIndicator
+                    android:id="@+id/circleIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    app:avi_animation_enable="true"
+                    app:avi_drawable="@drawable/green_radius"
+                    app:avi_drawable_unselected="@drawable/gray_radius"
+                    app:avi_height="5dp"
+                    app:avi_margin="5dp"
+                    app:avi_width="5dp"
+                    android:layout_marginBottom="12dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

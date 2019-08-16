@@ -33,10 +33,11 @@ public class Institucion implements Comparable<Institucion> {
     private String direccion;
     private float distancia;
     private boolean especial;
+    private boolean aprobado;
 
     public Institucion() {}
 
-    public Institucion(String key, String nombre, String descripcion, Map<String, Long> donaciones, String email, String facebook, String header_img_url, String horario, String instagram, GeoPoint localizacion, String logo_url, String misc, String telefono, String twitter, String web, String whatsapp, String youtube, String direccion, boolean especial) {
+    public Institucion(String key, String nombre, String descripcion, Map<String, Long> donaciones, String email, String facebook, String header_img_url, String horario, String instagram, GeoPoint localizacion, String logo_url, String misc, String telefono, String twitter, String web, String whatsapp, String youtube, String direccion, boolean especial, boolean aprobado) {
         this.key = key;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -56,6 +57,7 @@ public class Institucion implements Comparable<Institucion> {
         this.youtube = youtube;
         this.direccion = direccion;
         this.especial = especial;
+        this.aprobado = aprobado;
     }
 
     // Constructor para el agregar nueva ong
@@ -224,6 +226,14 @@ public class Institucion implements Comparable<Institucion> {
 
     public void setEspecial(boolean especial) {
         this.especial = especial;
+    }
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
     }
 
     @Override

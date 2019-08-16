@@ -53,7 +53,7 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
         setSupportActionBar(myToolbar);
 
         // Cargamos el NavDrawer
-        DrawerUtil.getDrawer(this, myToolbar);
+        DrawerUtil.getDrawer(this, myToolbar, 0);
 
         // Ocultamos el cuadro de cargando
         hideProgressDialog();

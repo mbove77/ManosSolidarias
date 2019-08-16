@@ -12,21 +12,33 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="303dp"
-        android:layout_height="109dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="119dp"
+        android:layout_height="90dp"
         android:contentDescription="@string/logo_desc"
-        app:layout_constraintBottom_toTopOf="@+id/buttonFacebook"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintVertical_bias="0.12"
+        app:srcCompat="@drawable/ic_iso" />
+
+    <ImageView
+        android:id="@+id/imageViewText"
+        android:layout_width="190dp"
+        android:layout_height="90dp"
+        android:contentDescription="@string/logo_desc"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@drawable/ic_manos_letters" />
 
     <Button
         android:id="@+id/buttonFacebook"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/button_facebook"
         android:fontFamily="@font/ubuntu_light"
@@ -35,11 +47,9 @@
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/buttonGoogle"
@@ -150,10 +160,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:hapticFeedbackEnabled="true"
         android:text="@string/new_account"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLostPass" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

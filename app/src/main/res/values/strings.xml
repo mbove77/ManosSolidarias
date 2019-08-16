@@ -21,7 +21,9 @@
     <string name="showHelp">¿Mostrar Ayuda?</string>
     <string name="configs">Configuración</string>
     <string name="home">Inicio</string>
-    <string name="list_ong">Instituciones</string>
+    <string name="list_ong">Lista Ong´s</string>
+    <string name="list_donations">Donaciones</string>
+    <string name="config">Configuración</string>
 
     <string name="error_req">Este campo es obligatorio.</string>
     <string name="error_email">Ingrese un email valido.</string>
@@ -42,6 +44,7 @@
     <string name="email_forgot_send">Enviamos un mensaje para que recuperes tu contraseña, revisa tu correo!</string>
 
     <string name="home_tittle">¿Que deseas hacer?</string>
+    <string name="donation_list_tittle">¿Que quieres donar?</string>
     <string name="donation_help">Maten pulsado sobre cada item para saber más.</string>
     <string name="donation_help_action">OK</string>
     <string name="no_result">No encontramos instituciones para la donación que deseas realizar.</string>

@@ -72,7 +72,7 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
         setSupportActionBar(myToolbar);
 
         // load NavDrawer
-        DrawerUtil.getDrawer(this, myToolbar);
+        DrawerUtil.getDrawer(this, myToolbar,1);
 
         imageButtonDonation.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -58,14 +58,14 @@ public class DonationActivity extends BaseActivity implements DonationAdapter.On
         showHelp = preferences.getBoolean(SHOW_HELP_KEY, true);
 
         // load NavDrawer
-        DrawerUtil.getDrawer(this, myToolbar);
+        DrawerUtil.getDrawer(this, myToolbar,3);
 
         // Mostramos el cargando hasta que lleguen los datos
         showProgressDialog();
 
         // Instanciamos los elementos
         recyclerView = findViewById(R.id.recyclerViewDonation);
-        layoutManager = new GridLayoutManager(this, 2);
+        layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter = new DonationAdapter(donaciones, R.layout.donation_item, this, this, this);

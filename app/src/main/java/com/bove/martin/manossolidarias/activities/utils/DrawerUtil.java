@@ -5,9 +5,10 @@ import android.net.Uri;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.DonationActivity;
+import com.bove.martin.manossolidarias.activities.HomeActivity;
+import com.bove.martin.manossolidarias.activities.OngListActivity;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -18,7 +19,6 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-
 /**
  * Created by Martín Bove on 20/07/2018.
  * E-mail: mbove77@gmail.com
@@ -28,7 +28,7 @@ public class DrawerUtil {
     private static AccountHeader headerResult;
     private static Drawer result;
 
-    public static void getDrawer(final BaseActivity activity, Toolbar toolbar) {
+    public static void getDrawer(final BaseActivity activity, Toolbar toolbar, long selectIndex) {
         final String activityName = activity.getLocalClassName();
         String nombre = activity.getUser().getDisplayName();
         String email = activity.getUser().getEmail();
@@ -50,9 +50,14 @@ public class DrawerUtil {
                 .withToolbar(toolbar)
                 .withAccountHeader(headerResult)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1)
+                        new PrimaryDrawerItem().withName(R.string.home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.list_ong).withIcon(FontAwesome.Icon.faw_list_alt).withIdentifier(2),
+                        new PrimaryDrawerItem().withName(R.string.list_donations).withIcon(FontAwesome.Icon.faw_hand_holding_heart).withIdentifier(3),
+                        new PrimaryDrawerItem().withName(R.string.config).withIcon(FontAwesome.Icon.faw_cog).withIdentifier(4)
                 )
-                .addStickyDrawerItems(new PrimaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt).withIdentifier(3))
+                .addStickyDrawerItems(
+                        new PrimaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt).withIdentifier(5)
+                )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -60,16 +65,21 @@ public class DrawerUtil {
                         if (drawerItem != null) {
                             Intent intent = null;
                             // Home item
-                            if (drawerItem.getIdentifier() == 1) {
-                                if(!activityName.equals("activities.DonationActivity")) {
+                            switch (((int) drawerItem.getIdentifier())) {
+                                case 1:
+                                    intent = new Intent(activity, HomeActivity.class);
+                                    break;
+                                case 2:
+                                    intent = new Intent(activity, OngListActivity.class);
+                                    break;
+                                case 3:
                                     intent = new Intent(activity, DonationActivity.class);
-                                    activity.startActivity(intent);
-                                }
+                                    break;
+                                case 5:
+                                    activity.logout();
+                                    break;
                             }
-                            // Logout item
-                            else if (drawerItem.getIdentifier() == 3) {
-                                activity.logout();
-                            }
+
                             if (intent != null) {
                                 activity.startActivity(intent);
                             }
@@ -78,14 +88,8 @@ public class DrawerUtil {
                     }
                 })
                 .withShowDrawerOnFirstLaunch(false)
+                .withSelectedItem(selectIndex)
                 .build();
-
-            // Add ong list item
-            if(activityName.equals("activities.OngListActivity")) {
-                PrimaryDrawerItem donation =  new PrimaryDrawerItem().withName(R.string.list_ong).withIcon(FontAwesome.Icon.faw_list_alt).withIdentifier(2);
-                result.addItemAtPosition(donation, 2);
-                result.setSelection(2);
-            }
 
     }
 
