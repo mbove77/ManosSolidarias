@@ -1,18 +1,13 @@
 package com.bove.martin.manossolidarias.activities.fragments;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +21,8 @@ import com.bove.martin.manossolidarias.activities.interfaces.FragmentComunicatio
 import com.bove.martin.manossolidarias.activities.utils.CircleTransform;
 import com.bove.martin.manossolidarias.model.Institucion;
 import com.google.gson.Gson;
-import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.mikepenz.iconics.context.IconicsLayoutInflater;
-import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 public class OngInfoFragment extends Fragment {
     private FragmentComunication callback;
@@ -110,8 +100,8 @@ public class OngInfoFragment extends Fragment {
         youtubeIcon = view.findViewById(R.id.iconicsImageYoutube);
 
         // Cargamos los elementos
-        Picasso.with(view.getContext()).load(ong.getHeader_img_url()).placeholder(R.drawable.placeholder).fit().centerCrop().into(header);
-        Picasso.with(view.getContext()).load(ong.getLogo_url()).transform(new CircleTransform()).fit().into(logo);
+        Picasso.with(view.getContext()).load(ong.getHeader_img_url()).fit().centerCrop().placeholder(R.drawable.placeholder).into(header);
+        Picasso.with(view.getContext()).load(ong.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder).into(logo);
         mision.setText(ong.getDescripcion());
 
         if(TextUtils.isEmpty(ong.getHorario())) {

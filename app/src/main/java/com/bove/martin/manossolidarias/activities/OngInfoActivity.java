@@ -69,9 +69,10 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
         tabLayout.addTab(createTab(getString(R.string.map), iconMap));
         tabLayout.addTab(mesajeTab);
 
+        // TODO Mejorar esta implementacion del badger
         badge = new BadgeView(this, mesajeTab.getCustomView());
-        badge.setText("5");
-        badge.show();
+        badge.setText("25");
+        // badge.show();
 
         tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

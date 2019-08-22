@@ -37,6 +37,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.kingfisher.easyviewindicator.RecyclerViewIndicator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClickListener {
@@ -117,6 +118,7 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
                                 Noticia noticia = document.toObject(Noticia.class);
                                 noticias.add(noticia);
                             }
+                            Collections.shuffle(noticias);
                             adapter.notifyDataSetChanged();
                             skeletonScreen.hide();
                             recyclerViewIndicator.setRecyclerView(recyclerView);

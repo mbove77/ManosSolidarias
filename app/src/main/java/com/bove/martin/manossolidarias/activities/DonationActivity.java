@@ -11,8 +11,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
@@ -20,6 +18,7 @@ import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
 import com.bove.martin.manossolidarias.adapters.DonationAdapter;
 import com.bove.martin.manossolidarias.model.Donacion;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -144,6 +143,8 @@ public class DonationActivity extends BaseActivity implements DonationAdapter.On
         if(donacion.getEspecial()) {
             Intent intentNewDon = new Intent(this, SuggestDonationActivity.class);
             startActivity(intentNewDon);
+            // Test a crash
+            //Crashlytics.getInstance().crash();
         } else {
             Intent intent = new Intent(this, OngListActivity.class);
             intent.putExtra("donacion", donacion.getKey());

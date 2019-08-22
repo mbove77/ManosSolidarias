@@ -81,7 +81,7 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
         // Aca es donde se cargan las datos reales
         public void bind(final Institucion institucion, final OnItemClickListener listener) {
             this.textViewName.setText(institucion.getNombre());
-            Picasso.with(itemView.getContext()).load(institucion.getLogo_url()).transform(new CircleTransform()).fit().into(this.imageViewLogo);
+            Picasso.with(itemView.getContext()).load(institucion.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder).into(this.imageViewLogo);
 
             if(!institucion.isEspecial()) {
                 textViewDire.setText(institucion.getDireccion());

@@ -119,6 +119,7 @@
                     android:fontFamily="@font/ubuntu_light"
                     android:paddingTop="12dp"
                     android:paddingBottom="6dp"
+                    android:visibility="gone"
                     android:text="@string/news_tittle"
                     android:textSize="24sp" />
 
@@ -128,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     tools:layoutManager="GridLayoutManager"
-                    tools:listitem="@layout/recycler_view_item_1"
+                    tools:listitem="@layout/recycler_view_item"
                     tools:spanCount="5" />
 
                 <com.kingfisher.easyviewindicator.RecyclerViewIndicator

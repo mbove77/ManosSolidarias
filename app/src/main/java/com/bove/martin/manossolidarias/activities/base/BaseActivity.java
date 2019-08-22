@@ -36,9 +36,11 @@ import static com.bove.martin.manossolidarias.activities.broadcast.NetworkChange
 public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
     // TODO Crear popUp con icono de desconexión
-    // TODO mejorar los iconos y el nombre de las donaciones.
-    // TODO poner en desarrollo la sección de noticias.
     // TODO Implementar Navigatio Graph
+    // Posibles nuevos fetures
+    // TODO Opciones para ordenar y buscar en la lista de ongs
+    // TODO Agregar a fav ongs
+    // TODO Recibir notificaciones de la app y de ongs especificas
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";
