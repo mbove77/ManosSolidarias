@@ -105,6 +105,9 @@ dependencies {
 
     // ViewBadger
     implementation files('libs/android-viewbadger.jar')
+
+    // Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:15.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

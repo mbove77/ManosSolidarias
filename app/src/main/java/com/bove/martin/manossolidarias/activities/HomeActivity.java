@@ -34,6 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.kingfisher.easyviewindicator.RecyclerViewIndicator;
 
 import java.util.ArrayList;
@@ -74,6 +75,12 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
 
         // load NavDrawer
         DrawerUtil.getDrawer(this, myToolbar,1);
+
+        /* Get the Instance ID token
+        String token = FirebaseInstanceId.getInstance().getToken();
+        String msg = getString(R.string.fcm_token, token);
+        Log.d(TAG, msg);
+        */
 
         imageButtonDonation.setOnClickListener(new View.OnClickListener() {
             @Override
