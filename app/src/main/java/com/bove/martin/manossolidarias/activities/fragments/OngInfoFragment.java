@@ -100,8 +100,8 @@ public class OngInfoFragment extends Fragment {
         youtubeIcon = view.findViewById(R.id.iconicsImageYoutube);
 
         // Cargamos los elementos
-        Picasso.with(view.getContext()).load(ong.getHeader_img_url()).fit().centerCrop().placeholder(R.drawable.placeholder).into(header);
-        Picasso.with(view.getContext()).load(ong.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder).into(logo);
+        Picasso.get().load(ong.getHeader_img_url()).fit().centerCrop().placeholder(R.drawable.placeholder).into(header);
+        Picasso.get().load(ong.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder).into(logo);
         mision.setText(ong.getDescripcion());
 
         if(TextUtils.isEmpty(ong.getHorario())) {
