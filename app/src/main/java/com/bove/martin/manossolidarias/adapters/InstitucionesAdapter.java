@@ -1,9 +1,9 @@
 package com.bove.martin.manossolidarias.adapters;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.CircleTransform;
-import com.bove.martin.manossolidarias.model.Donacion;
 import com.bove.martin.manossolidarias.model.Institucion;
 import com.squareup.picasso.Picasso;
 

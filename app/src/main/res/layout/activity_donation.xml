@@ -27,7 +27,7 @@
             android:text="@string/donation_list_tittle"
             android:textSize="24sp" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewDonation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

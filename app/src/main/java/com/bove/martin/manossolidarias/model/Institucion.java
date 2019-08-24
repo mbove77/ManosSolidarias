@@ -1,11 +1,10 @@
 package com.bove.martin.manossolidarias.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.google.firebase.firestore.GeoPoint;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /**
