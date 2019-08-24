@@ -64,7 +64,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         // Aca es donde se cargan las datos reales
         public void bind(final Noticia noticia, final OnItemClickListener listener) {
             this.textViewTitulo.setText(noticia.getTitulo());
-            Picasso.with(itemView.getContext()).load(noticia.getFoto_url()).fit().into(this.imageViewNews);
+            Picasso.with(itemView.getContext()).load(noticia.getFoto_url()).fit().placeholder(R.drawable.placeholder).into(this.imageViewNews);
             this.textViewDesc.setText(noticia.getDesc());
 
 
