@@ -86,4 +86,7 @@
     <string name="offline_msj">Sin conexión a internet.</string>
 
     <string name="fcm_token">FCM Token: %s</string>
+    <string name="fcm_message">Mensaje</string>
+    <string name="default_notification_channel_id" translatable="false">manos_default_channel</string>
+
 </resources>

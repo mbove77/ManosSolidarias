@@ -37,6 +37,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.List;
+
 public class MainActivity extends BaseActivity {
     private static final String TAG_GOOGLE = "GoogleActivity";
     private static final String TAG_FACEBOOK = "FacebookActivity";
@@ -176,7 +178,8 @@ public class MainActivity extends BaseActivity {
             Uri photoUrl = user.getPhotoUrl();
             String uid = user.getUid();
             boolean emailVerified = user.isEmailVerified();
-            String provider = user.getProviders().get(0);
+            //Todo revisar que funcione este fix
+            String provider = user.getProviderData().get(1).getProviderId();
 
             // Si el email no esta verificado
             if(provider.equals("password")  && !emailVerified) {

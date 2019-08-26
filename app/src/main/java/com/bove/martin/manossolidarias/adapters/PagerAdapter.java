@@ -22,14 +22,12 @@ import static com.bove.martin.manossolidarias.activities.OngInfoActivity.MENSAJE
  */
 public class PagerAdapter extends FragmentStatePagerAdapter {
     private int numberOfTabs;
-    private HashMap mPageReferenceMap;
-    private Institucion ong;
+    private HashMap<Integer, Fragment> mPageReferenceMap;
 
     public PagerAdapter(FragmentManager fm, int tabs, Institucion institucion) {
         super(fm);
         this.numberOfTabs = tabs;
-        mPageReferenceMap = new HashMap();
-        this.ong = institucion;
+        mPageReferenceMap = new HashMap<Integer, Fragment>();
     }
 
     @Override
@@ -53,7 +51,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public Fragment getFragment(int key) {
-        return (Fragment) mPageReferenceMap.get(key);
+        return mPageReferenceMap.get(key);
     }
 
     @Override

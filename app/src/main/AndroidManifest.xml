@@ -72,7 +72,7 @@
             tools:replace="android:value" />
 
         <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_iso_bw" />
+        android:resource="@drawable/ic_iso_bw" />
 
         <activity
             android:name="com.facebook.CustomTabActivity"

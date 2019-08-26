@@ -8,18 +8,26 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.HomeActivity;
@@ -28,6 +36,8 @@ import com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceive
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import static com.google.android.material.snackbar.Snackbar.make;
 import static com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceiver.IS_NETWORK_AVAILABLE;
@@ -70,6 +80,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Cargamos el FCM token
+        //getFCMToken();
 
         // Cargamos las shared para mostrar la ayuda una sola vez.
         preferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
@@ -230,4 +243,27 @@ public class BaseActivity extends AppCompatActivity {
         builder.setCancelable(false);
         builder.create().show();
     }
+
+    // Trae el token del dispositivo para FCM Firebase Cloud Menssages
+    private void getFCMToken() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("FCM_TOKEN", "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        String msg = getString(R.string.fcm_token, token);
+                        Log.d("FCM_TOKEN", msg);
+                    }
+                });
+    }
+
+
 }

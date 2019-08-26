@@ -32,10 +32,10 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
 
     private BadgeView badge;
 
-
+    // Fragment order
     public static final int INFO_FRAGMENT = 0;
-    public static final int MAP_FRAGMENT = 1;
-    public static final int MENSAJE_FRAGMENT = 2;
+    public static final int MAP_FRAGMENT = 2;
+    public static final int MENSAJE_FRAGMENT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +66,8 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
 
         TabLayout.Tab mesajeTab = createTab(getString(R.string.sms), iconSms);
         tabLayout.addTab(createTab(getString(R.string.info), iconInfo));
-        tabLayout.addTab(createTab(getString(R.string.map), iconMap));
         tabLayout.addTab(mesajeTab);
+        tabLayout.addTab(createTab(getString(R.string.map), iconMap));
 
         // TODO Mejorar esta implementacion del badger
         badge = new BadgeView(this, mesajeTab.getCustomView());
