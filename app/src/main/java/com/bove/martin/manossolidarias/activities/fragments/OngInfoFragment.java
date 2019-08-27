@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
@@ -100,8 +101,14 @@ public class OngInfoFragment extends Fragment {
         youtubeIcon = view.findViewById(R.id.iconicsImageYoutube);
 
         // Cargamos los elementos
-        Picasso.get().load(ong.getHeader_img_url()).fit().centerCrop().placeholder(R.drawable.placeholder).into(header);
-        Picasso.get().load(ong.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder).into(logo);
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            Picasso.get().load(ong.getHeader_img_url()).fit().centerCrop().into(header);
+            Picasso.get().load(ong.getLogo_url()).transform(new CircleTransform()).fit().into(logo);
+        } else{
+            Picasso.get().load(ong.getHeader_img_url()).fit().centerCrop().placeholder(R.drawable.placeholder).into(header);
+            Picasso.get().load(ong.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder).into(logo);
+        }
+
         mision.setText(ong.getDescripcion());
 
         if(TextUtils.isEmpty(ong.getHorario())) {

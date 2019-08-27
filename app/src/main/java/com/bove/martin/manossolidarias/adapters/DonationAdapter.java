@@ -4,6 +4,8 @@ import android.app.Activity;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +68,12 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
         // Aca es donde se cargan las datos reales
         public void bind(final Donacion donacion, final OnItemClickListener listener, final OnLongClickListener longClickListener) {
             this.textViewName.setText(donacion.getNombre());
-            Picasso.get().load(donacion.getIcon_url()).fit().placeholder(R.drawable.ic_place_holder).into(this.imageViewIcon);
+
+            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                Picasso.get().load(donacion.getIcon_url()).fit().into(this.imageViewIcon);
+            } else{
+                Picasso.get().load(donacion.getIcon_url()).fit().placeholder(R.drawable.ic_place_holder).into(this.imageViewIcon);
+            }
 
             // Destacamos el item de agregar donación
             if(donacion.getEspecial()) {

@@ -9,12 +9,13 @@
     <string name="input_pass">Contraseña</string>
     <string name="input_re_pass">Repetir contraseña</string>
     <string name="create_account">Registrar Usuario</string>
+    <string name="restore_pass_explain">Ingresa tu correo electrónico, nosotros te enviaremos un mensaje con las instrucciones para recuperar tú contraseña.</string>
+    <string name="restore_pass">Recuperar Contraseña</string>
     <string name="button_login">Ingresar con correo</string>
     <string name="lost_password">¿Olvidaste tu contraseña?</string>
     <string name="new_account">Crea una cuenta con tu correo.</string>
     <string name="account_help">¿Necesitas ayuda? ¿Tienes alguna pregunta?</string>
 
-    <string name="logo_desc">Logo</string>
     <string name="loading">Cargando…</string>
     <string name="Logout">Salir</string>
     <string name="add">Agregar ONG</string>
@@ -89,4 +90,15 @@
     <string name="fcm_message">Mensaje</string>
     <string name="default_notification_channel_id" translatable="false">manos_default_channel</string>
 
+    <string name="logo_desc">Logo</string>
+    <string name="arrow_desc">Volver</string>
+    <string name="send_desc">Enviar mensaje</string>
+    <string name="donations_desc">Icono de cada donación</string>
+    <string name="tel_desc">Icono de teléfono</string>
+    <string name="mail_icon_desc">Icono de correo</string>
+    <string name="icono_web_desc">Icono Web</string>
+    <string name="fb_icon_desc">Icono de Facebook</string>
+    <string name="instagram_icon_desc">Icono de Instagram</string>
+    <string name="twitter_icon_desc">Icono de Twitter</string>
+    <string name="youtube_icon_desc">Icono de Youtube</string>
 </resources>

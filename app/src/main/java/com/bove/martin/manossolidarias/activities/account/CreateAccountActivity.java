@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.MainActivity;
@@ -28,7 +27,7 @@ public class CreateAccountActivity extends BaseActivity {
     private EditText editTextPass;
     private EditText editTextRePass;
     private Button buttonRegister;
-    private TextView textViewAyuda;
+    private Button textViewAyuda;
 
     private static final String TAG = "EmailPassword";
     private FirebaseAuth mAuth;
@@ -39,11 +38,16 @@ public class CreateAccountActivity extends BaseActivity {
         setContentView(R.layout.activity_create_account);
 
         imageViewBack = findViewById(R.id.imageViewBack);
-        editTextEmail = findViewById(R.id.editTextRegEmail);
+        editTextEmail = findViewById(R.id.editTextEmail);
         editTextPass  = findViewById(R.id.editTextRegPass);
         editTextRePass = findViewById(R.id.editTextRegRePass);
-        buttonRegister = findViewById(R.id.buttonRegister);
+        buttonRegister = findViewById(R.id.buttonRestorePass);
         textViewAyuda = findViewById(R.id.textViewHelp);
+
+        // Fix drawables
+        BaseActivity.setVectorForPreLollipop(editTextEmail, R.drawable.ic_person, this, BaseActivity.DRAWABLE_LEFT );
+        BaseActivity.setVectorForPreLollipop(editTextPass, R.drawable.ic_lock, this, BaseActivity.DRAWABLE_LEFT );
+        BaseActivity.setVectorForPreLollipop(editTextRePass, R.drawable.ic_lock, this, BaseActivity.DRAWABLE_LEFT );
 
         mAuth = FirebaseAuth.getInstance();
 

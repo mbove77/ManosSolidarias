@@ -18,7 +18,6 @@
         android:layout_margin="16dp"
         android:background="@color/colorWhite"
         android:textColor="@color/colorSecondaryText"
-        android:drawableEnd="@drawable/ic_directions"
         android:drawablePadding="8dp"
         android:fontFamily="@font/ubuntu_light"
         android:padding="8dp"

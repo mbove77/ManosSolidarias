@@ -118,6 +118,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/tel_desc"
             app:iiv_color="@color/colorPrimary"
             app:iiv_icon="faw_phone_square"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +151,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/mail_icon_desc"
             app:iiv_color="@color/colorPrimary"
             app:iiv_icon="faw_envelope2"
             app:layout_constraintStart_toStartOf="parent"
@@ -183,6 +185,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/icono_web_desc"
             app:iiv_color="@color/colorPrimary"
             app:iiv_icon="faw_link"
             app:layout_constraintStart_toStartOf="parent"
@@ -231,12 +234,14 @@
                 android:layout_marginLeft="9dp"
                 android:layout_marginRight="9dp"
                 android:hapticFeedbackEnabled="true"
+                android:contentDescription="@string/fb_icon_desc"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_facebook_square" />
 
             <ImageView
                 android:id="@+id/iconicsImageInstagram"
-                android:src="@drawable/ic_instagram"
+                app:srcCompat="@drawable/ic_instagram"
+                android:contentDescription="@string/instagram_icon_desc"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="9dp"
@@ -250,11 +255,13 @@
                 android:layout_marginLeft="9dp"
                 android:layout_marginRight="9dp"
                 android:hapticFeedbackEnabled="true"
+                android:contentDescription="@string/twitter_icon_desc"
                 app:iiv_color="@color/colorPrimary"
                 app:iiv_icon="faw_twitter_square" />
 
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/iconicsImageYoutube"
+                android:contentDescription="@string/youtube_icon_desc"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="9dp"

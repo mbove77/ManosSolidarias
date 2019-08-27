@@ -15,37 +15,25 @@
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/ic_arrow"
+        app:srcCompat="@drawable/ic_arrow"
         android:hapticFeedbackEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="119dp"
+        android:id="@+id/imageViewLogo"
+        android:layout_width="232dp"
         android:layout_height="90dp"
         android:contentDescription="@string/logo_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12"
-        app:srcCompat="@drawable/ic_iso" />
-
-    <ImageView
-        android:id="@+id/imageViewText"
-        android:layout_width="190dp"
-        android:layout_height="90dp"
-        android:contentDescription="@string/logo_desc"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:srcCompat="@drawable/ic_manos_letters" />
-
+        app:layout_constraintVertical_bias="0.07999998"
+        app:srcCompat="@drawable/ic_logo_vert" />
 
     <EditText
-        android:id="@+id/editTextRegEmail"
+        android:id="@+id/editTextEmail"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginEnd="24dp"
@@ -53,7 +41,6 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/imput_text"
         android:drawablePadding="@dimen/normalPadding"
-        android:drawableStart="@drawable/ic_person"
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
         android:hint="@string/input_mail"
@@ -63,7 +50,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
 
     <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
         android:id="@+id/editTextRegPass"
@@ -74,7 +61,6 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/imput_text"
         android:drawablePadding="8dp"
-        android:drawableStart="@drawable/ic_lock"
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
         android:hint="@string/input_pass"
@@ -86,7 +72,7 @@
         app:tint_color="@color/colorSecondaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
         android:id="@+id/editTextRegRePass"
@@ -97,7 +83,6 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/imput_text"
         android:drawablePadding="8dp"
-        android:drawableStart="@drawable/ic_lock"
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
         android:hint="@string/input_re_pass"
@@ -112,12 +97,12 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextRegPass" />
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonRestorePass"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/button"
         android:fontFamily="@font/ubuntu_light"
         android:text="@string/create_account"
@@ -129,13 +114,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegRePass" />
 
-    <TextView
+    <Button
         android:id="@+id/textViewHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:background="@null"
+        android:fontFamily="@font/ubuntu_light"
         android:hapticFeedbackEnabled="true"
         android:text="@string/account_help"
+        android:textAllCaps="false"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

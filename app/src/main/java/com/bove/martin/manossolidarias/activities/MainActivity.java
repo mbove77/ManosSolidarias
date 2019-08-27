@@ -4,8 +4,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.google.android.material.snackbar.Snackbar;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -57,14 +60,13 @@ public class MainActivity extends BaseActivity {
     private EditText editTextPass;
     private Button buttonLoginEmail;
 
-    private TextView textViewlostPass;
-    private TextView textViewNewAccount;
+    private Button textViewlostPass;
+    private Button textViewNewAccount;
 
     private GoogleSignInOptions gso;
     private GoogleSignInClient mGoogleSignInClient;
 
     private boolean createAccountMensaje = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,11 @@ public class MainActivity extends BaseActivity {
         buttonLoginEmail = findViewById(R.id.buttonLogin);
         textViewlostPass = findViewById(R.id.textViewLostPass);
         textViewNewAccount = findViewById(R.id.textViewCreateAccount);
+
+        // Fix drawables
+        BaseActivity.setVectorForPreLollipop(editTextEmail, R.drawable.ic_person, this, BaseActivity.DRAWABLE_LEFT );
+        BaseActivity.setVectorForPreLollipop(editTextPass, R.drawable.ic_lock, this, BaseActivity.DRAWABLE_LEFT );
+
 
         // Si se llega desde createAccount escribir los datos en el login
         Bundle extras = getIntent().getExtras();

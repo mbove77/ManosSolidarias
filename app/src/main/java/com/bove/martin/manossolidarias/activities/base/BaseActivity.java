@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,6 +70,11 @@ public class BaseActivity extends AppCompatActivity {
     public static final String WARN_ALERT = "warning";
     public static final String ERROR_ALERT = "error";
     public static final String SUCCESS_ALERT = "exito";
+
+    public static final int DRAWABLE_LEFT = 1;
+    public static final int DRAWABLE_RIGHT = 2;
+    public static final int DRAWABLE_TOP = 3;
+    public static final int DRAWABLE_BOTTOM = 4;
 
     public static int NO_DISTANCIA = 100000000;
 
@@ -265,5 +274,60 @@ public class BaseActivity extends AppCompatActivity {
                 });
     }
 
+
+    //region Helper method for PreLollipop TextView & Buttons Vector Images
+    public static Drawable setVectorForPreLollipop(int resourceId, Context activity) {
+        Drawable icon;
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            icon = VectorDrawableCompat.create(activity.getResources(), resourceId, activity.getTheme());
+        } else {
+            icon = activity.getResources().getDrawable(resourceId, activity.getTheme());
+        }
+
+        return icon;
+    }
+
+    // Para solucionar el error en los drawables en los dispositivos pre-Lolipop
+    public static void setVectorForPreLollipop(TextView textView, int resourceId, Context activity, int position) {
+        Drawable icon;
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            icon = VectorDrawableCompat.create(activity.getResources(), resourceId,
+                    activity.getTheme());
+        } else {
+            icon = activity.getResources().getDrawable(resourceId, activity.getTheme());
+        }
+        switch (position) {
+            case DRAWABLE_LEFT:
+                textView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null,
+                        null);
+                break;
+
+            case DRAWABLE_RIGHT:
+                textView.setCompoundDrawablesWithIntrinsicBounds(null, null, icon,
+                        null);
+                break;
+
+            case DRAWABLE_TOP:
+                textView.setCompoundDrawablesWithIntrinsicBounds(null, icon, null,
+                        null);
+                break;
+
+            case DRAWABLE_BOTTOM:
+                textView.setCompoundDrawablesWithIntrinsicBounds(null, null, null,
+                        icon);
+                break;
+        }
+    }
+
+    public static Drawable getPrelolipotDrawable(int resourceId, Context activity) {
+        Drawable icon;
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            icon = VectorDrawableCompat.create(activity.getResources(), resourceId,
+                    activity.getTheme());
+        } else {
+            icon = activity.getResources().getDrawable(resourceId, activity.getTheme());
+        }
+        return icon;
+    }
 
 }

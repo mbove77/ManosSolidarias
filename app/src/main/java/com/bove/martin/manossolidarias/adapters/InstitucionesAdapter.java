@@ -4,6 +4,8 @@ import android.app.Activity;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +82,12 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
         // Aca es donde se cargan las datos reales
         public void bind(final Institucion institucion, final OnItemClickListener listener) {
             this.textViewName.setText(institucion.getNombre());
-            Picasso.get().load(institucion.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder_dark).into(this.imageViewLogo);
+
+            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                Picasso.get().load(institucion.getLogo_url()).transform(new CircleTransform()).fit().into(this.imageViewLogo);
+            } else{
+                Picasso.get().load(institucion.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder_dark).into(this.imageViewLogo);
+            }
 
             if(!institucion.isEspecial()) {
                 textViewDire.setText(institucion.getDireccion());

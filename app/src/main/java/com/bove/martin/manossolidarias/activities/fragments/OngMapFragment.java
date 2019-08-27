@@ -60,6 +60,9 @@ public class OngMapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_ong_map, container, false);
         navButton = rootView.findViewById(R.id.navButton);
+
+        //Fix drawables pre-lolipop
+        BaseActivity.setVectorForPreLollipop(navButton, R.drawable.ic_directions, getContext(), BaseActivity.DRAWABLE_RIGHT);
         return rootView;
     }
 

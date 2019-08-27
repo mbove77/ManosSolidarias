@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ongContainer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +16,9 @@
     <ImageView
         android:id="@+id/imageViewOngLogo"
         android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewOngName"
@@ -41,7 +43,7 @@
         android:layout_height="16dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="13dp"
-        android:src="@drawable/ic_place"
+        app:srcCompat="@drawable/ic_place"
         app:layout_constraintStart_toStartOf="@+id/textViewOngName"
         app:layout_constraintTop_toBottomOf="@+id/textViewOngName" />
 
@@ -67,7 +69,7 @@
         android:layout_height="15dp"
         android:layout_marginEnd="2dp"
         android:layout_marginTop="4dp"
-        android:src="@drawable/ic_near_me"
+        app:srcCompat="@drawable/ic_near_me"
         app:layout_constraintEnd_toStartOf="@+id/textViewDistance"
         app:layout_constraintTop_toTopOf="parent" />
 
