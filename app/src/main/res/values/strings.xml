@@ -5,6 +5,7 @@
 
     <string name="button_facebook">Entrar con Facebook</string>
     <string name="button_google">Entrar con Google</string>
+    <string name="button_create_account">Crear cuenta</string>
     <string name="input_mail">Correo electrónico</string>
     <string name="input_pass">Contraseña</string>
     <string name="input_re_pass">Repetir contraseña</string>
@@ -42,7 +43,7 @@
     <string name="resend_verfy">Reenviar</string>
 
     <string name="error_email_forgot">Ingrese su correo para restablecer su contraseña.</string>
-    <string name="email_forgot_send">Enviamos un mensaje para que recuperes tu contraseña, revisa tu correo!</string>
+    <string name="email_forgot_send">Te enviamos un email con instrucciones para seguir, revisa tu correo!</string>
 
     <string name="home_tittle">¿Que deseas hacer?</string>
     <string name="donation_list_tittle">¿Que quieres donar?</string>

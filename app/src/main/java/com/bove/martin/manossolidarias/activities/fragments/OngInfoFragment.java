@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
@@ -19,11 +18,10 @@ import android.widget.Toast;
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.interfaces.FragmentComunication;
-import com.bove.martin.manossolidarias.activities.utils.CircleTransform;
 import com.bove.martin.manossolidarias.model.Institucion;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.mikepenz.iconics.view.IconicsImageView;
-import com.squareup.picasso.Picasso;
 
 public class OngInfoFragment extends Fragment {
     private FragmentComunication callback;
@@ -101,13 +99,17 @@ public class OngInfoFragment extends Fragment {
         youtubeIcon = view.findViewById(R.id.iconicsImageYoutube);
 
         // Cargamos los elementos
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            Picasso.get().load(ong.getHeader_img_url()).fit().centerCrop().into(header);
-            Picasso.get().load(ong.getLogo_url()).transform(new CircleTransform()).fit().into(logo);
-        } else{
-            Picasso.get().load(ong.getHeader_img_url()).fit().centerCrop().placeholder(R.drawable.placeholder).into(header);
-            Picasso.get().load(ong.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder).into(logo);
-        }
+        Glide.with(this)
+                .load(ong.getHeader_img_url())
+                .centerCrop()
+                .placeholder(R.drawable.placeholder)
+                .into(header);
+
+        Glide.with(this)
+                .load(ong.getLogo_url())
+                .circleCrop()
+                .placeholder(R.drawable.oval_place_holder)
+                .into(logo);
 
         mision.setText(ong.getDescripcion());
 

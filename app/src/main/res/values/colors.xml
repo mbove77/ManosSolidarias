@@ -31,6 +31,9 @@
     <color name="colorGoogle">#DD4B39</color>
     <color name="colorGoogleLight">#e76252</color>
 
+    <color name="colorNewAccount">#757575</color>
+    <color name="colorNewAccountLight">#9F9F9F</color>
+
     <color name="chatColorAdmin">#A5D6A7</color>
     <color name="chatColorUser">#81D4FA</color>
 </resources>

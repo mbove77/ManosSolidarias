@@ -11,11 +11,11 @@ import android.widget.ImageView;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceiver;
+import com.bumptech.glide.Glide;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.icons.MaterialDrawerFont;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by Martín Bove on 20/07/2018.
@@ -34,21 +34,17 @@ public class MyApplication extends Application {
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(new NetworkChangeReceiver(), intentFilter);
 
-        DrawerImageLoader.init(new AbstractDrawerImageLoader() {
 
+        DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
             public void set(ImageView imageView, Uri uri, Drawable placeholder, String tag) {
-                Picasso.get().load(uri).placeholder(placeholder).into(imageView);
+                Glide.with(imageView.getContext())
+                        .load(uri)
+                        .into(imageView);
             }
-
-            @Override
-            public void cancel(ImageView imageView) {
-                Picasso.get().cancelRequest(imageView);
-            }
-
             @Override
             public Drawable placeholder(Context ctx, String tag) {
-                 return  new IconicsDrawable(ctx, MaterialDrawerFont.Icon.mdf_person).colorRes(R.color.colorFacebookLight).backgroundColorRes(R.color.colorBackground).sizeDp(56).paddingDp(16);
+                return  new IconicsDrawable(ctx, MaterialDrawerFont.Icon.mdf_person).colorRes(R.color.colorFacebookLight).backgroundColorRes(R.color.colorBackground).sizeDp(56).paddingDp(16);
             }
         });
 

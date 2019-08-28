@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.model.Donacion;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -69,11 +69,11 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
         public void bind(final Donacion donacion, final OnItemClickListener listener, final OnLongClickListener longClickListener) {
             this.textViewName.setText(donacion.getNombre());
 
-            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                Picasso.get().load(donacion.getIcon_url()).fit().into(this.imageViewIcon);
-            } else{
-                Picasso.get().load(donacion.getIcon_url()).fit().placeholder(R.drawable.ic_place_holder).into(this.imageViewIcon);
-            }
+            Glide.with(activity).
+                    load(donacion.getIcon_url()).
+                    fitCenter().
+                    placeholder(R.drawable.ic_place_holder).
+                    into(this.imageViewIcon);
 
             // Destacamos el item de agregar donación
             if(donacion.getEspecial()) {

@@ -13,12 +13,12 @@
         android:id="@+id/imageViewBack"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:srcCompat="@drawable/ic_arrow"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:hapticFeedbackEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow" />
 
     <ImageView
         android:id="@+id/imageViewLogo"
@@ -118,13 +118,12 @@
         android:id="@+id/textViewHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:background="@null"
         android:fontFamily="@font/ubuntu_light"
         android:hapticFeedbackEnabled="true"
         android:text="@string/account_help"
         android:textAllCaps="false"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

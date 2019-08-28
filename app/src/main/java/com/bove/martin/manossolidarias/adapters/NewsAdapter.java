@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.model.Noticia;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -64,9 +64,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         // Aca es donde se cargan las datos reales
         public void bind(final Noticia noticia, final OnItemClickListener listener) {
             this.textViewTitulo.setText(noticia.getTitulo());
-            Picasso.get().load(noticia.getFoto_url()).fit().placeholder(R.drawable.placeholder).into(this.imageViewNews);
-            this.textViewDesc.setText(noticia.getDesc());
 
+            Glide.with(activity)
+                    .load(noticia.getFoto_url())
+                    .fitCenter()
+                    .placeholder(R.drawable.placeholder)
+                    .into(this.imageViewNews);
+
+            this.textViewDesc.setText(noticia.getDesc());
 
             // Añadimos el onClick
             itemView.setOnClickListener(new View.OnClickListener() {

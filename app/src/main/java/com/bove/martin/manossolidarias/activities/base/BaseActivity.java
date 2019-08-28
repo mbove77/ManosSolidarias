@@ -1,5 +1,6 @@
 package com.bove.martin.manossolidarias.activities.base;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -134,11 +135,15 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void hideKeyboard(View view) {
-        final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    public void hideKeyboard(Activity activity) {
+        final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
         }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.bove.martin.manossolidarias.activities.account.RestorePasswordActivity;
 import com.google.android.material.snackbar.Snackbar;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
@@ -85,7 +86,6 @@ public class MainActivity extends BaseActivity {
         BaseActivity.setVectorForPreLollipop(editTextEmail, R.drawable.ic_person, this, BaseActivity.DRAWABLE_LEFT );
         BaseActivity.setVectorForPreLollipop(editTextPass, R.drawable.ic_lock, this, BaseActivity.DRAWABLE_LEFT );
 
-
         // Si se llega desde createAccount escribir los datos en el login
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -152,7 +152,8 @@ public class MainActivity extends BaseActivity {
         textViewlostPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                restablecerPass();
+                Intent i = new Intent(MainActivity.this, RestorePasswordActivity.class);
+                startActivity(i);
             }
         });
 
@@ -342,26 +343,6 @@ public class MainActivity extends BaseActivity {
             editTextPass.setError(null);
         }
         return valid;
-    }
-
-    private void restablecerPass() {
-
-        String emailAddress = editTextEmail.getText().toString();
-        if (TextUtils.isEmpty(emailAddress) || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()) {
-            editTextEmail.setError(getString(R.string.error_email_forgot));
-            return;
-        }
-
-        mAuth.sendPasswordResetEmail(emailAddress)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG_EMAIL, "Email sent.");
-                            Snackbar.make(findViewById(R.id.main_layout), getText(R.string.email_forgot_send), Snackbar.LENGTH_LONG).show();
-                        }
-                    }
-                });
     }
 
     private void emailVerifyerror() {

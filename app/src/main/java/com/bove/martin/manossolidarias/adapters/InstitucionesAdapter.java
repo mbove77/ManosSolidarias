@@ -14,9 +14,8 @@ import android.widget.TextView;
 
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
-import com.bove.martin.manossolidarias.activities.utils.CircleTransform;
 import com.bove.martin.manossolidarias.model.Institucion;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -83,11 +82,11 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
         public void bind(final Institucion institucion, final OnItemClickListener listener) {
             this.textViewName.setText(institucion.getNombre());
 
-            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                Picasso.get().load(institucion.getLogo_url()).transform(new CircleTransform()).fit().into(this.imageViewLogo);
-            } else{
-                Picasso.get().load(institucion.getLogo_url()).transform(new CircleTransform()).fit().placeholder(R.drawable.oval_place_holder_dark).into(this.imageViewLogo);
-            }
+            Glide.with(activity).
+                    load(institucion.getLogo_url()).
+                    circleCrop().
+                    placeholder(R.drawable.oval_place_holder_dark).
+                    into(this.imageViewLogo);
 
             if(!institucion.isEspecial()) {
                 textViewDire.setText(institucion.getDireccion());
