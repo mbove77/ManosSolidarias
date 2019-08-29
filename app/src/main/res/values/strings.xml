@@ -17,6 +17,9 @@
     <string name="new_account">Crea una cuenta con tu correo.</string>
     <string name="account_help">¿Necesitas ayuda? ¿Tienes alguna pregunta?</string>
 
+    <string name="not_found_tittle">Opps, algo salio mal!</string>
+    <string name="not_found_button">{faw-arrow-left}  Intenta con otra donación.</string>
+
     <string name="loading">Cargando…</string>
     <string name="Logout">Salir</string>
     <string name="add">Agregar ONG</string>

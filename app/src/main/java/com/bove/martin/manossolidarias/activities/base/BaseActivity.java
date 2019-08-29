@@ -55,8 +55,7 @@ public class BaseActivity extends AppCompatActivity {
     // TODO Opciones para ordenar y buscar en la lista de ongs
     // TODO Agregar a fav ongs
     // TODO Recibir notificaciones de la app y de ongs especificas
-    // TODO Desabilitar tab mapa si no hay localización
-    // 
+    // TODO Actualizar theme a Theme.MaterialComponents.DayNight.DarkActionBar
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";

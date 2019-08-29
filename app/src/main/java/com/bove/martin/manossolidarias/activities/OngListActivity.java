@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
-import com.bove.martin.manossolidarias.activities.utils.PlayGifView;
 import com.bove.martin.manossolidarias.adapters.InstitucionesAdapter;
 import com.bove.martin.manossolidarias.model.Institucion;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -56,7 +55,6 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     private RecyclerView.LayoutManager layoutManager;
 
     private LinearLayout errorLay;
-    private PlayGifView pGif;
     private IconicsButton backButton;
     private Location userLoc;
 
@@ -74,9 +72,6 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        pGif = findViewById(R.id.viewGif);
-        pGif.setImageResource(R.drawable.nofound_error);
 
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);

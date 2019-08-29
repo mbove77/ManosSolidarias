@@ -31,6 +31,8 @@
             android:id="@+id/recyclerViewDonation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_margin="0dp" />
 
     </LinearLayout>

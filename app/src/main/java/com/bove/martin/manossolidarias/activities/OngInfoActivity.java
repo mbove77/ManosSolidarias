@@ -4,6 +4,8 @@ package com.bove.martin.manossolidarias.activities;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.Toolbar;
@@ -67,11 +69,14 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
         TabLayout.Tab mesajeTab = createTab(getString(R.string.sms), iconSms);
         tabLayout.addTab(createTab(getString(R.string.info), iconInfo));
         tabLayout.addTab(mesajeTab);
-        tabLayout.addTab(createTab(getString(R.string.map), iconMap));
+
+        // Si no tiene distancia no agregamos el tab de mapa
+        if(ong.getDistancia() != BaseActivity.NO_DISTANCIA)
+            tabLayout.addTab(createTab(getString(R.string.map), iconMap));
 
         // TODO Mejorar esta implementacion del badger
-        badge = new BadgeView(this, mesajeTab.getCustomView());
-        badge.setText("25");
+        //badge = new BadgeView(this, mesajeTab.getCustomView());
+        //badge.setText("25");
         // badge.show();
 
         tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
@@ -86,9 +91,8 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
             public void onTabReselected(TabLayout.Tab tab) { }
         });
 
-        // TODO podemos sacar el ong de este adapter por que se recupera en el los fragments de la sharedPref.
         viewPager = findViewById(R.id.viewPager);
-        adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), ong);
+        adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }

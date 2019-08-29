@@ -24,7 +24,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     private int numberOfTabs;
     private HashMap<Integer, Fragment> mPageReferenceMap;
 
-    public PagerAdapter(FragmentManager fm, int tabs, Institucion institucion) {
+    public PagerAdapter(FragmentManager fm, int tabs) {
         super(fm);
         this.numberOfTabs = tabs;
         mPageReferenceMap = new HashMap<Integer, Fragment>();

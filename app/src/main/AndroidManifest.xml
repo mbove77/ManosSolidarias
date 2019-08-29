@@ -13,41 +13,39 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activities.account.RestorePasswordActivity" />
-
-        <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".activities.MainActivity" />
-
         <activity android:name=".activities.DonationActivity" />
         <activity android:name=".activities.base.BaseActivity" />
         <activity android:name=".activities.account.CreateAccountActivity" />
+        <activity android:name=".activities.account.RestorePasswordActivity" />
         <activity android:name=".activities.OngListActivity" />
         <activity android:name=".activities.AddOngActivity" />
         <activity android:name=".activities.OngInfoActivity" />
         <activity android:name=".activities.SuggestDonationActivity" />
         <activity android:name=".activities.SuggestOngActivity" />
+
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.HomeActivity" /> <!-- Network Verificator -->
+
+        <activity android:name=".activities.HomeActivity" />
+        <!-- Network Verificator -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -69,7 +67,7 @@
             tools:replace="android:value" /> <!-- Facebook Configuration -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_iso_bw" />
+            android:resource="@drawable/ic_iso_noti" />
         <receiver
             android:name=".activities.broadcast.NetworkChangeReceiver"
             android:label="NetworkChangeReceiver">
@@ -91,7 +89,5 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-
 </manifest>

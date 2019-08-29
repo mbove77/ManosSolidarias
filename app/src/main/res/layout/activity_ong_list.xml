@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +14,7 @@
         android:id="@+id/errorMensajeLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_margin="0dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:visibility="invisible">
@@ -25,19 +25,24 @@
             android:fontFamily="@font/ubuntu_light"
             android:textSize="24sp"
             android:layout_marginBottom="16dp"
-            android:text="Opps, nos descubriste!"/>
+            android:layout_marginTop="24dp"
+            android:text="@string/not_found_tittle"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/no_result"/>
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@string/no_result"
+            android:textSize="16sp" />
 
-        <com.bove.martin.manossolidarias.activities.utils.PlayGifView
-            android:id="@+id/viewGif"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"/>
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            app:iiv_color="@color/accent"
+            app:iiv_icon="faw-grav" />
 
         <com.mikepenz.iconics.view.IconicsButton
             android:id="@+id/notFoundBackButton"
@@ -47,7 +52,8 @@
             android:fontFamily="@font/ubuntu_light"
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
-            android:text="{faw-arrow-left}  Vuelve a intentar"
+            android:layout_marginTop="30dp"
+            android:text="@string/not_found_button"
             android:textColor="@color/colorWhite"
             android:textSize="17sp" />
     </LinearLayout>
