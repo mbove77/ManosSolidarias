@@ -33,7 +33,10 @@
             android:layout_height="match_parent"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:layout_margin="0dp" />
+            android:layout_margin="0dp"
+            tools:listitem="@layout/donation_item"
+            tools:layoutManager="GridLayoutManager"
+            tools:spanCount="3"/>
 
     </LinearLayout>
 </RelativeLayout>

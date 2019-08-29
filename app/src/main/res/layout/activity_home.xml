@@ -128,9 +128,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    tools:layoutManager="GridLayoutManager"
-                    tools:listitem="@layout/recycler_view_item"
-                    tools:spanCount="5" />
+                    android:orientation="horizontal"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/news_item"
+                    tools:layoutManager="LinearLayoutManager"/>
 
                 <com.kingfisher.easyviewindicator.RecyclerViewIndicator
                     android:id="@+id/circleIndicator"

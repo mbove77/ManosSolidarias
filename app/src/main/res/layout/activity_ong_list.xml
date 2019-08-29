@@ -62,6 +62,7 @@
         android:id="@+id/recyclerViewOngs"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       android:layout_margin="0dp"/>
+        android:layout_margin="0dp"
+        tools:listitem="@layout/ong_item" />
 
 </LinearLayout>
