@@ -30,6 +30,15 @@
     <string name="list_donations">Donaciones</string>
     <string name="config">Configuración</string>
 
+    <string name="about">Acerca de</string>
+    <string name="aboutDesc">Nuestra misión es acercar a las personas que desean conocer o interactuar con con las instituciones u organismos de bien público. Esta aplicación es totalmente sin fines de lucro y esta pensada para ser una herramienta más al servicio las organizaciones que se dedican al bien social</string>
+    <string name="contact">Contactanos</string>
+    <string name="emailAddr">mbove77dev@gmail.com</string>
+    <string name="appUrl">https://manos-solidarias.firebaseapp.com</string>
+    <string name="fbPageId">manosSolidariasApp</string>
+    <string name="playStoreId">com.bove.martin.manossolidarias</string>
+    <string name="gitHubId">mbove77</string>
+
     <string name="error_req">Este campo es obligatorio.</string>
     <string name="error_email">Ingrese un email valido.</string>
     <string name="error_pass">Ingrese un password valido.</string>

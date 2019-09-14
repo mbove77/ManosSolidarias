@@ -198,6 +198,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:hapticFeedbackEnabled="true"
             app:layout_constraintStart_toEndOf="@+id/OngWebiIcon"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />

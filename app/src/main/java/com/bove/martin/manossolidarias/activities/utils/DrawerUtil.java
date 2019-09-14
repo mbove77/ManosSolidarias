@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.AboutActivity;
 import com.bove.martin.manossolidarias.activities.DonationActivity;
 import com.bove.martin.manossolidarias.activities.HomeActivity;
 import com.bove.martin.manossolidarias.activities.OngListActivity;
@@ -53,7 +54,7 @@ public class DrawerUtil {
                         new PrimaryDrawerItem().withName(R.string.home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
                         new PrimaryDrawerItem().withName(R.string.list_ong).withIcon(FontAwesome.Icon.faw_list_alt).withIdentifier(2),
                         new PrimaryDrawerItem().withName(R.string.list_donations).withIcon(FontAwesome.Icon.faw_hand_holding_heart).withIdentifier(3),
-                        new PrimaryDrawerItem().withName(R.string.config).withIcon(FontAwesome.Icon.faw_cog).withIdentifier(4)
+                        new PrimaryDrawerItem().withName(R.string.about).withIcon(FontAwesome.Icon.faw_question_circle).withIdentifier(4)
                 )
                 .addStickyDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.Logout).withIcon(FontAwesome.Icon.faw_sign_out_alt).withIdentifier(5)
@@ -74,6 +75,9 @@ public class DrawerUtil {
                                     break;
                                 case 3:
                                     intent = new Intent(activity, DonationActivity.class);
+                                    break;
+                                case 4:
+                                    intent = new Intent(activity, AboutActivity.class);
                                     break;
                                 case 5:
                                     activity.logout();

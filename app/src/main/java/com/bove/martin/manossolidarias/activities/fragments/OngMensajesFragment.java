@@ -117,6 +117,7 @@ public class OngMensajesFragment extends Fragment {
         loadMensajes();
     }
 
+    // TODO Revisar user.getDisplayName() si viene nullo tira un NPE cuando llamamos a isEmpty()
     // Load users
     private  void loadUsers() {
         ongChat = new ChatUser(0, ong.getNombre());

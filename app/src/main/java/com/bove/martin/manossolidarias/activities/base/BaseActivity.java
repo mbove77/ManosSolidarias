@@ -50,12 +50,19 @@ import static com.bove.martin.manossolidarias.activities.broadcast.NetworkChange
 public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
     // TODO Crear popUp con icono de desconexión
-    // TODO Implementar Navigatio Graph
+    // TODO Implementar funcionalidad para denunciar datos errados en los perfiles
+    // TODO Agregar dirección a ongInfo
+    // TODO Agregar ws a ongInfo
+    // TODO Remover icono de location de la lista de ongs si no tiene dirección
     // Posibles nuevos fetures
     // TODO Opciones para ordenar y buscar en la lista de ongs
     // TODO Agregar a fav ongs
     // TODO Recibir notificaciones de la app y de ongs especificas
     // TODO Actualizar theme a Theme.MaterialComponents.DayNight.DarkActionBar
+    // TODO Incluir animaciones con la lib lottie
+    // TODO Filtrar los resultados de las ong
+    // TODO Reaccionar a mensaje entrante con notificación
+    // TODO Ir migrando a kotlin y empezar a usar jetpack
 
     // Constantes
     public static final String DB_DONATIONS = "donaciones";

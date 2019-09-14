@@ -32,3 +32,4 @@ app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt
 *.dex
 .idea/misc.xml
 .idea/workspace.xml
+.google-services.json
