@@ -48,11 +48,10 @@ import static com.google.android.material.snackbar.Snackbar.make;
 import static com.bove.martin.manossolidarias.activities.broadcast.NetworkChangeReceiver.IS_NETWORK_AVAILABLE;
 
 public class BaseActivity extends AppCompatActivity {
+    // TODO Agregar dirección a ongInfo
     // TODO reemplazar todos los string con variables declaradas aquí.
     // TODO Crear popUp con icono de desconexión
     // TODO Implementar funcionalidad para denunciar datos errados en los perfiles
-    // TODO Agregar dirección a ongInfo
-    // TODO Agregar ws a ongInfo
     // TODO Remover icono de location de la lista de ongs si no tiene dirección
     // Posibles nuevos fetures
     // TODO Opciones para ordenar y buscar en la lista de ongs

@@ -28,7 +28,8 @@
             app:layout_constraintEnd_toEndOf="@+id/infoOngHeader"
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="@+id/infoOngHeader"
-            app:layout_constraintTop_toBottomOf="@+id/infoOngHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/infoOngHeader"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/infoMisionTittle"
@@ -228,6 +229,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3">
 
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/iconicsImageWhatsapp"
+                android:contentDescription="@string/whatsapp_icon_desc"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:hapticFeedbackEnabled="true"
+                app:iiv_color="@color/colorPrimary"
+                app:iiv_icon="faw_whatsapp_square" />
 
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/iconicsImageFB"

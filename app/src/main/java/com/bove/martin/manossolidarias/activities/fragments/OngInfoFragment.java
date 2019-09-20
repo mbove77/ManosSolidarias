@@ -4,6 +4,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -22,6 +24,7 @@ import com.bove.martin.manossolidarias.model.Institucion;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.mikepenz.iconics.view.IconicsImageView;
+
 
 public class OngInfoFragment extends Fragment {
     private FragmentComunication callback;
@@ -47,6 +50,7 @@ public class OngInfoFragment extends Fragment {
     private IconicsImageView twitterIcon;
     private ImageView instagramIcon;
     private IconicsImageView youtubeIcon;
+    private IconicsImageView whastAppIcon;
 
     public SharedPreferences preferences;
 
@@ -97,6 +101,7 @@ public class OngInfoFragment extends Fragment {
         instagramIcon = view.findViewById(R.id.iconicsImageInstagram);
         twitterIcon = view.findViewById(R.id.iconicsImageTwitter);
         youtubeIcon = view.findViewById(R.id.iconicsImageYoutube);
+        whastAppIcon = view.findViewById(R.id.iconicsImageWhatsapp);
 
         // Cargamos los elementos
         Glide.with(this)
@@ -209,6 +214,17 @@ public class OngInfoFragment extends Fragment {
                 }
             });
         }
+        if(TextUtils.isEmpty(ong.getWhatsapp())) {
+            whastAppIcon.setVisibility(View.GONE);
+        } else {
+            whastAppIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openLink(ong.getWhatsapp(), "whastapp");
+                }
+            });
+        }
+
 
         return view;
     }
@@ -252,6 +268,7 @@ public class OngInfoFragment extends Fragment {
         String base_url = "";
         String service_url = "";
         String paquete = "";
+        Boolean customIntent = false;
 
         // TODO revisar que se habrá bien en facebook
         switch (service) {
@@ -279,16 +296,36 @@ public class OngInfoFragment extends Fragment {
                 service_url = "https://www.youtube.com/user/";
                 break;
             }
+            case "whastapp": {
+                customIntent = true;
+
+                try {
+                    String text = "Hola " + ong.getNombre();
+                    // Formato 543416709663
+                    String toNumber = ong.getWhatsapp();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
+                    startActivity(intent);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    //Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                }
+
+                break;
+            }
         }
 
-        Uri uri = Uri.parse(service_url + link);
-        Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
-        likeIng.setPackage(paquete);
+        if(!customIntent) {
+            Uri uri = Uri.parse(service_url + link);
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+            likeIng.setPackage(paquete);
 
-        try {
-            startActivity(likeIng);
-        } catch (ActivityNotFoundException e) {
-            openWeb(base_url + link);
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                openWeb(base_url + link);
+            }
         }
     }
 

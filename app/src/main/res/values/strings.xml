@@ -37,7 +37,7 @@
     <string name="appUrl">https://manos-solidarias.firebaseapp.com</string>
     <string name="fbPageId">manosSolidariasApp</string>
     <string name="playStoreId">com.bove.martin.manossolidarias</string>
-    <string name="gitHubId">mbove77</string>
+    <string name="gitHubId">mbove77/ManosSolidarias</string>
 
     <string name="error_req">Este campo es obligatorio.</string>
     <string name="error_email">Ingrese un email valido.</string>
@@ -114,4 +114,5 @@
     <string name="instagram_icon_desc">Icono de Instagram</string>
     <string name="twitter_icon_desc">Icono de Twitter</string>
     <string name="youtube_icon_desc">Icono de Youtube</string>
+    <string name="whatsapp_icon_desc">Icono de WhatsApp</string>
 </resources>
