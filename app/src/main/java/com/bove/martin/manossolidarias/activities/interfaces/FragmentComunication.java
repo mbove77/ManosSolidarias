@@ -8,4 +8,5 @@ import com.bove.martin.manossolidarias.model.Institucion;
  */
 public interface FragmentComunication {
     void enviarONG(Institucion institucion);
+    void changeTab(int tabName);
 }

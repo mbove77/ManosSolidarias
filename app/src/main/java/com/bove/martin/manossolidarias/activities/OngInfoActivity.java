@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.Toolbar;
@@ -39,6 +38,10 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
     public static final int MAP_FRAGMENT = 2;
     public static final int MENSAJE_FRAGMENT = 1;
 
+    private TabLayout.Tab mensajeTab;
+    private TabLayout.Tab infoTab;
+    private TabLayout.Tab mapTab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,16 +69,20 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
         Drawable iconMap = new IconicsDrawable(this, FontAwesome.Icon.faw_map2).color(Color.WHITE).sizeDp(iconsize);
         Drawable iconSms = new IconicsDrawable(this, FontAwesome.Icon.faw_comments2).color(Color.WHITE).sizeDp(iconsize);
 
-        TabLayout.Tab mesajeTab = createTab(getString(R.string.sms), iconSms);
-        tabLayout.addTab(createTab(getString(R.string.info), iconInfo));
-        tabLayout.addTab(mesajeTab);
+        mensajeTab = createTab(getString(R.string.sms), iconSms);
+        infoTab = createTab(getString(R.string.info), iconInfo);
+
+        tabLayout.addTab(mensajeTab);
+        tabLayout.addTab(infoTab);
 
         // Si no tiene distancia no agregamos el tab de mapa
-        if(ong.getDistancia() != BaseActivity.NO_DISTANCIA)
-            tabLayout.addTab(createTab(getString(R.string.map), iconMap));
+        if(ong.getDistancia() != BaseActivity.NO_DISTANCIA) {
+            mapTab = createTab(getString(R.string.map), iconMap);
+            tabLayout.addTab(mapTab);
+        }
 
         // TODO Mejorar esta implementacion del badger
-        //badge = new BadgeView(this, mesajeTab.getCustomView());
+        //badge = new BadgeView(this, mensajeTab.getCustomView());
         //badge.setText("25");
         // badge.show();
 
@@ -98,7 +105,22 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
     }
 
     @Override
-    public void enviarONG(Institucion institucion) {
+    public void enviarONG(Institucion institucion) {  }
+
+    //TODO Revisar por que no cambia al tab adecuado.
+    @Override
+    public void changeTab(int tabName) {
+        switch (tabName) {
+            case INFO_FRAGMENT: {
+                viewPager.setCurrentItem(INFO_FRAGMENT);
+            }
+            case MAP_FRAGMENT: {
+                tabLayout.getTabAt(MAP_FRAGMENT).select();
+            }
+            case MENSAJE_FRAGMENT: {
+                viewPager.setCurrentItem(MENSAJE_FRAGMENT);
+            }
+        }
 
     }
 

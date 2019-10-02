@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,21 +62,21 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
         private TextView textViewDire;
         private TextView textViewDistancia;
         private ImageView imageViewDistancia;
+        private ImageView imageViewPlace;
 
         private ConstraintLayout container;
-        private ImageView imageViewPlace;
 
         // Consturctor
         public ViewHolder(View itemView) {
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewOngName);
             this.imageViewLogo = itemView.findViewById(R.id.imageViewOngLogo);
+            this.imageViewPlace = itemView.findViewById(R.id.imageViewPlace);
             this.textViewDire = itemView.findViewById(R.id.textViewOngDireccion);
             this.textViewDistancia = itemView.findViewById(R.id.textViewDistance);
             this.imageViewDistancia = itemView.findViewById(R.id.imageViewDistancia);
 
             this.container = itemView.findViewById(R.id.ongContainer);
-            this.imageViewPlace = itemView.findViewById(R.id.imageViewPlace);
         }
 
         // Aca es donde se cargan las datos reales
@@ -90,8 +91,12 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
 
             if(!institucion.isEspecial()) {
                 textViewDire.setText(institucion.getDireccion());
-                // Reset item color for fix bug onUdpate distances
                 container.setBackground(itemView.getResources().getDrawable(R.drawable.background_list_item));
+
+                // si no hay dirección ocultamos el icono place
+                if(TextUtils.isEmpty(institucion.getDireccion())) {
+                    imageViewPlace.setVisibility(View.GONE);
+                }
 
                 if (institucion.getDistancia() > 0 && institucion.getDistancia() != BaseActivity.NO_DISTANCIA) {
                     imageViewDistancia.setVisibility(View.VISIBLE);

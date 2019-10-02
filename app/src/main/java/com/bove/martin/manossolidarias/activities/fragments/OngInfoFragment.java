@@ -4,8 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -18,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bove.martin.manossolidarias.R;
+import com.bove.martin.manossolidarias.activities.OngInfoActivity;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.interfaces.FragmentComunication;
 import com.bove.martin.manossolidarias.model.Institucion;
@@ -37,15 +36,17 @@ public class OngInfoFragment extends Fragment {
     private TextView horario;
     private TextView miscTitulo;
     private TextView misc;
+    private TextView direccionTitulo;
+    private TextView direccion;
     private IconicsImageView teleIcon;
     private TextView tele;
-    private View dividerTele;
+    private View divider1;
     private IconicsImageView mailIcon;
     private TextView mail;
-    private View dividerMail;
+    private View divider2;
     private IconicsImageView webIcon;
     private TextView web;
-    private View dividerWeb;
+    private View divider3;
     private IconicsImageView facebookIcon;
     private IconicsImageView twitterIcon;
     private ImageView instagramIcon;
@@ -82,20 +83,22 @@ public class OngInfoFragment extends Fragment {
         mision = view.findViewById(R.id.infoMision);
         horarioTitulo = view.findViewById(R.id.infoHorarioTittle);
         horario = view.findViewById(R.id.infoHorario);
+        direccionTitulo = view.findViewById(R.id.infoDireccionTittle);
+        direccion = view.findViewById(R.id.infoDireccion);
         miscTitulo = view.findViewById(R.id.infoMiscTittle);
         misc = view.findViewById(R.id.infoMisc);
 
         teleIcon = view.findViewById(R.id.OngTeleiIcon);
         tele = view.findViewById(R.id.ongInfoTel);
-        dividerTele = view.findViewById(R.id.divider1);
+        divider1 = view.findViewById(R.id.divider1);
 
         mailIcon = view.findViewById(R.id.OngMailiIcon);
         mail = view.findViewById(R.id.ongInfoEmail);
-        dividerMail = view.findViewById(R.id.divider2);
+        divider2 = view.findViewById(R.id.divider2);
 
         webIcon = view.findViewById(R.id.OngWebiIcon);
         web = view.findViewById(R.id.ongInfoWeb);
-        dividerWeb = view.findViewById(R.id.divider3);
+        divider3 = view.findViewById(R.id.divider3);
 
         facebookIcon = view.findViewById(R.id.iconicsImageFB);
         instagramIcon = view.findViewById(R.id.iconicsImageInstagram);
@@ -125,6 +128,19 @@ public class OngInfoFragment extends Fragment {
             horario.setText(ong.getHorario());
         }
 
+        if(TextUtils.isEmpty(ong.getDireccion())) {
+            direccionTitulo.setVisibility(View.GONE);
+            direccion.setVisibility(View.GONE);
+        } else {
+            direccion.setText(ong.getDireccion());
+            direccion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.changeTab(OngInfoActivity.MAP_FRAGMENT);
+                }
+            });
+        }
+
         if(TextUtils.isEmpty(ong.getMisc())) {
             miscTitulo.setVisibility(View.GONE);
             misc.setVisibility(View.GONE);
@@ -135,7 +151,7 @@ public class OngInfoFragment extends Fragment {
         if(TextUtils.isEmpty(ong.getTelefono())) {
             teleIcon.setVisibility(View.GONE);
             tele.setVisibility(View.GONE);
-            dividerTele.setVisibility(View.GONE);
+            divider1.setVisibility(View.GONE);
         } else {
             tele.setText(ong.getTelefono());
             tele.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +165,7 @@ public class OngInfoFragment extends Fragment {
         if(TextUtils.isEmpty(ong.getEmail())) {
             mailIcon.setVisibility(View.GONE);
             mail.setVisibility(View.GONE);
-            dividerMail.setVisibility(View.GONE);
+            divider2.setVisibility(View.GONE);
         } else {
             mail.setText(ong.getEmail());
             mail.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +179,7 @@ public class OngInfoFragment extends Fragment {
         if(TextUtils.isEmpty(ong.getWeb())) {
             webIcon.setVisibility(View.GONE);
             web.setVisibility(View.GONE);
+            divider3.setVisibility(View.GONE);
         } else {
             web.setText(ong.getWeb());
             web.setOnClickListener(new View.OnClickListener() {

@@ -15,6 +15,7 @@
             android:id="@+id/infoOngHeader"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:contentDescription="@string/header_ong_img_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +25,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:elevation="4dp"
+            android:contentDescription="@string/logo_ong_desc"
             app:layout_constraintBottom_toBottomOf="@+id/infoOngHeader"
             app:layout_constraintEnd_toEndOf="@+id/infoOngHeader"
             app:layout_constraintHorizontal_bias="0.9"
@@ -38,7 +40,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/ubuntu_light"
-            android:text="Nuestra Misión"
+            android:text="@string/mision"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infoOngHeader" />
@@ -47,13 +49,15 @@
             android:id="@+id/infoMision"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoMisionTittle" />
+            app:layout_constraintTop_toBottomOf="@+id/infoMisionTittle"
+            tools:text="@tools:sample/lorem" />
 
         <TextView
             android:id="@+id/infoHorarioTittle"
@@ -62,7 +66,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/ubuntu_light"
-            android:text="Horario:"
+            android:text="@string/horario"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infoMision" />
@@ -71,13 +75,42 @@
             android:id="@+id/infoHorario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoHorarioTittle" />
+            app:layout_constraintTop_toBottomOf="@+id/infoHorarioTittle"
+            tools:text="@tools:sample/date/hhmm" />
+
+        <TextView
+            android:id="@+id/infoDireccionTittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@string/direccion"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoHorario" />
+
+        <TextView
+            android:id="@+id/infoDireccion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text=""
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoDireccionTittle"
+            tools:text="@tools:sample/lorem/random" />
 
         <TextView
             android:id="@+id/infoMiscTittle"
@@ -86,10 +119,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/ubuntu_light"
-            android:text="Más Info:"
+            android:text="@string/more_info"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoHorario" />
+            app:layout_constraintTop_toBottomOf="@+id/infoDireccion" />
 
         <TextView
             android:id="@+id/infoMisc"
@@ -98,7 +131,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:maxLines="4"
+            android:ellipsize="end"
+            tools:text="@tools:sample/lorem/random"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infoMiscTittle" />
@@ -131,10 +166,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
             android:hapticFeedbackEnabled="true"
             app:layout_constraintStart_toEndOf="@+id/OngTeleiIcon"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            tools:text="@tools:sample/us_phones" />
 
         <View
             android:id="@+id/divider1"
@@ -164,11 +199,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
             android:hapticFeedbackEnabled="true"
             app:layout_constraintStart_toEndOf="@+id/OngMailiIcon"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
+            app:layout_constraintTop_toBottomOf="@+id/divider1"
+            tools:text="@tools:sample/lorem" />
 
         <View
             android:id="@+id/divider2"
@@ -198,12 +232,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
             android:ellipsize="end"
-            android:singleLine="true"
             android:hapticFeedbackEnabled="true"
+            android:singleLine="true"
             app:layout_constraintStart_toEndOf="@+id/OngWebiIcon"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+            app:layout_constraintTop_toBottomOf="@+id/divider2"
+            tools:text="@tools:sample/lorem" />
 
         <View
             android:id="@+id/divider3"

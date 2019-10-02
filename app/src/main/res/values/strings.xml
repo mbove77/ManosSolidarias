@@ -115,4 +115,10 @@
     <string name="twitter_icon_desc">Icono de Twitter</string>
     <string name="youtube_icon_desc">Icono de Youtube</string>
     <string name="whatsapp_icon_desc">Icono de WhatsApp</string>
+    <string name="direccion">Dirección</string>
+    <string name="more_info">Más Info:</string>
+    <string name="horario">Horario:</string>
+    <string name="mision">Nuestra Misión</string>
+    <string name="header_ong_img_desc">Imagen de cabecera de la ONG.</string>
+    <string name="logo_ong_desc">Logo de la ONG.</string>
 </resources>
