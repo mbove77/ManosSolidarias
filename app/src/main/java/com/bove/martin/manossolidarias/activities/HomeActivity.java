@@ -1,5 +1,6 @@
 package com.bove.martin.manossolidarias.activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import com.bove.martin.manossolidarias.R;
 import com.bove.martin.manossolidarias.activities.base.BaseActivity;
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil;
 import com.bove.martin.manossolidarias.adapters.NewsAdapter;
+import com.bove.martin.manossolidarias.adapters.OtherAppsAdapter;
+import com.bove.martin.manossolidarias.model.App;
 import com.bove.martin.manossolidarias.model.Noticia;
 import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
@@ -30,11 +33,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.kingfisher.easyviewindicator.RecyclerViewIndicator;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClickListener {
+public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClickListener, OtherAppsAdapter.OnItemClickListener {
     private final String TAG = "Home Activity";
 
     private ImageButton imageButtonOng;
@@ -46,10 +51,15 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
     private RecyclerView.LayoutManager layoutManager;
 
     private SkeletonScreen skeletonScreen;
-
     private RecyclerViewIndicator recyclerViewIndicator;
-
     private List<Noticia> noticias = new ArrayList<Noticia>();
+
+    private RecyclerView recyclerViewApps;
+    private RecyclerView.Adapter appsAdapter;
+    private RecyclerView.LayoutManager appsLM;
+    private RecyclerViewIndicator recyclerViewAppsIdicator;
+    private List<App> apps = new ArrayList<App>();
+    private SkeletonScreen appSkeletonScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +79,18 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
         // load NavDrawer
         DrawerUtil.getDrawer(this, myToolbar,1);
 
-        /* Get the Instance ID token
-        String token = FirebaseInstanceId.getInstance().getToken();
-        String msg = getString(R.string.fcm_token, token);
-        Log.d(TAG, msg);
-        */
 
         imageButtonDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intentDonations);
+            }
+        });
+
+        imageButtonOng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intentOngs);
             }
         });
 
@@ -97,7 +109,6 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
         // RecyclerView Indicator
         recyclerViewIndicator = findViewById(R.id.circleIndicator);
 
-
         // Skeleton loader implementation
         skeletonScreen = Skeleton.bind(recyclerView)
                 .adapter(adapter)
@@ -105,36 +116,66 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
                 .color(R.color.skeletonShinColor)
                 .show();
 
+        // apps recycler
+        recyclerViewApps = findViewById(R.id.recyclerViewApps);
+        appsLM = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewApps.setLayoutManager(appsLM);
+        recyclerViewApps.setItemAnimator(new DefaultItemAnimator());
+        appsAdapter = new OtherAppsAdapter(apps, this);
+        recyclerViewApps.setAdapter(appsAdapter);
+        recyclerViewAppsIdicator = findViewById(R.id.circleIndicatorForApps);
+
+        appSkeletonScreen = Skeleton.bind(recyclerViewApps)
+                .adapter(appsAdapter)
+                .load(R.layout.apps_item_skeleton)
+                .color(R.color.skeletonShinColor)
+                .show();
+
         // Access a Cloud Firestore instance from your Activity
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection(DB_NEWS)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Noticia noticia = document.toObject(Noticia.class);
-                                noticias.add(noticia);
-                            }
-                            Collections.shuffle(noticias);
-                            adapter.notifyDataSetChanged();
-                            skeletonScreen.hide();
-                            recyclerViewIndicator.setRecyclerView(recyclerView);
-                        } else {
-                            hideProgressDialog();
-                            Log.w(TAG, "Error getting documents.", task.getException());
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Noticia noticia = document.toObject(Noticia.class);
+                            noticias.add(noticia);
                         }
+                        Collections.shuffle(noticias);
+                        adapter.notifyDataSetChanged();
+                        skeletonScreen.hide();
+                        recyclerViewIndicator.setRecyclerView(recyclerView);
+                    } else {
+                        hideProgressDialog();
+                        Log.w(TAG, "Error getting documents.", task.getException());
                     }
-                });
+                }
+            });
 
-        imageButtonOng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intentOngs);
-            }
-        });
+
+        db.collection(DB_APPS)
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            App app = document.toObject(App.class);
+                            apps.add(app);
+                        }
+                        appsAdapter.notifyDataSetChanged();
+                        appSkeletonScreen.hide();
+                        if(apps.size() > 1)
+                            recyclerViewAppsIdicator.setRecyclerView(recyclerViewApps);
+                    } else {
+                       // hideProgressDialog();
+                        Log.w(TAG, "Error getting documents.", task.getException());
+                    }
+                }
+            });
     }
 
     // Maneja la salida de al app
@@ -162,5 +203,22 @@ public class HomeActivity extends BaseActivity implements NewsAdapter.OnItemClic
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(noticia.getLink()));
         startActivity(i);
+    }
+
+    // Click en other Apps
+    @Override
+    public void onAppItemClick(@NotNull App app, int posicion) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(app.getUrl()));
+        try {
+            startActivity(i);
+        }catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getString(R.string.error_no_intent), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

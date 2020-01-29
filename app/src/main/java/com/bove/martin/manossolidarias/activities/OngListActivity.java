@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -14,7 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 
 import com.bove.martin.manossolidarias.R;
@@ -51,7 +56,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
     private List<Institucion> instituciones = new ArrayList<Institucion>();
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private InstitucionesAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     private LinearLayout errorLay;
@@ -60,6 +65,8 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
 
     private boolean updateDistance = false;
     private FusedLocationProviderClient mFusedLocationClient;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,8 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
         // Toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+
 
         // Cargamos el NavDrawer
         DrawerUtil.getDrawer(this, myToolbar,2);
@@ -146,6 +155,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                                     if (userLoc != null) {
                                         Collections.sort(instituciones);
                                     }
+                                    adapter.setInstitucionesFull(instituciones);
                                     adapter.notifyDataSetChanged();
                                 } else {
                                     hideProgressDialog();
@@ -184,6 +194,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
                                     if (userLoc != null) {
                                         Collections.sort(instituciones);
                                     }
+                                    adapter.setInstitucionesFull(instituciones);
                                     adapter.notifyDataSetChanged();
                                 } else {
                                     hideProgressDialog();
@@ -289,6 +300,31 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
             Collections.sort(instituciones);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    // Serach menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_ong_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
     }
 
 }

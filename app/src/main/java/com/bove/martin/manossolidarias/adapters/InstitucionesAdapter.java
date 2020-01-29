@@ -5,11 +5,12 @@ import android.app.Activity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,14 +21,17 @@ import com.bumptech.glide.Glide;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Martín Bove on 28/06/2018.
  * E-mail: mbove77@gmail.com
  */
-public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdapter.ViewHolder> {
+public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdapter.ViewHolder> implements Filterable {
     private List<Institucion> instituciones;
+    private List<Institucion> institucionesFull;
+
     private int layout;
     private OnItemClickListener listener;
     private Activity activity;
@@ -54,6 +58,44 @@ public class InstitucionesAdapter extends RecyclerView.Adapter<InstitucionesAdap
 
     @Override
     public int getItemCount() { return instituciones.size();}
+
+    @Override
+    public Filter getFilter() {
+        return nameFilter;
+    }
+
+    // Filter logic
+    private Filter nameFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Institucion> filterList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0) {
+                filterList.addAll(institucionesFull);
+            } else {
+                String filterString = constraint.toString().toLowerCase().trim();
+                for( Institucion item : institucionesFull) {
+                    if(item.getNombre().toLowerCase().contains(filterString)) {
+                        filterList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filterList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            instituciones.clear();
+            instituciones.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+    public void setInstitucionesFull(List<Institucion> instituciones) {
+       this.institucionesFull = new ArrayList<Institucion>(instituciones);
+    }
 
     // ViewHolder
     public  class ViewHolder extends RecyclerView.ViewHolder  {

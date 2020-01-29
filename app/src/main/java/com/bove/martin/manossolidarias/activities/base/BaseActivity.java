@@ -51,7 +51,6 @@ public class BaseActivity extends AppCompatActivity {
     // TODO reemplazar todos los string con variables declaradas aquí.
     // TODO Crear popUp con icono de desconexión
     // TODO Implementar funcionalidad para denunciar datos errados en los perfiles
-    // TODO Remover icono de location de la lista de ongs si no tiene dirección
     // Posibles nuevos fetures
     // TODO Opciones para ordenar y buscar en la lista de ongs
     // TODO Agregar a fav ongs
@@ -68,6 +67,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final String DB_SUGGEST_ONG = "sugerencias_ong";
     public static final String DB_ONGS = "instituciones";
     public static final String DB_NEWS = "noticias";
+    public static final String DB_APPS = "otras_apps";
 
     public static final String SHARED_PREF = "pref";
 

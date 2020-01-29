@@ -35,8 +35,8 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
 
     // Fragment order
     public static final int INFO_FRAGMENT = 0;
-    public static final int MAP_FRAGMENT = 2;
     public static final int MENSAJE_FRAGMENT = 1;
+    public static final int MAP_FRAGMENT = 2;
 
     private TabLayout.Tab mensajeTab;
     private TabLayout.Tab infoTab;
@@ -72,8 +72,8 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
         mensajeTab = createTab(getString(R.string.sms), iconSms);
         infoTab = createTab(getString(R.string.info), iconInfo);
 
-        tabLayout.addTab(mensajeTab);
         tabLayout.addTab(infoTab);
+        tabLayout.addTab(mensajeTab);
 
         // Si no tiene distancia no agregamos el tab de mapa
         if(ong.getDistancia() != BaseActivity.NO_DISTANCIA) {
@@ -115,7 +115,7 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
                 viewPager.setCurrentItem(INFO_FRAGMENT);
             }
             case MAP_FRAGMENT: {
-                tabLayout.getTabAt(MAP_FRAGMENT).select();
+                viewPager.setCurrentItem(MAP_FRAGMENT);
             }
             case MENSAJE_FRAGMENT: {
                 viewPager.setCurrentItem(MENSAJE_FRAGMENT);

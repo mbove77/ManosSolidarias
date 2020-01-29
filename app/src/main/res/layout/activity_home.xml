@@ -144,6 +144,40 @@
                     app:avi_margin="5dp"
                     app:avi_width="5dp"
                     android:layout_marginBottom="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewTituloApps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="6dp"
+                    android:visibility="visible"
+                    android:text="@string/apps_tittle"
+                    android:textSize="24sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewApps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/apps_item"
+                    tools:layoutManager="LinearLayoutManager"/>
+
+                <com.kingfisher.easyviewindicator.RecyclerViewIndicator
+                    android:id="@+id/circleIndicatorForApps"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    app:avi_animation_enable="true"
+                    app:avi_drawable="@drawable/green_radius"
+                    app:avi_drawable_unselected="@drawable/gray_radius"
+                    app:avi_height="5dp"
+                    app:avi_margin="5dp"
+                    app:avi_width="5dp"
+                    android:layout_marginBottom="12dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

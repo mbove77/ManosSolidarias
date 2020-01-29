@@ -95,7 +95,8 @@
     <string name="lista_ong">Lista Ong´s</string>
     <string name="donaciones">Donaciones</string>
     <string name="nueva_ong">Nueva ONG</string>
-    <string name="news_tittle">Noticias</string>
+    <string name="news_tittle">Novedades</string>
+    <string name="apps_tittle">Más Apps Geniales!</string>
     <string name="online_msj">De nuevo en Línea!</string>
     <string name="offline_msj">Sin conexión a internet.</string>
 
@@ -121,4 +122,5 @@
     <string name="mision">Nuestra Misión</string>
     <string name="header_ong_img_desc">Imagen de cabecera de la ONG.</string>
     <string name="logo_ong_desc">Logo de la ONG.</string>
+    <string name="search">Buscar</string>
 </resources>
