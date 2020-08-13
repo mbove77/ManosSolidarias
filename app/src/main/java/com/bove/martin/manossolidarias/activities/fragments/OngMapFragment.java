@@ -88,7 +88,7 @@ public class OngMapFragment extends Fragment implements OnMapReadyCallback {
         LatLng place = new LatLng(ong.getLocalizacion().getLatitude(), ong.getLocalizacion().getLongitude());
 
         Marker marker = gMap.addMarker(new MarkerOptions()
-                .position(new LatLng(ong.getLocalizacion().getLatitude(),ong.getLocalizacion().getLongitude()))
+                .position(new LatLng(ong.getLocalizacion().getLatitude(), ong.getLocalizacion().getLongitude()))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
                 .snippet(truncate(ong.getDireccion(), 25))
                 .title(ong.getNombre()));
