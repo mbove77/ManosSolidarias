@@ -51,8 +51,8 @@ public class DonationActivity extends BaseActivity implements DonationAdapter.On
         setSupportActionBar(myToolbar);
 
         // load preference para mostrar la ayuda 1 sola vez
-        preferences = preferences;
-        showHelp = preferences.getBoolean(SHOW_HELP_KEY, true);
+        //preferences = preferences;
+        showHelp = getSharedPreferences().getBoolean(SHOW_HELP_KEY, true);
 
         // load NavDrawer
         DrawerUtil.getDrawer(this, myToolbar,3);

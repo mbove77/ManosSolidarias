@@ -116,8 +116,6 @@ class InstitucionesAdapter(instituciones: MutableList<Institucion>, layout: Int,
             // Añadimos el onClick
             itemView.setOnClickListener { listener.onItemClick(institucion, adapterPosition) }
         }
-
-
     }
 
     // Interfaz que define el onClick del adapter

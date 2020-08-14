@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bove.martin.manossolidarias.R
 import com.bove.martin.manossolidarias.model.Donacion
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.donation_item.view.*
 
 /**
  * Created by Martín Bove on 28/06/2018.
@@ -30,18 +31,15 @@ class DonationAdapter(private val donaciones: List<Donacion>, private val layout
 
     // ViewHolder
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val imageViewIcon: ImageView
-        private val textViewName: TextView
 
         // Aca es donde se cargan las datos reales
         fun bind(donacion: Donacion, listener: OnItemClickListener, longClickListener: OnLongClickListener) {
-            textViewName.text = donacion.nombre
-            Glide.with(activity).load(donacion.icon_url).fitCenter().placeholder(R.drawable.ic_place_holder).into(imageViewIcon)
+            itemView.textViewOngName.text = donacion.nombre
+            Glide.with(activity).load(donacion.icon_url).fitCenter().placeholder(R.drawable.ic_place_holder).into(itemView.imageViewIcon)
 
             // Destacamos el item de agregar donación
             if (donacion.especial) {
-                val imageViewBack = itemView.findViewById<ImageView>(R.id.viewBackground)
-                imageViewBack.setImageDrawable(itemView.resources.getDrawable(R.drawable.button_donation_new))
+                itemView.viewBackground.setImageDrawable(itemView.resources.getDrawable(R.drawable.button_donation_new))
             }
 
             // Añadimos el onClick
@@ -53,11 +51,7 @@ class DonationAdapter(private val donaciones: List<Donacion>, private val layout
             }
         }
 
-        // Consturctor
-        init {
-            textViewName = itemView.findViewById(R.id.textViewOngName)
-            imageViewIcon = itemView.findViewById(R.id.imageViewIcon)
-        }
+
     }
 
     // Interfaz que define el onClick del adapter
