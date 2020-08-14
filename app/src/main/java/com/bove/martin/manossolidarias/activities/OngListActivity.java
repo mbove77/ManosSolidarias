@@ -234,7 +234,7 @@ public class OngListActivity extends BaseActivity implements InstitucionesAdapte
             Intent intent = new Intent(this, OngInfoActivity.class);
 
             // Guardamos el objeto en las prefs
-            SharedPreferences.Editor prefsEditor = getPreferences().edit();
+            SharedPreferences.Editor prefsEditor = getSharedPreferences().edit();
             Gson gson = new Gson();
             String json = gson.toJson(institucion);
             prefsEditor.putString("institucion", json);

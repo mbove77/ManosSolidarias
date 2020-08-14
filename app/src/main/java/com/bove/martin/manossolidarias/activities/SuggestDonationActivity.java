@@ -63,7 +63,7 @@ public class SuggestDonationActivity extends BaseActivity {
         DrawerUtil.getDrawer(this, myToolbar,0);
 
         // load preference
-        preferences = getPreferences();
+        preferences = preferences;
 
         buttonDonSend.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -61,7 +61,7 @@ public class SuggestOngActivity extends BaseActivity {
         DrawerUtil.getDrawer(this, myToolbar,0);
 
         // load preference
-        preferences = getPreferences();
+        preferences = preferences;
 
         buttonOngSend.setOnClickListener(new View.OnClickListener() {
             @Override

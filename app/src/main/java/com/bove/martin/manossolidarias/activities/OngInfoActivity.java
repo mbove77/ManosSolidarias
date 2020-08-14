@@ -49,7 +49,7 @@ public class OngInfoActivity extends BaseActivity implements FragmentComunicatio
 
         // Obtenemos el objeto guardado previamente en las pref
         Gson gson = new Gson();
-        String json = getPreferences().getString("institucion", "");
+        String json = getSharedPreferences().getString("institucion", "");
         ong = gson.fromJson(json, Institucion.class);
 
         // Toolbar
