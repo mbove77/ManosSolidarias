@@ -3,6 +3,7 @@ package com.bove.martin.manossolidarias.activities.base
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.*
+import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -12,7 +13,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -28,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.iid.FirebaseInstanceId
+import java.util.*
 
 open class BaseActivity : AppCompatActivity() {
     // TODO reemplazar todos los string con variables declaradas aquí.
