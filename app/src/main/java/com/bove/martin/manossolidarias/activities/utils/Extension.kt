@@ -2,6 +2,7 @@ package com.bove.martin.manossolidarias.activities.utils
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
@@ -30,6 +31,7 @@ fun Activity.toast(mensaje: CharSequence, duracion: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, mensaje, duracion).show()
 }
 
+// TODO revisar la referencia a container
 // Agregamos SnackBar a Activity
 fun Activity.snackBar(mensaje: CharSequence,
                       view: View? = findViewById(R.id.container),
@@ -59,6 +61,7 @@ inline fun <reified T: Activity>Activity.goToActivity(noinline init: Intent.() -
     intent.init()
     startActivity(intent)
 }
+
 
 // Agreganos gotoActivityForresult a Activity
 fun Activity.goToActivityForResult(action: String, resquetCode: Int, init: Intent.() -> Unit = {}) {

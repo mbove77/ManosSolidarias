@@ -15,11 +15,7 @@ import java.util.*
  * E-mail: mbove77@gmail.com
  */
 class PagerAdapter(fm: FragmentManager?, private val numberOfTabs: Int) : FragmentStatePagerAdapter(fm!!) {
-    private val mPageReferenceMap: HashMap<Int, Fragment>
-
-    init {
-        mPageReferenceMap = HashMap()
-    }
+    private val mPageReferenceMap: HashMap<Int, Fragment> = HashMap()
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
