@@ -11,7 +11,6 @@ import com.bove.martin.manossolidarias.R
 import com.bove.martin.manossolidarias.activities.base.BaseActivity
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil.getDrawer
 import com.bove.martin.manossolidarias.activities.utils.goToActivity
-import com.bove.martin.manossolidarias.activities.utils.goToActivityForResult
 import com.bove.martin.manossolidarias.adapters.DonationAdapter
 import com.bove.martin.manossolidarias.model.Donacion
 import com.google.android.material.snackbar.Snackbar
@@ -106,6 +105,7 @@ class DonationActivity : BaseActivity(), DonationAdapter.OnItemClickListener, Do
         return super.onOptionsItemSelected(item);
     }
     */
+
     // Muestra la ayuda
     private fun showHelp() {
         preferences!!.edit().putBoolean(SHOW_HELP_KEY, false).apply()
@@ -117,9 +117,9 @@ class DonationActivity : BaseActivity(), DonationAdapter.OnItemClickListener, Do
         if (donacion!!.especial) {
             goToActivity<SuggestDonationActivity>()
         } else {
-           goToActivity<OngListActivity>() {
-               intent.putExtra("donacion", donacion.key)
-           }
+            val intent = Intent(this, OngListActivity::class.java)
+            intent.putExtra("donacion", donacion.key)
+            startActivity(intent)
         }
     }
 
