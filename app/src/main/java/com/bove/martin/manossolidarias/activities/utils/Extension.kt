@@ -100,3 +100,10 @@ fun Activity.isValidateConfirmPassword(password: String, confirmPassword: String
     return password == confirmPassword
 }
 
+fun String.truncate(str: String, len:Int):String {
+    return if (str.length > len) {
+        str.substring(0, len) + "...";
+    } else {
+        str;
+    }
+}

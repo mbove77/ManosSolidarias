@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bove.martin.manossolidarias.R
-import com.bove.martin.manossolidarias.activities.OngInfoActivity
-import com.bove.martin.manossolidarias.activities.SuggestOngActivity
 import com.bove.martin.manossolidarias.activities.base.BaseActivity
 import com.bove.martin.manossolidarias.activities.utils.DrawerUtil.getDrawer
 import com.bove.martin.manossolidarias.activities.utils.goToActivity
