@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bove.martin.manossolidarias.R
@@ -24,13 +26,16 @@ class DonationActivity : BaseActivity(), DonationAdapter.OnItemClickListener, Do
     private val SHOW_HELP_KEY = "showHelp"
 
     private lateinit var adapter: DonationAdapter
-    private val donaciones: MutableList<Donacion> = ArrayList()
+    private var donaciones: List<Donacion> = ArrayList()
+    private lateinit var donactionActivityViewModel: DonactionActivityViewModel
 
     private var showHelp = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_donation)
+
+        donactionActivityViewModel = ViewModelProvider(this).get(DonactionActivityViewModel::class.java)
 
         // Toolbar
         val myToolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -49,62 +54,22 @@ class DonationActivity : BaseActivity(), DonationAdapter.OnItemClickListener, Do
 
         // Instanciamos los elementos
         val layoutManager = GridLayoutManager(this, 3)
-        recyclerViewDonation.setLayoutManager(layoutManager)
-        recyclerViewDonation.setItemAnimator(DefaultItemAnimator())
+        recyclerViewDonation.layoutManager = layoutManager
+        recyclerViewDonation.itemAnimator = DefaultItemAnimator()
         adapter = DonationAdapter(donaciones, R.layout.donation_item, this, this, this)
-        recyclerViewDonation.setAdapter(adapter)
+        recyclerViewDonation.adapter = adapter
 
-        // Access a Cloud Firestore instance from your Activity
-        val db = FirebaseFirestore.getInstance()
-        db.collection(DB_DONATIONS)
-                .orderBy("order", Query.Direction.ASCENDING)
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result!!) {
-                            val donacion = document.toObject(Donacion::class.java)
-                            donacion.key = document.id
-                            donaciones.add(donacion)
-                        }
-                        hideProgressDialog()
-                        if (showHelp) {
-                            showHelp()
-                        }
-                        adapter.notifyDataSetChanged()
-                    } else {
-                        hideProgressDialog()
-                        Log.w(TAG, "Error getting documents.", task.exception)
-                    }
+        donactionActivityViewModel.dontations.observe(this, androidx.lifecycle.Observer {
+            if (it.size > 0) {
+                hideProgressDialog()
+                if (showHelp) {
+                    showHelp()
                 }
-    }
+               adapter.setData(it)
+            }
+        })
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
     }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menulogout:
-                logout();
-                break;
-            case R.id.menuAdd:
-                Intent i = new Intent(this, AddOngActivity.class);
-                startActivity(i);
-                break;
-            case R.id.menuShowHelp:
-                preferences.edit().clear().apply();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
 
     // Muestra la ayuda
     private fun showHelp() {

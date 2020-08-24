@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.donation_item.view.*
  * Created by Martín Bove on 28/06/2018.
  * E-mail: mbove77@gmail.com
  */
-class DonationAdapter(private val donaciones: List<Donacion>, private val layout: Int, private val activity: Activity, private val listener: OnItemClickListener, private val longClick: OnLongClickListener) : RecyclerView.Adapter<DonationAdapter.ViewHolder>() {
+class DonationAdapter(private var donaciones: List<Donacion>, private val layout: Int, private val activity: Activity, private val listener: OnItemClickListener, private val longClick: OnLongClickListener) : RecyclerView.Adapter<DonationAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Inflamos la vista
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
@@ -50,8 +50,11 @@ class DonationAdapter(private val donaciones: List<Donacion>, private val layout
                 true
             }
         }
+    }
 
-
+    fun setData(donations: List<Donacion>) {
+        donaciones = donations
+        notifyDataSetChanged()
     }
 
     // Interfaz que define el onClick del adapter
