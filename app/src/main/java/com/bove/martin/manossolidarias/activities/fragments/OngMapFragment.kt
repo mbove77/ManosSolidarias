@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.fragment_ong_map.*
 class OngMapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var rootView: View
     private var callback: FragmentComunication? = null
-    private var ong: Institucion? = null
+    private lateinit var ong: Institucion
     private lateinit var gMap: GoogleMap
     private lateinit var preferences: SharedPreferences
     private lateinit var mMapView:MapView
@@ -68,18 +68,18 @@ class OngMapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         gMap = googleMap
         gMap.uiSettings.isMapToolbarEnabled = false
-        val place = LatLng(ong?.localizacion!!.latitude, ong?.localizacion!!.longitude)
+        val place = LatLng(ong.localizacion!!.latitude, ong.localizacion!!.longitude)
         val marker = gMap.addMarker(MarkerOptions()
-                .position(LatLng(ong?.localizacion!!.latitude, ong?.localizacion!!.longitude))
+                .position(LatLng(ong.localizacion!!.latitude, ong.localizacion!!.longitude))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-                .snippet(String().truncate(ong?.direccion!!, 25))
-                .title(ong?.nombre))
+                .snippet(String().truncate(ong.direccion!!, 25))
+                .title(ong.nombre))
         marker.showInfoWindow()
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, 15f))
 
         navButton!!.setOnClickListener {
-            val mTitle = ong?.nombre
-            val geoUri = "http://maps.google.com/maps?q=loc:" + ong?.localizacion!!.latitude + "," + ong?.localizacion!!.longitude + " (" + mTitle + ")"
+            val mTitle = ong.nombre
+            val geoUri = "http://maps.google.com/maps?q=loc:" + ong.localizacion!!.latitude + "," + ong.localizacion!!.longitude + " (" + mTitle + ")"
             val gmmIntentUri = Uri.parse(geoUri)
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")

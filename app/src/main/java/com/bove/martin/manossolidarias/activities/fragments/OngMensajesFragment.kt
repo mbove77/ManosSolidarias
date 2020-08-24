@@ -74,14 +74,14 @@ class OngMensajesFragment : Fragment() {
     // TODO Revisar user.getDisplayName() si viene nullo tira un NPE cuando llamamos a isEmpty()
     // Load users
     private fun loadUsers() {
-        ongChat = ChatUser(0, ong!!.nombre!!)
+        ongChat = ChatUser(0, ong.nombre!!)
         userChat = ChatUser(1, if (user!!.displayName!!.isEmpty()) user.email!! else user!!.displayName!!)
     }
 
     // Load mensajes from db
     private fun loadMensajes() {
-        val ongid = ong!!.key
-        val userid = user!!.uid
+        val ongid = ong.key
+        val userid = user.uid
 
         // Read from the database first time
         if (ongid != null) {
@@ -147,7 +147,7 @@ class OngMensajesFragment : Fragment() {
 
     // Recibimos el mensaje del usuario
     private fun sendMensaje() {
-        if (editTextMsj.text.length > 0) {
+        if (editTextMsj.text.isNotEmpty()) {
             val mensaje = Mensaje(userChat?.getName(), editTextMsj.text.toString(), false)
             saveMensaje(mensaje)
             editTextMsj.setText("")
