@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name=".activities.base.MyApplication"
+        android:name=".presentation.base.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".presentation.SplashActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,17 +28,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.DonationActivity" />
-        <activity android:name=".activities.base.BaseActivity" />
-        <activity android:name=".activities.account.CreateAccountActivity" />
-        <activity android:name=".activities.account.RestorePasswordActivity" />
-        <activity android:name=".activities.OngListActivity" />
-        <activity android:name=".activities.AddOngActivity" />
-        <activity android:name=".activities.OngInfoActivity" />
-        <activity android:name=".activities.SuggestDonationActivity" />
-        <activity android:name=".activities.SuggestOngActivity" />
-        <activity android:name=".activities.AboutActivity" />
+        <activity android:name=".presentation.MainActivity" />
+        <activity android:name=".presentation.DonationActivity" />
+        <activity android:name=".presentation.base.BaseActivity" />
+        <activity android:name=".presentation.account.CreateAccountActivity" />
+        <activity android:name=".presentation.account.RestorePasswordActivity" />
+        <activity android:name=".presentation.OngListActivity" />
+        <activity android:name=".presentation.AddOngActivity" />
+        <activity android:name=".presentation.OngInfoActivity" />
+        <activity android:name=".presentation.SuggestDonationActivity" />
+        <activity android:name=".presentation.SuggestOngActivity" />
+        <activity android:name=".presentation.AboutActivity" />
 
         <activity
             android:name="com.facebook.CustomTabActivity"
@@ -52,7 +52,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.HomeActivity" /> <!-- Network Verificator -->
+        <activity android:name=".presentation.HomeActivity" /> <!-- Network Verificator -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -76,14 +76,14 @@
             android:resource="@drawable/ic_iso_noti" />
 
         <receiver
-            android:name=".activities.broadcast.NetworkChangeReceiver"
+            android:name=".data.broadcast.NetworkChangeReceiver"
             android:label="NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".activities.services.MyFirebaseMessagingService">
+        <service android:name=".data.services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

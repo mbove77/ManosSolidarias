@@ -1877,7 +1877,7 @@ com.google.common.hash.LittleEndianByteArray$UnsafeByteArray$1
 com.google.firebase.firestore.local.IndexedQueryEngine
     private static final double HIGH_SELECTIVITY
     private static final double LOW_SELECTIVITY
-com.bove.martin.manossolidarias.activities.OngInfoActivity
+com.bove.martin.manossolidarias.ui.OngInfoActivity
     private com.readystatesoftware.viewbadger.BadgeView badge
 com.google.android.gms.internal.firebase_remote_config.zzfw
     void <init>()
@@ -4336,7 +4336,7 @@ org.intellij.lang.annotations.PrintFormatPattern
 com.google.zxing.qrcode.decoder.DecodedBitStreamParser
     private void <init>()
     private static final int GB2312_SUBSET
-com.bove.martin.manossolidarias.activities.MainActivity
+com.bove.martin.manossolidarias.ui.MainActivity
     private static final java.lang.String TAG_GOOGLE
     private static final java.lang.String TAG_FACEBOOK
     private static final java.lang.String TAG_EMAIL
@@ -7858,7 +7858,7 @@ androidx.core.view.ViewPropertyAnimatorCompat$1
     public final synthetic androidx.core.view.ViewPropertyAnimatorCompat this$0
 kotlin.sequences.IndexingSequence$iterator$1
     public final synthetic kotlin.sequences.IndexingSequence this$0
-com.bove.martin.manossolidarias.activities.DonationActivity
+com.bove.martin.manossolidarias.ui.DonationActivity
     public final java.lang.String TAG
     public final java.lang.String SHOW_HELP_KEY
 bolts.Task$10
@@ -8067,7 +8067,7 @@ io.fabric.sdk.android.services.common.ExecutorUtils$1$1
     public final synthetic io.fabric.sdk.android.services.common.ExecutorUtils$1 this$0
 com.google.android.gms.internal.firebase_auth.zzhv
     public static final com.google.android.gms.internal.firebase_auth.zzhv zza
-com.bove.martin.manossolidarias.activities.HomeActivity
+com.bove.martin.manossolidarias.ui.HomeActivity
     public final java.lang.String TAG
 com.google.android.gms.internal.firebase_remote_config.zzds
     public final boolean zzhh
@@ -8384,7 +8384,7 @@ com.google.android.gms.internal.clearcut.zzbn$zzd
     public final int zzgb
 androidx.multidex.MultiDexExtractor$1
     public final synthetic androidx.multidex.MultiDexExtractor this$0
-com.bove.martin.manossolidarias.activities.OngListActivity
+com.bove.martin.manossolidarias.ui.OngListActivity
     public final java.lang.String TAG
     public boolean updateDistance
 com.mikepenz.fastadapter.FastAdapter$2
@@ -9080,13 +9080,13 @@ com.google.firestore.v1.WriteProto
 com.google.firebase.database.core.SyncTree$12
     public static void <clinit>()
     public static final synthetic boolean $assertionsDisabled
-com.bove.martin.manossolidarias.activities.AddOngActivity$3
-    public final synthetic com.bove.martin.manossolidarias.activities.AddOngActivity this$0
+com.bove.martin.manossolidarias.ui.AddOngActivity$3
+    public final synthetic com.bove.martin.manossolidarias.ui.AddOngActivity this$0
 bolts.WebViewAppLinkResolver$3
     public final synthetic bolts.WebViewAppLinkResolver this$0
 io.grpc.internal.RetriableStream$1FullStreamDecompressionEntry
     public final synthetic io.grpc.internal.RetriableStream this$0
-com.bove.martin.manossolidarias.activities.SuggestOngActivity
+com.bove.martin.manossolidarias.ui.SuggestOngActivity
     public final java.lang.String TAG
     public final java.lang.String POST_NUMBER
     public final java.lang.String LAST_POST_DATE
@@ -9109,7 +9109,7 @@ androidx.fragment.app.FragmentTransitionCompat21$4
     public final synthetic androidx.fragment.app.FragmentTransitionCompat21 this$0
 com.google.android.gms.internal.firebase_auth.zzlk
     public abstract void zza(int,com.google.android.gms.internal.firebase_auth.zzja,java.util.Map)
-com.bove.martin.manossolidarias.activities.AddOngActivity
+com.bove.martin.manossolidarias.ui.AddOngActivity
     public final java.lang.String TAG
 com.google.android.gms.clearcut.ClearcutLogger$LogEventBuilder
     public final com.google.android.gms.clearcut.ClearcutLogger$zzb zzt
@@ -9127,8 +9127,8 @@ com.google.android.gms.internal.measurement.zzgg
     public static int zza(com.google.android.gms.internal.measurement.zzgf,java.lang.Object,java.lang.Object)
 com.google.android.material.shadow.ShadowDrawableWrapper
     public float maxShadowSize
-com.bove.martin.manossolidarias.activities.AddOngActivity$4
-    public final synthetic com.bove.martin.manossolidarias.activities.AddOngActivity this$0
+com.bove.martin.manossolidarias.ui.AddOngActivity$4
+    public final synthetic com.bove.martin.manossolidarias.ui.AddOngActivity this$0
 kotlin.text.ScreenFloatValueRegEx
     public static final kotlin.text.ScreenFloatValueRegEx INSTANCE
 com.google.android.gms.internal.firebase_remote_config.zzfj
@@ -9930,7 +9930,7 @@ androidx.drawerlayout.widget.DrawerLayout$1
     public final synthetic androidx.drawerlayout.widget.DrawerLayout this$0
 android.support.v4.media.MediaBrowserCompat$MediaBrowserImplBase$3
     public final synthetic android.support.v4.media.MediaBrowserCompat$MediaBrowserImplBase this$0
-com.bove.martin.manossolidarias.activities.SuggestDonationActivity
+com.bove.martin.manossolidarias.ui.SuggestDonationActivity
     public final java.lang.String TAG
     public final java.lang.String POST_NUMBER
     public final java.lang.String LAST_POST_DATE

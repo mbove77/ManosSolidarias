@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        tools:context=".activities.MainActivity"
+        tools:context=".presentation.MainActivity"
         android:id="@+id/main_layout"
         tools:layout_editor_absoluteY="25dp">
 

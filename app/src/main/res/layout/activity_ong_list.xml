@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
-    tools:context=".activities.OngListActivity">
+    tools:context=".presentation.OngListActivity">
 
     <include android:id="@+id/toolbar" layout="@layout/toolbar" />
 

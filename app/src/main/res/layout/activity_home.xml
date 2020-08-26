@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context=".activities.HomeActivity">
+    tools:context=".presentation.HomeActivity">
 
     <include
         android:id="@+id/toolbar"
